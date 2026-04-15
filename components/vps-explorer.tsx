@@ -49,6 +49,9 @@ export const VpsExplorer = ({ services }: Props) => {
   const [filters, setFilters] = useState(initialFilters)
   const [comparisonSort, setComparisonSort] =
     useState<ComparisonSortKey>("default")
+  const [expandedPlans, setExpandedPlans] = useState<Record<string, boolean>>(
+    {}
+  )
 
   const filteredServices = useMemo(
     () => filterAndSortServices(services, filters),
@@ -70,6 +73,13 @@ export const VpsExplorer = ({ services }: Props) => {
     value: FilterState[Key]
   ) => {
     setFilters((current) => ({ ...current, [key]: value }))
+  }
+
+  const toggleExpandedPlans = (serviceId: string) => {
+    setExpandedPlans((current) => ({
+      ...current,
+      [serviceId]: !current[serviceId],
+    }))
   }
 
   return (
@@ -507,10 +517,16 @@ export const VpsExplorer = ({ services }: Props) => {
                 ))}
                 <tr>
                   <td style={compareCellLabelStyle}>全プラン</td>
-                  {comparisonServices.map((service) => (
+                  {comparisonServices.map((service) => {
+                    const isExpanded = expandedPlans[service.id] ?? false
+                    const visiblePlans = isExpanded
+                      ? service.plans
+                      : service.plans.slice(0, 3)
+
+                    return (
                     <td key={`${service.id}-plans`} style={compareCellStyle}>
                       <div style={{ display: "grid", gap: "0.55rem" }}>
-                        {service.plans.map((plan) => (
+                        {visiblePlans.map((plan) => (
                           <div
                             key={plan.id}
                             style={{
@@ -535,9 +551,21 @@ export const VpsExplorer = ({ services }: Props) => {
                             </span>
                           </div>
                         ))}
+                        {service.plans.length > 3 ? (
+                          <button
+                            onClick={() => toggleExpandedPlans(service.id)}
+                            style={compareMoreButtonStyle}
+                            type="button"
+                          >
+                            {isExpanded
+                              ? "閉じる"
+                              : `もっとみる（残り${service.plans.length - 3}件）`}
+                          </button>
+                        ) : null}
                       </div>
                     </td>
-                  ))}
+                    )
+                  })}
                 </tr>
               </tbody>
             </table>
@@ -654,6 +682,20 @@ const compareLinkStyle = {
   color: "#9edaff",
   fontSize: "0.82rem",
   textDecoration: "none",
+}
+
+const compareMoreButtonStyle = {
+  appearance: "none" as const,
+  background: "rgba(123, 225, 255, 0.12)",
+  border: "1px solid rgba(123, 225, 255, 0.24)",
+  borderRadius: 12,
+  color: "#9edaff",
+  cursor: "pointer",
+  fontSize: "0.82rem",
+  fontWeight: 700,
+  padding: "0.7rem 0.75rem",
+  textAlign: "center" as const,
+  width: "100%",
 }
 
 const pillStyle = {
