@@ -69,6 +69,9 @@ export const billingLabels: Record<BillingType, string> = {
   hourly: "時間課金",
 }
 
+export const formatTrafficLabel = (traffic: string) =>
+  traffic === "unlimited" ? "無制限" : traffic
+
 export const getAllServices = () => services
 
 export const getServiceById = (id: string) =>
@@ -181,7 +184,7 @@ export const getComparisonRows = (servicesToCompare: VpsService[]) => [
   {
     label: "転送量",
     values: servicesToCompare.map(
-      (service) => getLowestPricePlan(service).traffic
+      (service) => formatTrafficLabel(getLowestPricePlan(service).traffic)
     ),
   },
   {

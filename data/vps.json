@@ -18,10 +18,30 @@
     "officialUrl": "https://www.conoha.jp/vps/",
     "plans": [
       {
+        "id": "conoha-512mb",
+        "name": "512MB",
+        "price": 460,
+        "cpu": 1,
+        "memory": 0.5,
+        "storage": 30,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "conoha-1g",
+        "name": "1GB",
+        "price": 763,
+        "cpu": 2,
+        "memory": 1,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
         "id": "conoha-2g",
         "name": "2GB",
-        "price": 968,
-        "cpu": 2,
+        "price": 1144,
+        "cpu": 3,
         "memory": 2,
         "storage": 100,
         "traffic": "unlimited",
@@ -30,7 +50,7 @@
       {
         "id": "conoha-4g",
         "name": "4GB",
-        "price": 1963,
+        "price": 2189,
         "cpu": 4,
         "memory": 4,
         "storage": 100,
@@ -38,11 +58,51 @@
         "billing": "monthly"
       },
       {
-        "id": "conoha-8g",
-        "name": "8GB",
-        "price": 3927,
+        "id": "conoha-12g",
+        "name": "12GB",
+        "price": 4302,
         "cpu": 6,
-        "memory": 8,
+        "memory": 12,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "conoha-24g",
+        "name": "24GB",
+        "price": 9552,
+        "cpu": 8,
+        "memory": 24,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "conoha-48g",
+        "name": "48GB",
+        "price": 21658,
+        "cpu": 12,
+        "memory": 48,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "conoha-96g",
+        "name": "96GB",
+        "price": 43315,
+        "cpu": 24,
+        "memory": 96,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "conoha-128g",
+        "name": "128GB",
+        "price": 64820,
+        "cpu": 40,
+        "memory": 128,
         "storage": 100,
         "traffic": "unlimited",
         "billing": "monthly"
