@@ -23,7 +23,7 @@ const initialFilters: FilterState = {
   priceRange: "all",
   memory: "all",
   cpu: "all",
-  region: "all",
+  region: "JP",
   usage: "all",
   query: "",
   sort: "popular",
@@ -287,9 +287,9 @@ export const VpsExplorer = ({ services }: Props) => {
                 style={controlStyle}
                 value={filters.region}
               >
-                <option value="all">すべて</option>
                 <option value="JP">国内</option>
                 <option value="GLOBAL">海外</option>
+                <option value="all">すべて</option>
               </select>
             </ControlField>
             <ControlField label="用途">
