@@ -2,8 +2,13 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import "./reset.css"
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"
+const shellStyle = {
+  margin: "0 auto",
+  maxWidth: "1180px",
+  paddingInline: "clamp(0.75rem, 2vw, 1rem)",
+  width: "100%",
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -54,22 +59,82 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ja">
       <body>
-        <div className="site-shell">
-          <header className="site-header">
-            <div className="shell-inner site-header__inner">
-              <a className="brandmark" href="/">
+        <div style={{ minHeight: "100vh", width: "100%" }}>
+          <header
+            style={{
+              backdropFilter: "blur(18px)",
+              background: "rgba(3, 8, 18, 0.7)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+              position: "sticky",
+              top: 0,
+              zIndex: 20,
+            }}
+          >
+            <div
+              style={{
+                ...shellStyle,
+                alignItems: "center",
+                display: "flex",
+                flexWrap: "wrap" as const,
+                gap: "1rem",
+                justifyContent: "space-between",
+                minHeight: "72px",
+                paddingBlock: "1rem",
+              }}
+            >
+              <a
+                href="/"
+                style={{
+                  fontSize: "clamp(0.92rem, 2vw, 1rem)",
+                  fontWeight: 800,
+                  letterSpacing: "0.08em",
+                  textDecoration: "none",
+                  textTransform: "uppercase",
+                }}
+              >
                 VPS比較サイト
               </a>
-              <p className="site-header__copy">
+              <p
+                style={{
+                  color: "#a7bddb",
+                  fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                  textAlign: "left" as const,
+                }}
+              >
                 日本・海外VPSを価格と用途から比較できるガイド
               </p>
             </div>
           </header>
-          <main className="shell-inner site-main">{children}</main>
-          <footer className="site-footer">
-            <div className="shell-inner site-footer__inner">
-              <p>VPS選定の意思決定を支援する比較サイトMVP</p>
-              <p>&copy; 2026 VPS Survey</p>
+          <main
+            style={{
+              ...shellStyle,
+              minWidth: 0,
+              paddingBottom: "4rem",
+              paddingTop: "1.5rem",
+            }}
+          >
+            {children}
+          </main>
+          <footer
+            style={{
+              borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+              marginTop: "2rem",
+            }}
+          >
+            <div
+              style={{
+                ...shellStyle,
+                color: "#95accb",
+                display: "flex",
+                flexWrap: "wrap",
+                fontSize: "clamp(0.8rem, 1.8vw, 0.85rem)",
+                gap: "0.75rem",
+                justifyContent: "space-between",
+                padding: "1.25rem 0 2rem",
+              }}
+            >
+              <p>VPS比較サイト</p>
+              <p>&copy; 2026 Reload, Inc.</p>
             </div>
           </footer>
         </div>

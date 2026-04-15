@@ -11,6 +11,12 @@ import {
   usageLabels,
 } from "../../../lib/vps"
 
+const responsiveGrid = (minWidth: string) => ({
+  display: "grid",
+  gap: "1rem",
+  gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${minWidth}), 1fr))`,
+})
+
 type Props = {
   params: Promise<{
     id: string
@@ -97,7 +103,9 @@ const VpsDetailPage = async ({ params }: Props) => {
   }
 
   return (
-    <div style={{ display: "grid", gap: "1.5rem" }}>
+    <div
+      style={{ display: "grid", gap: "1.5rem", maxWidth: "100%", minWidth: 0, width: "100%" }}
+    >
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
         type="application/ld+json"
@@ -111,10 +119,10 @@ const VpsDetailPage = async ({ params }: Props) => {
           background:
             "linear-gradient(135deg, rgba(111, 225, 255, 0.16), rgba(122, 141, 255, 0.12), rgba(255,255,255,0.03))",
           border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: 28,
+          borderRadius: "clamp(20px, 4vw, 28px)",
           display: "grid",
           gap: "1rem",
-          padding: "1.5rem",
+          padding: "clamp(0.9rem, 3vw, 1.5rem)",
         }}
       >
         <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
@@ -148,9 +156,8 @@ const VpsDetailPage = async ({ params }: Props) => {
         </div>
         <div
           style={{
-            display: "grid",
+            ...responsiveGrid("160px"),
             gap: "0.85rem",
-            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           }}
         >
           <DetailMetric label="料金帯" value={getPriceRangeLabel(service)} />
@@ -165,9 +172,10 @@ const VpsDetailPage = async ({ params }: Props) => {
 
       <section
         style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns: "2fr 1fr",
+          ...responsiveGrid("320px"),
+          maxWidth: "100%",
+          minWidth: 0,
+          width: "100%",
         }}
       >
         <article style={panelStyle}>
@@ -225,14 +233,15 @@ const VpsDetailPage = async ({ params }: Props) => {
 
       <section
         style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          ...responsiveGrid("260px"),
+          maxWidth: "100%",
+          minWidth: 0,
+          width: "100%",
         }}
       >
         <article style={panelStyle}>
           <h2 style={panelTitleStyle}>プラン一覧</h2>
-          <div style={{ overflowX: "auto" }}>
+          <div style={{ WebkitOverflowScrolling: "touch", overflowX: "auto" }}>
             <table style={{ minWidth: 640, width: "100%" }}>
               <thead>
                 <tr>
@@ -350,8 +359,8 @@ const panelStyle = {
   background:
     "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
   border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: 24,
-  padding: "1.25rem",
+  borderRadius: "clamp(20px, 4vw, 24px)",
+  padding: "clamp(0.9rem, 3vw, 1.25rem)",
 }
 
 const panelTitleStyle = {

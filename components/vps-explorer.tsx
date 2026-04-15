@@ -4,7 +4,6 @@ import Link from "next/link"
 import type { ReactNode } from "react"
 import { useMemo, useState } from "react"
 import {
-  billingLabels,
   filterAndSortServices,
   getComparisonRows,
   getLowestPricePlan,
@@ -31,6 +30,7 @@ const sectionStyle = {
   border: "1px solid rgba(255,255,255,0.12)",
   borderRadius: 24,
   padding: "1.25rem",
+  maxWidth: "1180px",
 }
 
 const controlStyle = {
@@ -44,6 +44,11 @@ const controlStyle = {
   padding: "0.8rem 0.95rem",
   width: "100%",
 }
+const responsiveGrid = (minWidth: string) => ({
+  display: "grid",
+  gap: "1rem",
+  gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${minWidth}), 1fr))`,
+})
 
 type Props = {
   services: VpsService[]
@@ -51,24 +56,15 @@ type Props = {
 
 export const VpsExplorer = ({ services }: Props) => {
   const [filters, setFilters] = useState(initialFilters)
-  const [selectedIds, setSelectedIds] = useState<string[]>([])
 
   const filteredServices = useMemo(
     () => filterAndSortServices(services, filters),
     [filters, services]
   )
 
-  const selectedServices = useMemo(
-    () =>
-      services
-        .filter((service) => selectedIds.includes(service.id))
-        .slice(0, 3),
-    [selectedIds, services]
-  )
-
   const comparisonRows = useMemo(
-    () => getComparisonRows(selectedServices),
-    [selectedServices]
+    () => getComparisonRows(filteredServices),
+    [filteredServices]
   )
 
   const updateFilter = <Key extends keyof FilterState>(
@@ -78,30 +74,24 @@ export const VpsExplorer = ({ services }: Props) => {
     setFilters((current) => ({ ...current, [key]: value }))
   }
 
-  const toggleCompare = (id: string) => {
-    setSelectedIds((current) => {
-      if (current.includes(id)) {
-        return current.filter((currentId) => currentId !== id)
-      }
-
-      if (current.length >= 3) {
-        return [...current.slice(1), id]
-      }
-
-      return [...current, id]
-    })
-  }
-
   return (
-    <div style={{ display: "grid", gap: "1.5rem" }}>
+    <div
+      style={{
+        display: "grid",
+        gap: "1.5rem",
+        maxWidth: "100%",
+        minWidth: 0,
+        width: "100%",
+      }}
+    >
       <section
         style={{
           background:
             "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 28%), linear-gradient(135deg, #10203e 0%, #07101f 55%, #040812 100%)",
           border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: 32,
+          borderRadius: "clamp(20px, 4vw, 32px)",
           overflow: "hidden",
-          padding: "1.5rem",
+          padding: "clamp(0.9rem, 3vw, 1.5rem)",
           position: "relative",
         }}
       >
@@ -146,16 +136,10 @@ export const VpsExplorer = ({ services }: Props) => {
               として一通り使えます。
             </p>
           </div>
-          <div
-            style={{
-              display: "grid",
-              gap: "0.75rem",
-              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-            }}
-          >
+          <div style={{ ...responsiveGrid("160px"), gap: "0.75rem" }}>
             <MetricCard label="掲載サービス" value={`${services.length}件`} />
             <MetricCard label="最安価格帯" value="¥550〜" />
-            <MetricCard label="比較選択" value="最大3件" />
+            <MetricCard label="比較表示" value="横並び比較" />
             <MetricCard label="主な用途" value="開発・本番・検証" />
           </div>
         </div>
@@ -165,10 +149,9 @@ export const VpsExplorer = ({ services }: Props) => {
         <div style={{ display: "grid", gap: "1rem" }}>
           <div
             style={{
+              ...responsiveGrid("150px"),
               alignItems: "end",
-              display: "grid",
               gap: "0.85rem",
-              gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
             }}
           >
             <ControlField label="サービス名検索">
@@ -278,125 +261,82 @@ export const VpsExplorer = ({ services }: Props) => {
             </ControlField>
           </div>
           <p style={{ color: "#a4bad8", fontSize: "0.92rem" }}>
-            {filteredServices.length}件が条件に一致しています。比較したい VPS
-            を選ぶと、 下部に横並びの比較表を表示します。
+            {filteredServices.length}
+            件が条件に一致しています。フィルタ結果はそのまま下部の比較表に横並び表示されます。
           </p>
         </div>
       </section>
 
-      <section style={{ overflowX: "auto" }}>
-        <table
-          style={{
-            borderCollapse: "separate",
-            borderSpacing: 0,
-            minWidth: 980,
-            width: "100%",
-          }}
-        >
-          <thead>
-            <tr>
-              {[
-                "比較",
-                "サービス名",
-                "月額料金",
-                "CPU",
-                "メモリ",
-                "ストレージ",
-                "転送量",
-                "リージョン",
-                "課金方式",
-                "詳細",
-              ].map((label) => (
-                <th
-                  key={label}
-                  style={{
-                    background: "rgba(11, 21, 37, 0.95)",
-                    borderBottom: "1px solid rgba(255,255,255,0.12)",
-                    color: "#d9e6f8",
-                    fontSize: "0.78rem",
-                    letterSpacing: "0.04em",
-                    padding: "0.95rem 0.85rem",
-                    position: "sticky",
-                    textAlign: "left",
-                    textTransform: "uppercase",
-                    top: 0,
-                  }}
-                >
-                  {label}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filteredServices.map((service) => {
-              const checked = selectedIds.includes(service.id)
-              const lowestPricePlan = getLowestPricePlan(service)
+      <section
+        style={{
+          ...responsiveGrid("260px"),
+          minWidth: 0,
+          width: "100%",
+          maxWidth: "1180px",
+        }}
+      >
+        {filteredServices.map((service) => {
+          const lowestPricePlan = getLowestPricePlan(service)
 
-              return (
-                <tr
-                  key={service.id}
-                  style={{
-                    background: checked
-                      ? "rgba(24, 57, 99, 0.38)"
-                      : "rgba(8, 15, 28, 0.92)",
-                  }}
+          return (
+            <article key={service.id} style={sectionStyle}>
+              <div style={{ display: "grid", gap: "0.75rem" }}>
+                <div style={{ display: "grid", gap: "0.35rem" }}>
+                  <strong style={{ fontSize: "1.05rem" }}>
+                    {service.name}
+                  </strong>
+                  <p
+                    style={{
+                      color: "#a5bbd8",
+                      fontSize: "0.92rem",
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {service.summary}
+                  </p>
+                </div>
+                <div
+                  style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
                 >
-                  <td style={cellStyle}>
-                    <input
-                      aria-label={`${service.name}を比較に追加`}
-                      checked={checked}
-                      onChange={() => toggleCompare(service.id)}
-                      type="checkbox"
-                    />
-                  </td>
-                  <td style={cellStyle}>
-                    <div style={{ display: "grid", gap: "0.35rem" }}>
-                      <strong style={{ fontSize: "1rem" }}>
-                        {service.name}
-                      </strong>
-                      <span style={{ color: "#a5bbd8", fontSize: "0.9rem" }}>
-                        {service.summary}
-                      </span>
-                      <span style={{ color: "#7dc9ff", fontSize: "0.82rem" }}>
-                        用途:{" "}
-                        {service.usage
-                          .map((usage) => usageLabels[usage])
-                          .join(" / ")}
-                      </span>
-                      <span style={{ color: "#9bc2ea", fontSize: "0.82rem" }}>
-                        プラン数: {service.plans.length}件
-                      </span>
-                    </div>
-                  </td>
-                  <td style={cellStyle}>
-                    <div style={{ display: "grid", gap: "0.3rem" }}>
-                      <strong>{getPriceRangeLabel(service)}</strong>
-                      <span style={subCellStyle}>
-                        最安: {lowestPricePlan.name}
-                      </span>
-                    </div>
-                  </td>
-                  <td style={cellStyle}>{lowestPricePlan.cpu} vCPU</td>
-                  <td style={cellStyle}>{lowestPricePlan.memory} GB</td>
-                  <td style={cellStyle}>{lowestPricePlan.storage} GB</td>
-                  <td style={cellStyle}>{lowestPricePlan.traffic}</td>
-                  <td style={cellStyle}>{regionLabels[service.region]}</td>
-                  <td style={cellStyle}>
-                    {billingLabels[lowestPricePlan.billing]}
-                  </td>
-                  <td style={cellStyle}>
-                    <Link href={`/vps/${service.id}/`} style={linkButtonStyle}>
-                      詳細を見る
-                    </Link>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+                  <span style={pillStyle}>
+                    用途:{" "}
+                    {service.usage
+                      .map((usage) => usageLabels[usage])
+                      .join(" / ")}
+                  </span>
+                  <span style={pillStyle}>
+                    プラン数: {service.plans.length}件
+                  </span>
+                  <span style={pillStyle}>{regionLabels[service.region]}</span>
+                </div>
+                <div style={{ display: "grid", gap: "0.35rem" }}>
+                  <strong style={{ fontSize: "1.15rem" }}>
+                    {getPriceRangeLabel(service)}
+                  </strong>
+                  <span style={subCellStyle}>
+                    最安プラン: {lowestPricePlan.name}
+                  </span>
+                  <span style={subCellStyle}>
+                    {lowestPricePlan.cpu} vCPU / {lowestPricePlan.memory} GB /{" "}
+                    {lowestPricePlan.storage} GB
+                  </span>
+                </div>
+                <Link href={`/vps/${service.id}/`} style={linkButtonStyle}>
+                  詳細を見る
+                </Link>
+              </div>
+            </article>
+          )
+        })}
       </section>
 
-      <section style={sectionStyle}>
+      <section
+        style={{
+          ...sectionStyle,
+          borderRadius: "clamp(20px, 4vw, 24px)",
+          padding: "clamp(0.9rem, 3vw, 1.25rem)",
+        }}
+      >
         <div
           style={{
             alignItems: "center",
@@ -412,26 +352,46 @@ export const VpsExplorer = ({ services }: Props) => {
               比較ビュー
             </h2>
             <p style={{ color: "#a4bad8" }}>
-              選択した VPS を横並びで比較できます。最大3件まで表示します。
+              フィルタ条件に一致した VPS を最初から横並びで比較できます。
             </p>
           </div>
           <span style={{ color: "#9ed9ff", fontSize: "0.9rem" }}>
-            選択中: {selectedServices.length}件
+            表示中: {filteredServices.length}件
           </span>
         </div>
-        {selectedServices.length === 0 ? (
+        {filteredServices.length === 0 ? (
           <p style={{ color: "#a4bad8" }}>
-            一覧のチェックボックスから比較したいサービスを選んでください。
+            条件に一致するサービスがありません。フィルタ条件を調整してください。
           </p>
         ) : (
-          <div style={{ overflowX: "auto" }}>
-            <table style={{ minWidth: 720, width: "100%" }}>
+          <div
+            style={{
+              WebkitOverflowScrolling: "touch",
+              overflowX: "auto",
+              overscrollBehaviorX: "contain",
+              paddingBottom: "0.35rem",
+            }}
+          >
+            <table
+              style={{
+                minWidth: "100%",
+                width: "max-content",
+              }}
+            >
               <thead>
                 <tr>
                   <th style={compareHeadStyle}>項目</th>
-                  {selectedServices.map((service) => (
+                  {filteredServices.map((service) => (
                     <th key={service.id} style={compareHeadStyle}>
-                      {service.name}
+                      <div style={{ display: "grid", gap: "0.35rem" }}>
+                        <span>{service.name}</span>
+                        <Link
+                          href={`/vps/${service.id}/`}
+                          style={compareLinkStyle}
+                        >
+                          詳細を見る
+                        </Link>
+                      </div>
                     </th>
                   ))}
                 </tr>
@@ -512,20 +472,19 @@ const ControlField = ({
 )
 
 const ArticleCard = ({ body, title }: { body: string; title: string }) => (
-  <article style={sectionStyle}>
+  <article
+    style={{
+      ...sectionStyle,
+      borderRadius: "clamp(20px, 4vw, 24px)",
+      padding: "clamp(0.9rem, 3vw, 1.25rem)",
+    }}
+  >
     <div style={{ display: "grid", gap: "0.6rem" }}>
       <h2 style={{ fontSize: "1.2rem" }}>{title}</h2>
       <p style={{ color: "#afc3dd", lineHeight: 1.8 }}>{body}</p>
     </div>
   </article>
 )
-
-const cellStyle = {
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
-  color: "#edf4ff",
-  padding: "1rem 0.85rem",
-  verticalAlign: "top" as const,
-}
 
 const subCellStyle = {
   color: "#9bc2ea",
@@ -547,18 +506,44 @@ const linkButtonStyle = {
 const compareHeadStyle = {
   background: "rgba(13, 25, 43, 0.96)",
   borderBottom: "1px solid rgba(255,255,255,0.08)",
+  minWidth: "220px",
   padding: "0.9rem",
   textAlign: "left" as const,
+  verticalAlign: "top" as const,
+  whiteSpace: "normal" as const,
+  wordBreak: "break-word" as const,
 }
 
 const compareCellLabelStyle = {
   borderBottom: "1px solid rgba(255,255,255,0.08)",
   color: "#c8d9f1",
   fontWeight: 700,
+  minWidth: "140px",
   padding: "0.9rem",
+  whiteSpace: "nowrap" as const,
 }
 
 const compareCellStyle = {
   borderBottom: "1px solid rgba(255,255,255,0.08)",
+  maxWidth: "220px",
+  minWidth: "220px",
   padding: "0.9rem",
+  verticalAlign: "top" as const,
+  whiteSpace: "normal" as const,
+  wordBreak: "break-word" as const,
+}
+
+const compareLinkStyle = {
+  color: "#9edaff",
+  fontSize: "0.82rem",
+  textDecoration: "none",
+}
+
+const pillStyle = {
+  background: "rgba(255,255,255,0.06)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: 999,
+  color: "#bcd1eb",
+  fontSize: "0.8rem",
+  padding: "0.3rem 0.6rem",
 }

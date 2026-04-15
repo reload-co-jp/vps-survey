@@ -6,13 +6,7 @@ export const metadata: Metadata = {
   title: "VPS比較サイト | 国内・海外VPSおすすめ一覧",
   description:
     "VPS比較サイトの一覧ページです。国内・海外のVPSを価格、CPU、メモリ、リージョン、用途で比較できます。",
-  keywords: [
-    "VPS 比較",
-    "VPS おすすめ",
-    "日本 VPS",
-    "海外 VPS",
-    "格安 VPS",
-  ],
+  keywords: ["VPS 比較", "VPS おすすめ", "日本 VPS", "海外 VPS", "格安 VPS"],
   alternates: {
     canonical: "/",
   },
