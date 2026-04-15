@@ -4,7 +4,7 @@ export type RegionType = "JP" | "GLOBAL"
 export type BillingType = "monthly" | "hourly"
 export type UsageType = "development" | "production" | "verification"
 
-export type VpsService = {
+export type VpsPlan = {
   id: string
   name: string
   price: number
@@ -12,8 +12,13 @@ export type VpsService = {
   memory: number
   storage: number
   traffic: string
-  region: RegionType
   billing: BillingType
+}
+
+export type VpsService = {
+  id: string
+  name: string
+  region: RegionType
   popularity: number
   usage: UsageType[]
   tags: string[]
@@ -23,6 +28,7 @@ export type VpsService = {
   cons: string[]
   recommendedFor: string[]
   officialUrl: string
+  plans: VpsPlan[]
 }
 
 export type SortKey = "price" | "spec" | "popular"
@@ -60,6 +66,26 @@ export const getAllServices = () => services
 export const getServiceById = (id: string) =>
   services.find((service) => service.id === id)
 
+export const getLowestPricePlan = (service: VpsService) =>
+  [...service.plans].sort((left, right) => left.price - right.price)[0]
+
+export const getHighestSpecPlan = (service: VpsService) =>
+  [...service.plans].sort(
+    (left, right) => getPlanSpecScore(right) - getPlanSpecScore(left)
+  )[0]
+
+export const getPriceRangeLabel = (service: VpsService) => {
+  const prices = service.plans.map((plan) => plan.price)
+  const minimum = Math.min(...prices)
+  const maximum = Math.max(...prices)
+
+  if (minimum === maximum) {
+    return `¥${minimum.toLocaleString()}`
+  }
+
+  return `¥${minimum.toLocaleString()}〜¥${maximum.toLocaleString()}`
+}
+
 const matchesPrice = (price: number, range: FilterState["priceRange"]) => {
   if (range === "under700") return price < 700
   if (range === "under1000") return price < 1000
@@ -72,8 +98,8 @@ const matchesMinimum = (
   selected: FilterState["memory"] | FilterState["cpu"]
 ) => (selected === "all" ? true : value >= Number(selected))
 
-const getSpecScore = (service: VpsService) =>
-  service.cpu * 1.5 + service.memory * 2 + service.storage / 50
+const getPlanSpecScore = (plan: VpsPlan) =>
+  plan.cpu * 1.5 + plan.memory * 2 + plan.storage / 50
 
 export const filterAndSortServices = (
   items: VpsService[],
@@ -82,9 +108,15 @@ export const filterAndSortServices = (
   const normalizedQuery = filters.query.trim().toLowerCase()
 
   return items
-    .filter((service) => matchesPrice(service.price, filters.priceRange))
-    .filter((service) => matchesMinimum(service.memory, filters.memory))
-    .filter((service) => matchesMinimum(service.cpu, filters.cpu))
+    .filter((service) =>
+      service.plans.some((plan) => matchesPrice(plan.price, filters.priceRange))
+    )
+    .filter((service) =>
+      service.plans.some((plan) => matchesMinimum(plan.memory, filters.memory))
+    )
+    .filter((service) =>
+      service.plans.some((plan) => matchesMinimum(plan.cpu, filters.cpu))
+    )
     .filter((service) =>
       filters.region === "all" ? true : service.region === filters.region
     )
@@ -97,35 +129,52 @@ export const filterAndSortServices = (
         : service.name.toLowerCase().includes(normalizedQuery)
     )
     .sort((left, right) => {
-      if (filters.sort === "price") return left.price - right.price
+      if (filters.sort === "price") {
+        return getLowestPricePlan(left).price - getLowestPricePlan(right).price
+      }
       if (filters.sort === "popular") return right.popularity - left.popularity
 
-      return getSpecScore(right) - getSpecScore(left)
+      return (
+        getPlanSpecScore(getHighestSpecPlan(right)) -
+        getPlanSpecScore(getHighestSpecPlan(left))
+      )
     })
 }
 
 export const getComparisonRows = (servicesToCompare: VpsService[]) => [
   {
-    label: "月額料金",
+    label: "最安プラン",
     values: servicesToCompare.map(
-      (service) => `¥${service.price.toLocaleString()}`
+      (service) => getLowestPricePlan(service).name
     ),
   },
   {
-    label: "CPU",
-    values: servicesToCompare.map((service) => `${service.cpu} vCPU`),
+    label: "料金帯",
+    values: servicesToCompare.map((service) => getPriceRangeLabel(service)),
   },
   {
-    label: "メモリ",
-    values: servicesToCompare.map((service) => `${service.memory} GB`),
+    label: "最小CPU",
+    values: servicesToCompare.map(
+      (service) => `${getLowestPricePlan(service).cpu} vCPU`
+    ),
   },
   {
-    label: "ストレージ",
-    values: servicesToCompare.map((service) => `${service.storage} GB`),
+    label: "最小メモリ",
+    values: servicesToCompare.map(
+      (service) => `${getLowestPricePlan(service).memory} GB`
+    ),
+  },
+  {
+    label: "最小ストレージ",
+    values: servicesToCompare.map(
+      (service) => `${getLowestPricePlan(service).storage} GB`
+    ),
   },
   {
     label: "転送量",
-    values: servicesToCompare.map((service) => service.traffic),
+    values: servicesToCompare.map(
+      (service) => getLowestPricePlan(service).traffic
+    ),
   },
   {
     label: "リージョン",
@@ -133,6 +182,12 @@ export const getComparisonRows = (servicesToCompare: VpsService[]) => [
   },
   {
     label: "課金方式",
-    values: servicesToCompare.map((service) => billingLabels[service.billing]),
+    values: servicesToCompare.map(
+      (service) => billingLabels[getLowestPricePlan(service).billing]
+    ),
+  },
+  {
+    label: "プラン数",
+    values: servicesToCompare.map((service) => `${service.plans.length}件`),
   },
 ]

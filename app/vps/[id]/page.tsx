@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import {
   billingLabels,
   getAllServices,
+  getLowestPricePlan,
+  getPriceRangeLabel,
   getServiceById,
   regionLabels,
   usageLabels,
@@ -44,6 +46,8 @@ const VpsDetailPage = async ({ params }: Props) => {
     notFound()
   }
 
+  const lowestPricePlan = getLowestPricePlan(service)
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -53,7 +57,7 @@ const VpsDetailPage = async ({ params }: Props) => {
     offers: {
       "@type": "Offer",
       priceCurrency: "JPY",
-      price: service.price,
+      price: lowestPricePlan.price,
       url: service.officialUrl,
     },
   }
@@ -111,13 +115,13 @@ const VpsDetailPage = async ({ params }: Props) => {
             gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           }}
         >
+          <DetailMetric label="料金帯" value={getPriceRangeLabel(service)} />
+          <DetailMetric label="最安プラン" value={lowestPricePlan.name} />
           <DetailMetric
-            label="月額料金"
-            value={`¥${service.price.toLocaleString()}`}
+            label="最小メモリ"
+            value={`${lowestPricePlan.memory} GB`}
           />
-          <DetailMetric label="CPU" value={`${service.cpu} vCPU`} />
-          <DetailMetric label="メモリ" value={`${service.memory} GB`} />
-          <DetailMetric label="ストレージ" value={`${service.storage} GB`} />
+          <DetailMetric label="プラン数" value={`${service.plans.length}件`} />
         </div>
       </section>
 
@@ -133,21 +137,25 @@ const VpsDetailPage = async ({ params }: Props) => {
           <table style={{ width: "100%" }}>
             <tbody>
               <SpecRow label="サービス名" value={service.name} />
+              <SpecRow label="料金帯" value={getPriceRangeLabel(service)} />
+              <SpecRow label="最安プラン" value={lowestPricePlan.name} />
+              <SpecRow label="最小CPU" value={`${lowestPricePlan.cpu} vCPU`} />
               <SpecRow
-                label="月額料金"
-                value={`¥${service.price.toLocaleString()}`}
+                label="最小メモリ"
+                value={`${lowestPricePlan.memory} GB`}
               />
-              <SpecRow label="CPU" value={`${service.cpu} vCPU`} />
-              <SpecRow label="メモリ" value={`${service.memory} GB`} />
-              <SpecRow label="ストレージ" value={`${service.storage} GB`} />
-              <SpecRow label="転送量" value={service.traffic} />
+              <SpecRow
+                label="最小ストレージ"
+                value={`${lowestPricePlan.storage} GB`}
+              />
+              <SpecRow label="転送量" value={lowestPricePlan.traffic} />
               <SpecRow
                 label="リージョン"
                 value={regionLabels[service.region]}
               />
               <SpecRow
                 label="課金方式"
-                value={billingLabels[service.billing]}
+                value={billingLabels[lowestPricePlan.billing]}
               />
               <SpecRow
                 label="おすすめ用途"
@@ -184,6 +192,45 @@ const VpsDetailPage = async ({ params }: Props) => {
           gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
         }}
       >
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>プラン一覧</h2>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ minWidth: 640, width: "100%" }}>
+              <thead>
+                <tr>
+                  {[
+                    "プラン名",
+                    "料金",
+                    "CPU",
+                    "メモリ",
+                    "ストレージ",
+                    "転送量",
+                    "課金方式",
+                  ].map((label) => (
+                    <th key={label} style={planHeadStyle}>
+                      {label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {service.plans.map((plan) => (
+                  <tr key={plan.id}>
+                    <td style={planCellStyle}>{plan.name}</td>
+                    <td style={planCellStyle}>
+                      ¥{plan.price.toLocaleString()}
+                    </td>
+                    <td style={planCellStyle}>{plan.cpu} vCPU</td>
+                    <td style={planCellStyle}>{plan.memory} GB</td>
+                    <td style={planCellStyle}>{plan.storage} GB</td>
+                    <td style={planCellStyle}>{plan.traffic}</td>
+                    <td style={planCellStyle}>{billingLabels[plan.billing]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </article>
         <article style={panelStyle}>
           <h2 style={panelTitleStyle}>特徴</h2>
           <BulletList items={service.features} />
@@ -288,6 +335,19 @@ const ctaStyle = {
   fontWeight: 800,
   padding: "0.85rem 1.15rem",
   textDecoration: "none",
+}
+
+const planHeadStyle = {
+  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  color: "#9db7d5",
+  fontSize: "0.82rem",
+  padding: "0.8rem 0",
+  textAlign: "left" as const,
+}
+
+const planCellStyle = {
+  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  padding: "0.85rem 0",
 }
 
 export default VpsDetailPage

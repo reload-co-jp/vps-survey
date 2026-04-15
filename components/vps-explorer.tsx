@@ -7,6 +7,8 @@ import {
   billingLabels,
   filterAndSortServices,
   getComparisonRows,
+  getLowestPricePlan,
+  getPriceRangeLabel,
   regionLabels,
   type FilterState,
   type VpsService,
@@ -328,6 +330,7 @@ export const VpsExplorer = ({ services }: Props) => {
           <tbody>
             {filteredServices.map((service) => {
               const checked = selectedIds.includes(service.id)
+              const lowestPricePlan = getLowestPricePlan(service)
 
               return (
                 <tr
@@ -360,15 +363,27 @@ export const VpsExplorer = ({ services }: Props) => {
                           .map((usage) => usageLabels[usage])
                           .join(" / ")}
                       </span>
+                      <span style={{ color: "#9bc2ea", fontSize: "0.82rem" }}>
+                        プラン数: {service.plans.length}件
+                      </span>
                     </div>
                   </td>
-                  <td style={cellStyle}>¥{service.price.toLocaleString()}</td>
-                  <td style={cellStyle}>{service.cpu} vCPU</td>
-                  <td style={cellStyle}>{service.memory} GB</td>
-                  <td style={cellStyle}>{service.storage} GB</td>
-                  <td style={cellStyle}>{service.traffic}</td>
+                  <td style={cellStyle}>
+                    <div style={{ display: "grid", gap: "0.3rem" }}>
+                      <strong>{getPriceRangeLabel(service)}</strong>
+                      <span style={subCellStyle}>
+                        最安: {lowestPricePlan.name}
+                      </span>
+                    </div>
+                  </td>
+                  <td style={cellStyle}>{lowestPricePlan.cpu} vCPU</td>
+                  <td style={cellStyle}>{lowestPricePlan.memory} GB</td>
+                  <td style={cellStyle}>{lowestPricePlan.storage} GB</td>
+                  <td style={cellStyle}>{lowestPricePlan.traffic}</td>
                   <td style={cellStyle}>{regionLabels[service.region]}</td>
-                  <td style={cellStyle}>{billingLabels[service.billing]}</td>
+                  <td style={cellStyle}>
+                    {billingLabels[lowestPricePlan.billing]}
+                  </td>
                   <td style={cellStyle}>
                     <Link href={`/vps/${service.id}/`} style={linkButtonStyle}>
                       詳細を見る
@@ -510,6 +525,11 @@ const cellStyle = {
   color: "#edf4ff",
   padding: "1rem 0.85rem",
   verticalAlign: "top" as const,
+}
+
+const subCellStyle = {
+  color: "#9bc2ea",
+  fontSize: "0.8rem",
 }
 
 const linkButtonStyle = {

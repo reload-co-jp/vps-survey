@@ -1,5 +1,5 @@
 import { VpsExplorer } from "../components/vps-explorer"
-import { getAllServices } from "../lib/vps"
+import { getAllServices, getLowestPricePlan } from "../lib/vps"
 
 const Page = () => {
   const services = getAllServices()
@@ -17,7 +17,7 @@ const Page = () => {
       offers: {
         "@type": "Offer",
         priceCurrency: "JPY",
-        price: service.price,
+        price: getLowestPricePlan(service).price,
         url: service.officialUrl,
       },
     })),

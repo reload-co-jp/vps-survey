@@ -2,13 +2,7 @@
   {
     "id": "conoha",
     "name": "ConoHa VPS",
-    "price": 968,
-    "cpu": 2,
-    "memory": 2,
-    "storage": 100,
-    "traffic": "unlimited",
     "region": "JP",
-    "billing": "monthly",
     "popularity": 92,
     "usage": ["development", "production"],
     "tags": ["初心者向け", "表示が分かりやすい", "国内向け"],
@@ -21,18 +15,44 @@
     "pros": ["セットアップが簡単", "国内案件に向く", "バランスが良い"],
     "cons": ["超低価格帯ではない", "海外展開の選択肢は少なめ"],
     "recommendedFor": ["Webアプリ運用", "個人開発", "国内サービスの公開"],
-    "officialUrl": "https://www.conoha.jp/vps/"
+    "officialUrl": "https://www.conoha.jp/vps/",
+    "plans": [
+      {
+        "id": "conoha-2g",
+        "name": "2GB",
+        "price": 968,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "conoha-4g",
+        "name": "4GB",
+        "price": 1963,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "conoha-8g",
+        "name": "8GB",
+        "price": 3927,
+        "cpu": 6,
+        "memory": 8,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      }
+    ]
   },
   {
     "id": "sakura",
     "name": "さくらのVPS",
-    "price": 685,
-    "cpu": 2,
-    "memory": 1,
-    "storage": 100,
-    "traffic": "unlimited",
     "region": "JP",
-    "billing": "monthly",
     "popularity": 83,
     "usage": ["development", "verification"],
     "tags": ["老舗", "コスト重視", "国内向け"],
@@ -45,18 +65,44 @@
     "pros": ["情報量が多い", "価格を抑えやすい", "国内利用に安心感がある"],
     "cons": ["高性能帯の選択肢は控えめ", "UIはやや無骨"],
     "recommendedFor": ["学習用サーバー", "社内検証", "小規模Webサイト"],
-    "officialUrl": "https://vps.sakura.ad.jp/"
+    "officialUrl": "https://vps.sakura.ad.jp/",
+    "plans": [
+      {
+        "id": "sakura-1g",
+        "name": "1GB",
+        "price": 685,
+        "cpu": 2,
+        "memory": 1,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "sakura-2g",
+        "name": "2GB",
+        "price": 1496,
+        "cpu": 3,
+        "memory": 2,
+        "storage": 200,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "sakura-4g",
+        "name": "4GB",
+        "price": 2992,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 300,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      }
+    ]
   },
   {
     "id": "xserver",
     "name": "XServer VPS",
-    "price": 830,
-    "cpu": 2,
-    "memory": 2,
-    "storage": 50,
-    "traffic": "unlimited",
     "region": "JP",
-    "billing": "monthly",
     "popularity": 87,
     "usage": ["development", "production"],
     "tags": ["高速", "国内向け", "安定"],
@@ -73,18 +119,44 @@
     ],
     "cons": ["最安帯ではない", "海外リージョンは限定的"],
     "recommendedFor": ["ブログ運営", "中小規模サービス", "開発環境"],
-    "officialUrl": "https://vps.xserver.ne.jp/"
+    "officialUrl": "https://vps.xserver.ne.jp/",
+    "plans": [
+      {
+        "id": "xserver-2g",
+        "name": "2GB",
+        "price": 830,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 50,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "xserver-4g",
+        "name": "4GB",
+        "price": 1700,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "xserver-8g",
+        "name": "8GB",
+        "price": 3200,
+        "cpu": 6,
+        "memory": 8,
+        "storage": 200,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      }
+    ]
   },
   {
     "id": "aws-lightsail",
     "name": "Amazon Lightsail",
-    "price": 550,
-    "cpu": 2,
-    "memory": 1,
-    "storage": 40,
-    "traffic": "2TB",
     "region": "GLOBAL",
-    "billing": "monthly",
     "popularity": 80,
     "usage": ["development", "verification"],
     "tags": ["クラウド連携", "海外対応", "拡張性"],
@@ -101,18 +173,44 @@
     ],
     "cons": ["料金体系の理解に少し慣れが必要", "国内特化ではない"],
     "recommendedFor": ["PoC", "グローバル向け検証", "AWS入門"],
-    "officialUrl": "https://aws.amazon.com/lightsail/"
+    "officialUrl": "https://aws.amazon.com/lightsail/",
+    "plans": [
+      {
+        "id": "lightsail-1g",
+        "name": "1GB",
+        "price": 550,
+        "cpu": 2,
+        "memory": 1,
+        "storage": 40,
+        "traffic": "2TB",
+        "billing": "monthly"
+      },
+      {
+        "id": "lightsail-2g",
+        "name": "2GB",
+        "price": 1100,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 60,
+        "traffic": "3TB",
+        "billing": "monthly"
+      },
+      {
+        "id": "lightsail-4g",
+        "name": "4GB",
+        "price": 2200,
+        "cpu": 2,
+        "memory": 4,
+        "storage": 80,
+        "traffic": "4TB",
+        "billing": "monthly"
+      }
+    ]
   },
   {
     "id": "linode",
     "name": "Linode",
-    "price": 720,
-    "cpu": 2,
-    "memory": 2,
-    "storage": 50,
-    "traffic": "2TB",
     "region": "GLOBAL",
-    "billing": "monthly",
     "popularity": 76,
     "usage": ["development", "production"],
     "tags": ["開発者向け", "海外VPS", "分かりやすい料金"],
@@ -129,18 +227,44 @@
     ],
     "cons": ["日本リージョンがない", "日本語情報は少なめ"],
     "recommendedFor": ["海外向けWebサービス", "開発環境", "小規模本番"],
-    "officialUrl": "https://www.linode.com/"
+    "officialUrl": "https://www.linode.com/",
+    "plans": [
+      {
+        "id": "linode-2g",
+        "name": "Shared 2GB",
+        "price": 720,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 50,
+        "traffic": "2TB",
+        "billing": "monthly"
+      },
+      {
+        "id": "linode-4g",
+        "name": "Shared 4GB",
+        "price": 1440,
+        "cpu": 2,
+        "memory": 4,
+        "storage": 80,
+        "traffic": "4TB",
+        "billing": "monthly"
+      },
+      {
+        "id": "linode-8g",
+        "name": "Shared 8GB",
+        "price": 2880,
+        "cpu": 4,
+        "memory": 8,
+        "storage": 160,
+        "traffic": "5TB",
+        "billing": "monthly"
+      }
+    ]
   },
   {
     "id": "digitalocean",
     "name": "DigitalOcean Droplets",
-    "price": 840,
-    "cpu": 2,
-    "memory": 2,
-    "storage": 60,
-    "traffic": "3TB",
     "region": "GLOBAL",
-    "billing": "hourly",
     "popularity": 89,
     "usage": ["development", "production", "verification"],
     "tags": ["海外人気", "ドキュメント豊富", "時間課金"],
@@ -153,6 +277,38 @@
     "pros": ["学習情報が豊富", "検証用途に相性が良い", "海外展開しやすい"],
     "cons": ["日本向け低遅延には不利", "円換算だと割高に感じる場合がある"],
     "recommendedFor": ["チーム開発", "短期検証", "海外ユーザー向けサービス"],
-    "officialUrl": "https://www.digitalocean.com/"
+    "officialUrl": "https://www.digitalocean.com/",
+    "plans": [
+      {
+        "id": "do-basic",
+        "name": "Basic 2GB",
+        "price": 840,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 60,
+        "traffic": "3TB",
+        "billing": "hourly"
+      },
+      {
+        "id": "do-general",
+        "name": "General Purpose 4GB",
+        "price": 2100,
+        "cpu": 2,
+        "memory": 4,
+        "storage": 80,
+        "traffic": "4TB",
+        "billing": "hourly"
+      },
+      {
+        "id": "do-cpu",
+        "name": "CPU Optimized 8GB",
+        "price": 3920,
+        "cpu": 4,
+        "memory": 8,
+        "storage": 100,
+        "traffic": "5TB",
+        "billing": "hourly"
+      }
+    ]
   }
 ]
