@@ -174,36 +174,18 @@ const VpsDetailPage = async ({ params }: Props) => {
         </div>
       </section>
 
-      <section
-        style={{
-          ...responsiveGrid("320px"),
-        }}
-      >
+      <section>
         <article style={panelStyle}>
           <h2 style={panelTitleStyle}>スペック詳細</h2>
           <table style={{ width: "100%" }}>
             <tbody>
               <SpecRow label="サービス名" value={service.name} />
               <SpecRow label="料金帯" value={getPriceRangeLabel(service)} />
-              <SpecRow label="最安プラン" value={lowestPricePlan.name} />
-              <SpecRow label="最小CPU" value={`${lowestPricePlan.cpu} vCPU`} />
-              <SpecRow
-                label="最小メモリ"
-                value={`${lowestPricePlan.memory} GB`}
-              />
-              <SpecRow
-                label="最小ストレージ"
-                value={`${lowestPricePlan.storage} GB`}
-              />
-              <SpecRow label="転送量" value={lowestPricePlan.traffic} />
               <SpecRow
                 label="リージョン"
                 value={regionLabels[service.region]}
               />
-              <SpecRow
-                label="課金方式"
-                value={billingLabels[lowestPricePlan.billing]}
-              />
+              <SpecRow label="プラン数" value={`${service.plans.length}件`} />
               <SpecRow
                 label="おすすめ用途"
                 value={service.usage
@@ -213,23 +195,57 @@ const VpsDetailPage = async ({ params }: Props) => {
             </tbody>
           </table>
         </article>
+      </section>
 
-        <aside style={panelStyle}>
-          <h2 style={panelTitleStyle}>CTA</h2>
-          <p
-            style={{ color: "#aec4df", lineHeight: 1.8, marginBottom: "1rem" }}
+      <section>
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>プラン比較ビュー</h2>
+          <div
+            style={{
+              WebkitOverflowScrolling: "touch",
+              display: "grid",
+              gap: "1rem",
+              gridAutoColumns: "minmax(240px, 1fr)",
+              gridAutoFlow: "column",
+              overflowX: "auto",
+            }}
           >
-            公式サイトで最新の価格や仕様を確認して、実際のプラン選定に進めます。
-          </p>
-          <a
-            href={service.officialUrl}
-            rel="noreferrer"
-            style={ctaStyle}
-            target="_blank"
-          >
-            公式サイトを見る
-          </a>
-        </aside>
+            {service.plans.map((plan) => (
+              <article
+                key={plan.id}
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: 18,
+                  display: "grid",
+                  gap: "0.9rem",
+                  minHeight: "100%",
+                  padding: "1rem",
+                }}
+              >
+                <div style={{ display: "grid", gap: "0.3rem" }}>
+                  <strong style={{ fontSize: "1.05rem" }}>{plan.name}</strong>
+                  <span style={{ color: "#9edaff", fontSize: "1.1rem", fontWeight: 700 }}>
+                    ¥{plan.price.toLocaleString()}
+                  </span>
+                </div>
+                <div style={{ display: "grid", gap: "0.7rem" }}>
+                  <PlanCompareItem label="CPU" value={`${plan.cpu} vCPU`} />
+                  <PlanCompareItem label="メモリ" value={`${plan.memory} GB`} />
+                  <PlanCompareItem
+                    label="ストレージ"
+                    value={`${plan.storage} GB`}
+                  />
+                  <PlanCompareItem label="転送量" value={plan.traffic} />
+                  <PlanCompareItem
+                    label="課金方式"
+                    value={billingLabels[plan.billing]}
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
+        </article>
       </section>
 
       <section
@@ -237,45 +253,6 @@ const VpsDetailPage = async ({ params }: Props) => {
           ...responsiveGrid("260px"),
         }}
       >
-        <article style={panelStyle}>
-          <h2 style={panelTitleStyle}>プラン一覧</h2>
-          <div style={{ WebkitOverflowScrolling: "touch", overflowX: "auto" }}>
-            <table style={{ minWidth: 640, width: "100%" }}>
-              <thead>
-                <tr>
-                  {[
-                    "プラン名",
-                    "料金",
-                    "CPU",
-                    "メモリ",
-                    "ストレージ",
-                    "転送量",
-                    "課金方式",
-                  ].map((label) => (
-                    <th key={label} style={planHeadStyle}>
-                      {label}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {service.plans.map((plan) => (
-                  <tr key={plan.id}>
-                    <td style={planCellStyle}>{plan.name}</td>
-                    <td style={planCellStyle}>
-                      ¥{plan.price.toLocaleString()}
-                    </td>
-                    <td style={planCellStyle}>{plan.cpu} vCPU</td>
-                    <td style={planCellStyle}>{plan.memory} GB</td>
-                    <td style={planCellStyle}>{plan.storage} GB</td>
-                    <td style={planCellStyle}>{plan.traffic}</td>
-                    <td style={planCellStyle}>{billingLabels[plan.billing]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </article>
         <article style={panelStyle}>
           <h2 style={panelTitleStyle}>特徴</h2>
           <BulletList items={service.features} />
@@ -309,6 +286,19 @@ const DetailMetric = ({ label, value }: { label: string; value: string }) => (
   >
     <span style={{ color: "#9cb5d6", fontSize: "0.82rem" }}>{label}</span>
     <strong style={{ fontSize: "1.2rem" }}>{value}</strong>
+  </div>
+)
+
+const PlanCompareItem = ({
+  label,
+  value,
+}: {
+  label: string
+  value: string
+}) => (
+  <div style={{ display: "grid", gap: "0.15rem" }}>
+    <span style={planCompareCellLabelStyle}>{label}</span>
+    <strong style={planCompareCellStyle}>{value}</strong>
   </div>
 )
 
@@ -372,27 +362,14 @@ const subTitleStyle = {
   marginBottom: "0.7rem",
 }
 
-const ctaStyle = {
-  background: "linear-gradient(135deg, #75efff, #9ca8ff)",
-  borderRadius: 999,
-  color: "#04111f",
-  display: "inline-flex",
-  fontWeight: 800,
-  padding: "0.85rem 1.15rem",
-  textDecoration: "none",
-}
-
-const planHeadStyle = {
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+const planCompareCellLabelStyle = {
   color: "#9db7d5",
   fontSize: "0.82rem",
-  padding: "0.8rem 0",
-  textAlign: "left" as const,
 }
 
-const planCellStyle = {
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
-  padding: "0.85rem 0",
+const planCompareCellStyle = {
+  color: "#eef5ff",
+  fontSize: "0.95rem",
 }
 
 export default VpsDetailPage
