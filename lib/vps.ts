@@ -32,6 +32,14 @@ export type VpsService = {
 }
 
 export type SortKey = "price" | "spec" | "popular"
+export type ComparisonSortKey =
+  | "default"
+  | "price"
+  | "cpu"
+  | "memory"
+  | "storage"
+  | "plans"
+  | "popularity"
 
 export type FilterState = {
   priceRange: "all" | "under700" | "under1000" | "over1000"
@@ -191,3 +199,38 @@ export const getComparisonRows = (servicesToCompare: VpsService[]) => [
     values: servicesToCompare.map((service) => `${service.plans.length}件`),
   },
 ]
+
+export const sortServicesForComparison = (
+  servicesToCompare: VpsService[],
+  sortKey: ComparisonSortKey
+) => {
+  if (sortKey === "default") {
+    return servicesToCompare
+  }
+
+  return [...servicesToCompare].sort((left, right) => {
+    if (sortKey === "price") {
+      return getLowestPricePlan(left).price - getLowestPricePlan(right).price
+    }
+
+    if (sortKey === "cpu") {
+      return getLowestPricePlan(right).cpu - getLowestPricePlan(left).cpu
+    }
+
+    if (sortKey === "memory") {
+      return getLowestPricePlan(right).memory - getLowestPricePlan(left).memory
+    }
+
+    if (sortKey === "storage") {
+      return (
+        getLowestPricePlan(right).storage - getLowestPricePlan(left).storage
+      )
+    }
+
+    if (sortKey === "plans") {
+      return right.plans.length - left.plans.length
+    }
+
+    return right.popularity - left.popularity
+  })
+}

@@ -9,6 +9,8 @@ import {
   getLowestPricePlan,
   getPriceRangeLabel,
   regionLabels,
+  sortServicesForComparison,
+  type ComparisonSortKey,
   type FilterState,
   type VpsService,
   usageLabels,
@@ -42,15 +44,22 @@ type Props = {
 
 export const VpsExplorer = ({ services }: Props) => {
   const [filters, setFilters] = useState(initialFilters)
+  const [comparisonSort, setComparisonSort] =
+    useState<ComparisonSortKey>("default")
 
   const filteredServices = useMemo(
     () => filterAndSortServices(services, filters),
     [filters, services]
   )
 
+  const comparisonServices = useMemo(
+    () => sortServicesForComparison(filteredServices, comparisonSort),
+    [comparisonSort, filteredServices]
+  )
+
   const comparisonRows = useMemo(
-    () => getComparisonRows(filteredServices),
-    [filteredServices]
+    () => getComparisonRows(comparisonServices),
+    [comparisonServices]
   )
 
   const updateFilter = <Key extends keyof FilterState>(
@@ -403,9 +412,51 @@ export const VpsExplorer = ({ services }: Props) => {
               フィルタ条件に一致した VPS を最初から横並びで比較できます。
             </p>
           </div>
-          <span style={{ color: "#9ed9ff", fontSize: "0.9rem" }}>
-            表示中: {filteredServices.length}件
-          </span>
+          <div
+            style={{
+              alignItems: "center",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.75rem",
+            }}
+          >
+            <span style={{ color: "#9ed9ff", fontSize: "0.9rem" }}>
+              表示中: {comparisonServices.length}件
+            </span>
+            <label
+              style={{
+                alignItems: "center",
+                color: "#cfe1fb",
+                display: "flex",
+                fontSize: "0.9rem",
+                gap: "0.5rem",
+              }}
+            >
+              項目ソート
+              <select
+                onChange={(event) =>
+                  setComparisonSort(
+                    event.target.value as ComparisonSortKey
+                  )
+                }
+                style={{
+                  ...controlStyle,
+                  minHeight: 40,
+                  padding: "0.55rem 0.8rem",
+                  width: "auto",
+                }}
+                value={comparisonSort}
+              >
+                <option value="default">一覧順</option>
+                <option value="price">価格が安い順</option>
+                <option value="cpu">CPUが高い順</option>
+                <option value="memory">メモリが大きい順</option>
+                <option value="storage">ストレージが大きい順</option>
+                <option value="plans">プラン数が多い順</option>
+                <option value="popularity">人気順</option>
+              </select>
+            </label>
+          </div>
         </div>
         {filteredServices.length === 0 ? (
           <p style={{ color: "#a4bad8" }}>
@@ -422,7 +473,7 @@ export const VpsExplorer = ({ services }: Props) => {
               <thead>
                 <tr>
                   <th style={compareHeadStyle}>項目</th>
-                  {filteredServices.map((service) => (
+                  {comparisonServices.map((service) => (
                     <th key={service.id} style={compareHeadStyle}>
                       <div style={{ display: "grid", gap: "0.35rem" }}>
                         <span>{service.name}</span>
