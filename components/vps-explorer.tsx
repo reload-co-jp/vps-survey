@@ -519,6 +519,7 @@ const linkButtonStyle = {
   display: "inline-flex",
   fontSize: "0.9rem",
   fontWeight: 700,
+  whiteSpace: "nowrap" as const,
   padding: "0.7rem 1rem",
   textDecoration: "none",
 }
