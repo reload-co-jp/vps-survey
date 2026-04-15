@@ -24,15 +24,6 @@ const initialFilters: FilterState = {
   sort: "popular",
 }
 
-const sectionStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.12)",
-  borderRadius: 24,
-  padding: "1.25rem",
-  maxWidth: "1180px",
-}
-
 const controlStyle = {
   appearance: "none" as const,
   background: "rgba(9, 18, 32, 0.88)",
@@ -44,11 +35,6 @@ const controlStyle = {
   padding: "0.8rem 0.95rem",
   width: "100%",
 }
-const responsiveGrid = (minWidth: string) => ({
-  display: "grid",
-  gap: "1rem",
-  gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${minWidth}), 1fr))`,
-})
 
 type Props = {
   services: VpsService[]
@@ -76,6 +62,7 @@ export const VpsExplorer = ({ services }: Props) => {
 
   return (
     <div
+      data-vps-explorer=""
       style={{
         display: "grid",
         gap: "1.5rem",
@@ -84,15 +71,88 @@ export const VpsExplorer = ({ services }: Props) => {
         width: "100%",
       }}
     >
+      <style>{`
+        [data-vps-explorer] [data-surface='default'] {
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+          );
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 24px;
+          padding: 1.25rem;
+        }
+
+        [data-vps-explorer] [data-surface='responsive'] {
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+          );
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: clamp(20px, 4vw, 24px);
+          padding: clamp(0.9rem, 3vw, 1.25rem);
+        }
+
+        [data-vps-explorer] [data-grid='metrics'] {
+          display: grid;
+          gap: 0.75rem;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, 160px), 1fr)
+          );
+        }
+
+        [data-vps-explorer] [data-grid='filters'] {
+          align-items: end;
+          display: grid;
+          gap: 0.85rem;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, 150px), 1fr)
+          );
+        }
+
+        [data-vps-explorer] [data-grid='services'] {
+          display: grid;
+          gap: 1rem;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, 260px), 1fr)
+          );
+          max-width: 100%;
+          min-width: 0;
+          width: 100%;
+        }
+
+        [data-vps-explorer] [data-grid='articles'] {
+          display: grid;
+          gap: 1rem;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, 240px), 1fr)
+          );
+        }
+
+        [data-vps-explorer] [data-scroll='x'] {
+          -webkit-overflow-scrolling: touch;
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          padding-bottom: 0.35rem;
+        }
+      `}</style>
       <section
         style={{
           background:
             "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 28%), linear-gradient(135deg, #10203e 0%, #07101f 55%, #040812 100%)",
           border: "1px solid rgba(139, 197, 255, 0.18)",
           borderRadius: "clamp(20px, 4vw, 32px)",
+          maxWidth: "100%",
+          minWidth: 0,
           overflow: "hidden",
           padding: "clamp(0.9rem, 3vw, 1.5rem)",
           position: "relative",
+          width: "100%",
         }}
       >
         <div
@@ -136,7 +196,7 @@ export const VpsExplorer = ({ services }: Props) => {
               として一通り使えます。
             </p>
           </div>
-          <div style={{ ...responsiveGrid("160px"), gap: "0.75rem" }}>
+          <div data-grid="metrics">
             <MetricCard label="掲載サービス" value={`${services.length}件`} />
             <MetricCard label="最安価格帯" value="¥550〜" />
             <MetricCard label="比較表示" value="横並び比較" />
@@ -145,15 +205,9 @@ export const VpsExplorer = ({ services }: Props) => {
         </div>
       </section>
 
-      <section style={sectionStyle}>
+      <section data-surface="default" style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}>
         <div style={{ display: "grid", gap: "1rem" }}>
-          <div
-            style={{
-              ...responsiveGrid("150px"),
-              alignItems: "end",
-              gap: "0.85rem",
-            }}
-          >
+          <div data-grid="filters">
             <ControlField label="サービス名検索">
               <input
                 onChange={(event) => updateFilter("query", event.target.value)}
@@ -267,19 +321,16 @@ export const VpsExplorer = ({ services }: Props) => {
         </div>
       </section>
 
-      <section
-        style={{
-          ...responsiveGrid("260px"),
-          minWidth: 0,
-          width: "100%",
-          maxWidth: "1180px",
-        }}
-      >
+      <section data-grid="services">
         {filteredServices.map((service) => {
           const lowestPricePlan = getLowestPricePlan(service)
 
           return (
-            <article key={service.id} style={sectionStyle}>
+            <article
+              key={service.id}
+              data-surface="default"
+              style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
+            >
               <div style={{ display: "grid", gap: "0.75rem" }}>
                 <div style={{ display: "grid", gap: "0.35rem" }}>
                   <strong style={{ fontSize: "1.05rem" }}>
@@ -331,11 +382,8 @@ export const VpsExplorer = ({ services }: Props) => {
       </section>
 
       <section
-        style={{
-          ...sectionStyle,
-          borderRadius: "clamp(20px, 4vw, 24px)",
-          padding: "clamp(0.9rem, 3vw, 1.25rem)",
-        }}
+        data-surface="responsive"
+        style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
       >
         <div
           style={{
@@ -364,14 +412,7 @@ export const VpsExplorer = ({ services }: Props) => {
             条件に一致するサービスがありません。フィルタ条件を調整してください。
           </p>
         ) : (
-          <div
-            style={{
-              WebkitOverflowScrolling: "touch",
-              overflowX: "auto",
-              overscrollBehaviorX: "contain",
-              paddingBottom: "0.35rem",
-            }}
-          >
+          <div data-scroll="x">
             <table
               style={{
                 minWidth: "100%",
@@ -416,13 +457,7 @@ export const VpsExplorer = ({ services }: Props) => {
         )}
       </section>
 
-      <section
-        style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-        }}
-      >
+      <section data-grid="articles" style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}>
         <ArticleCard
           title="VPSの選び方"
           body="価格だけでなく、CPU・メモリ・リージョン・課金方式を合わせて見ると、あとからの移行コストを抑えやすくなります。"
@@ -442,13 +477,10 @@ export const VpsExplorer = ({ services }: Props) => {
 
 const MetricCard = ({ label, value }: { label: string; value: string }) => (
   <div
+    data-surface="default"
     style={{
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(255,255,255,0.1)",
-      borderRadius: 20,
       display: "grid",
       gap: "0.35rem",
-      padding: "1rem",
     }}
   >
     <span style={{ color: "#a6b9d2", fontSize: "0.82rem" }}>{label}</span>
@@ -473,11 +505,8 @@ const ControlField = ({
 
 const ArticleCard = ({ body, title }: { body: string; title: string }) => (
   <article
-    style={{
-      ...sectionStyle,
-      borderRadius: "clamp(20px, 4vw, 24px)",
-      padding: "clamp(0.9rem, 3vw, 1.25rem)",
-    }}
+    data-surface="responsive"
+    style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
   >
     <div style={{ display: "grid", gap: "0.6rem" }}>
       <h2 style={{ fontSize: "1.2rem" }}>{title}</h2>

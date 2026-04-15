@@ -12,9 +12,13 @@ import {
 } from "../../../lib/vps"
 
 const responsiveGrid = (minWidth: string) => ({
+  columnGap: "1rem",
   display: "grid",
-  gap: "1rem",
   gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${minWidth}), 1fr))`,
+  maxWidth: "100%",
+  minWidth: "0px",
+  rowGap: "1rem",
+  width: "100%",
 })
 
 type Props = {
@@ -173,9 +177,6 @@ const VpsDetailPage = async ({ params }: Props) => {
       <section
         style={{
           ...responsiveGrid("320px"),
-          maxWidth: "100%",
-          minWidth: 0,
-          width: "100%",
         }}
       >
         <article style={panelStyle}>
@@ -234,9 +235,6 @@ const VpsDetailPage = async ({ params }: Props) => {
       <section
         style={{
           ...responsiveGrid("260px"),
-          maxWidth: "100%",
-          minWidth: 0,
-          width: "100%",
         }}
       >
         <article style={panelStyle}>
