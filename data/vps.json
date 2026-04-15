@@ -284,6 +284,496 @@
     ]
   },
   {
+    "id": "shin-vps",
+    "name": "シンVPS",
+    "region": "JP",
+    "popularity": 85,
+    "usage": ["development", "production", "verification"],
+    "tags": ["国内向け", "NVMe", "高コスパ"],
+    "summary": "国内向けに使いやすく、標準プランに加えて大容量メモリプランも選べる高コスパVPS。",
+    "features": [
+      "国内向けVPSとして分かりやすい料金体系",
+      "標準プランに加えて大容量メモリプランを用意",
+      "NVMeストレージ採用で高速"
+    ],
+    "pros": ["国内利用に向く", "メモリ単価が比較的良い", "構成が分かりやすい"],
+    "cons": ["海外リージョンはない", "クラウド周辺サービスは限定的"],
+    "recommendedFor": ["国内Webサービス", "検証環境", "中規模アプリ運用"],
+    "officialUrl": "https://www.shin-vps.jp/service/price.php",
+    "plans": [
+      {
+        "id": "shin-standard-512mb",
+        "name": "Standard 512MB",
+        "price": 900,
+        "cpu": 1,
+        "memory": 0.5,
+        "storage": 50,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-standard-1gb",
+        "name": "Standard 1GB",
+        "price": 1150,
+        "cpu": 2,
+        "memory": 1,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-standard-2gb",
+        "name": "Standard 2GB",
+        "price": 1850,
+        "cpu": 3,
+        "memory": 2,
+        "storage": 150,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-standard-4gb",
+        "name": "Standard 4GB",
+        "price": 3600,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 200,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-standard-8gb",
+        "name": "Standard 8GB",
+        "price": 7200,
+        "cpu": 6,
+        "memory": 8,
+        "storage": 400,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-standard-16gb",
+        "name": "Standard 16GB",
+        "price": 14400,
+        "cpu": 8,
+        "memory": 16,
+        "storage": 800,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-standard-32gb",
+        "name": "Standard 32GB",
+        "price": 28800,
+        "cpu": 12,
+        "memory": 32,
+        "storage": 1600,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-memory-1gb",
+        "name": "Memory 1GB",
+        "price": 540,
+        "cpu": 1,
+        "memory": 1,
+        "storage": 30,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-memory-2gb",
+        "name": "Memory 2GB",
+        "price": 750,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 50,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-memory-4gb",
+        "name": "Memory 4GB",
+        "price": 1300,
+        "cpu": 3,
+        "memory": 4,
+        "storage": 50,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-memory-8gb",
+        "name": "Memory 8GB",
+        "price": 2500,
+        "cpu": 4,
+        "memory": 8,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-memory-16gb",
+        "name": "Memory 16GB",
+        "price": 4900,
+        "cpu": 6,
+        "memory": 16,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-memory-32gb",
+        "name": "Memory 32GB",
+        "price": 12001,
+        "cpu": 8,
+        "memory": 32,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "shin-memory-64gb",
+        "name": "Memory 64GB",
+        "price": 24000,
+        "cpu": 12,
+        "memory": 64,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      }
+    ]
+  },
+  {
+    "id": "kagoya",
+    "name": "KAGOYA CLOUD VPS",
+    "region": "JP",
+    "popularity": 79,
+    "usage": ["development", "production", "verification"],
+    "tags": ["国内向け", "NVMe", "高コスパ"],
+    "summary": "国内向けに低価格で始めやすく、NVMe SSD と柔軟なテンプレート選択が魅力のVPS。",
+    "features": [
+      "月額上限つきの日額課金で始めやすい",
+      "全プランでNVMe SSDを採用",
+      "OSテンプレートや簡単アプリケーションが豊富"
+    ],
+    "pros": ["国内向けで価格を抑えやすい", "NVMe SSDで高速", "検証から本番まで使いやすい"],
+    "cons": ["海外リージョンはない", "転送量上限の情報は要確認"],
+    "recommendedFor": ["開発環境", "国内Webサービス", "小中規模の本番運用"],
+    "officialUrl": "https://www.kagoya.jp/vps/function-plan/",
+    "plans": [
+      {
+        "id": "kagoya-1gb",
+        "name": "1GB",
+        "price": 550,
+        "cpu": 1,
+        "memory": 1,
+        "storage": 100,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "kagoya-2gb",
+        "name": "2GB",
+        "price": 770,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 200,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "kagoya-3gb",
+        "name": "3GB",
+        "price": 1430,
+        "cpu": 3,
+        "memory": 3,
+        "storage": 400,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "kagoya-4gb",
+        "name": "4GB",
+        "price": 1760,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 600,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "kagoya-8gb",
+        "name": "8GB",
+        "price": 3410,
+        "cpu": 6,
+        "memory": 8,
+        "storage": 800,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "kagoya-16gb",
+        "name": "16GB",
+        "price": 7810,
+        "cpu": 8,
+        "memory": 16,
+        "storage": 1000,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "kagoya-32gb",
+        "name": "32GB",
+        "price": 20130,
+        "cpu": 12,
+        "memory": 32,
+        "storage": 1600,
+        "traffic": "要確認",
+        "billing": "monthly"
+      }
+    ]
+  },
+  {
+    "id": "gmo-cloud",
+    "name": "クラウドVPS byGMO",
+    "region": "JP",
+    "popularity": 74,
+    "usage": ["development", "production", "verification"],
+    "tags": ["国内向け", "高可用性", "老舗"],
+    "summary": "国内向けの老舗VPSで、ローカル接続やSLAに対応し、安定運用を意識した構成が選べます。",
+    "features": [
+      "ローカル接続で複数台構成を組みやすい",
+      "SLAや無料お試しがあり導入判断しやすい",
+      "1GBから12GBまで分かりやすい6プラン構成"
+    ],
+    "pros": ["国内向けで安心感がある", "転送量が無制限", "複数台構成を組みやすい"],
+    "cons": ["表示価格は12カ月契約ベース", "月額とは別にサーチャージがある"],
+    "recommendedFor": ["安定重視のWeb運用", "社内システム", "国内向けサービス"],
+    "officialUrl": "https://vps.gmocloud.com/vps2015/service/",
+    "plans": [
+      {
+        "id": "gmo-1gb",
+        "name": "1GB",
+        "price": 858,
+        "cpu": 2,
+        "memory": 1,
+        "storage": 50,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "gmo-2gb",
+        "name": "2GB",
+        "price": 1408,
+        "cpu": 3,
+        "memory": 2,
+        "storage": 100,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "gmo-4gb",
+        "name": "4GB",
+        "price": 2618,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 200,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "gmo-6gb",
+        "name": "6GB",
+        "price": 5038,
+        "cpu": 5,
+        "memory": 6,
+        "storage": 400,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "gmo-8gb",
+        "name": "8GB",
+        "price": 7238,
+        "cpu": 6,
+        "memory": 8,
+        "storage": 600,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      },
+      {
+        "id": "gmo-12gb",
+        "name": "12GB",
+        "price": 11528,
+        "cpu": 7,
+        "memory": 12,
+        "storage": 800,
+        "traffic": "unlimited",
+        "billing": "monthly"
+      }
+    ]
+  },
+  {
+    "id": "webarena-indigo",
+    "name": "WebARENA Indigo",
+    "region": "JP",
+    "popularity": 72,
+    "usage": ["development", "production", "verification"],
+    "tags": ["国内向け", "時間課金", "低価格"],
+    "summary": "国内向けに低価格で始めやすく、時間課金と月額上限で無駄なく使いやすいシンプルなVPS。",
+    "features": [
+      "時間従量課金と月額上限で短期利用にも向く",
+      "Linuxの常設プランは768MBから32GBまで選択可能",
+      "転送量無制限で学習から運用まで使いやすい"
+    ],
+    "pros": ["初期費用なしで始めやすい", "時間課金で検証用途に向く", "国内向けで価格が安い"],
+    "cons": ["768MBプランはIPv6専用", "リージョンは東京のみ"],
+    "recommendedFor": ["学習用サーバー", "開発環境", "小中規模Webサービス"],
+    "officialUrl": "https://web.arena.ne.jp/indigo/price/",
+    "plans": [
+      {
+        "id": "webarena-indigo-768mb",
+        "name": "768MB",
+        "price": 319,
+        "cpu": 1,
+        "memory": 0.768,
+        "storage": 20,
+        "traffic": "unlimited",
+        "billing": "hourly"
+      },
+      {
+        "id": "webarena-indigo-1gb",
+        "name": "1GB",
+        "price": 449,
+        "cpu": 1,
+        "memory": 1,
+        "storage": 20,
+        "traffic": "unlimited",
+        "billing": "hourly"
+      },
+      {
+        "id": "webarena-indigo-2gb",
+        "name": "2GB",
+        "price": 814,
+        "cpu": 2,
+        "memory": 2,
+        "storage": 40,
+        "traffic": "unlimited",
+        "billing": "hourly"
+      },
+      {
+        "id": "webarena-indigo-4gb",
+        "name": "4GB",
+        "price": 1630,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 80,
+        "traffic": "unlimited",
+        "billing": "hourly"
+      },
+      {
+        "id": "webarena-indigo-8gb",
+        "name": "8GB",
+        "price": 3410,
+        "cpu": 6,
+        "memory": 8,
+        "storage": 160,
+        "traffic": "unlimited",
+        "billing": "hourly"
+      },
+      {
+        "id": "webarena-indigo-16gb",
+        "name": "16GB",
+        "price": 7150,
+        "cpu": 6,
+        "memory": 16,
+        "storage": 320,
+        "traffic": "unlimited",
+        "billing": "hourly"
+      },
+      {
+        "id": "webarena-indigo-32gb",
+        "name": "32GB",
+        "price": 15400,
+        "cpu": 8,
+        "memory": 32,
+        "storage": 640,
+        "traffic": "unlimited",
+        "billing": "hourly"
+      }
+    ]
+  },
+  {
+    "id": "onamae-vps",
+    "name": "お名前.com VPS",
+    "region": "JP",
+    "popularity": 77,
+    "usage": ["development", "production", "verification"],
+    "tags": ["国内向け", "KVM", "ドメイン連携"],
+    "summary": "お名前.com とまとめて管理しやすく、国内向けに分かりやすいKVM型VPS。",
+    "features": [
+      "KVM方式でLinux運用に向いた仮想環境",
+      "1GBから16GBまでの基本プランを用意",
+      "ドメインや関連サービスとまとめて管理しやすい"
+    ],
+    "pros": ["国内向けで扱いやすい", "ストレージ容量が大きめ", "24時間365日サポートに対応"],
+    "cons": ["表示価格は12カ月払いの月額換算", "別途サービス維持調整費が加算される"],
+    "recommendedFor": ["Webサイト運用", "開発環境", "国内向けサービス"],
+    "officialUrl": "https://www.onamae.com/server/vps/",
+    "plans": [
+      {
+        "id": "onamae-vps-1gb",
+        "name": "1GB",
+        "price": 873,
+        "cpu": 2,
+        "memory": 1,
+        "storage": 100,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "onamae-vps-2gb",
+        "name": "2GB",
+        "price": 1209,
+        "cpu": 3,
+        "memory": 2,
+        "storage": 200,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "onamae-vps-4gb",
+        "name": "4GB",
+        "price": 3398,
+        "cpu": 4,
+        "memory": 4,
+        "storage": 400,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "onamae-vps-8gb",
+        "name": "8GB",
+        "price": 6899,
+        "cpu": 6,
+        "memory": 8,
+        "storage": 800,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "onamae-vps-16gb",
+        "name": "16GB",
+        "price": 13903,
+        "cpu": 10,
+        "memory": 16,
+        "storage": 1000,
+        "traffic": "要確認",
+        "billing": "monthly"
+      }
+    ]
+  },
+  {
     "id": "aws-lightsail",
     "name": "Amazon Lightsail",
     "region": "GLOBAL",
@@ -410,34 +900,94 @@
     "officialUrl": "https://www.digitalocean.com/",
     "plans": [
       {
-        "id": "do-basic",
-        "name": "Basic 2GB",
-        "price": 840,
-        "cpu": 2,
-        "memory": 2,
-        "storage": 60,
-        "traffic": "3TB",
-        "billing": "hourly"
+        "id": "do-basic-512mb",
+        "name": "Basic 512MB",
+        "price": 4,
+        "cpu": 1,
+        "memory": 0.5,
+        "storage": 10,
+        "traffic": "500GB",
+        "billing": "monthly"
       },
       {
-        "id": "do-general",
-        "name": "General Purpose 4GB",
-        "price": 2100,
+        "id": "do-basic-1gb",
+        "name": "Basic 1GB",
+        "price": 6,
+        "cpu": 1,
+        "memory": 1,
+        "storage": 25,
+        "traffic": "1TB",
+        "billing": "monthly"
+      },
+      {
+        "id": "do-basic-2gb",
+        "name": "Basic 2GB",
+        "price": 12,
+        "cpu": 1,
+        "memory": 2,
+        "storage": 50,
+        "traffic": "2TB",
+        "billing": "monthly"
+      },
+      {
+        "id": "do-gp-8gb",
+        "name": "General Purpose 8GB",
+        "price": 63,
+        "cpu": 2,
+        "memory": 8,
+        "storage": null,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "do-gp-16gb",
+        "name": "General Purpose 16GB",
+        "price": 126,
+        "cpu": 4,
+        "memory": 16,
+        "storage": null,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "do-cpu-4gb",
+        "name": "CPU Optimized 4GB",
+        "price": 42,
         "cpu": 2,
         "memory": 4,
-        "storage": 80,
-        "traffic": "4TB",
-        "billing": "hourly"
+        "storage": null,
+        "traffic": "要確認",
+        "billing": "monthly"
       },
       {
-        "id": "do-cpu",
+        "id": "do-cpu-8gb",
         "name": "CPU Optimized 8GB",
-        "price": 3920,
+        "price": 84,
         "cpu": 4,
         "memory": 8,
-        "storage": 100,
-        "traffic": "5TB",
-        "billing": "hourly"
+        "storage": null,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "do-memory-16gb",
+        "name": "Memory Optimized 16GB",
+        "price": 84,
+        "cpu": 2,
+        "memory": 16,
+        "storage": null,
+        "traffic": "要確認",
+        "billing": "monthly"
+      },
+      {
+        "id": "do-memory-32gb",
+        "name": "Memory Optimized 32GB",
+        "price": 168,
+        "cpu": 4,
+        "memory": 32,
+        "storage": null,
+        "traffic": "要確認",
+        "billing": "monthly"
       }
     ]
   }

@@ -6,6 +6,7 @@ import { useMemo, useState } from "react"
 import {
   billingLabels,
   filterAndSortServices,
+  formatStorageLabel,
   formatTrafficLabel,
   getComparisonRows,
   getLowestPricePlan,
@@ -380,7 +381,7 @@ export const VpsExplorer = ({ services }: Props) => {
                   </span>
                   <span style={subCellStyle}>
                     {lowestPricePlan.cpu} vCPU / {lowestPricePlan.memory} GB /{" "}
-                    {lowestPricePlan.storage} GB
+                    {formatStorageLabel(lowestPricePlan.storage)}
                   </span>
                 </div>
                 <Link href={`/vps/${service.id}/`} style={linkButtonStyle}>
@@ -525,7 +526,8 @@ export const VpsExplorer = ({ services }: Props) => {
                               {plan.name} / ¥{plan.price.toLocaleString()}
                             </strong>
                             <span style={subCellStyle}>
-                              {plan.cpu} vCPU / {plan.memory} GB / {plan.storage} GB
+                              {plan.cpu} vCPU / {plan.memory} GB /{" "}
+                              {formatStorageLabel(plan.storage)}
                             </span>
                             <span style={subCellStyle}>
                               {formatTrafficLabel(plan.traffic)} /{" "}

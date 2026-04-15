@@ -10,7 +10,7 @@ export type VpsPlan = {
   price: number
   cpu: number
   memory: number
-  storage: number
+  storage: number | null
   traffic: string
   billing: BillingType
 }
@@ -71,6 +71,9 @@ export const billingLabels: Record<BillingType, string> = {
 
 export const formatTrafficLabel = (traffic: string) =>
   traffic === "unlimited" ? "無制限" : traffic
+
+export const formatStorageLabel = (storage: number | null) =>
+  storage === null ? "-" : `${storage} GB`
 
 export const getAllServices = () => services
 
@@ -178,7 +181,7 @@ export const getComparisonRows = (servicesToCompare: VpsService[]) => [
   {
     label: "最小ストレージ",
     values: servicesToCompare.map(
-      (service) => `${getLowestPricePlan(service).storage} GB`
+      (service) => formatStorageLabel(getLowestPricePlan(service).storage)
     ),
   },
   {
@@ -226,7 +229,8 @@ export const sortServicesForComparison = (
 
     if (sortKey === "storage") {
       return (
-        getLowestPricePlan(right).storage - getLowestPricePlan(left).storage
+        (getLowestPricePlan(right).storage ?? -1) -
+        (getLowestPricePlan(left).storage ?? -1)
       )
     }
 

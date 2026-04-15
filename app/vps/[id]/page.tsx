@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import {
   billingLabels,
+  formatStorageLabel,
   formatTrafficLabel,
   getAllServices,
   getLowestPricePlan,
@@ -252,7 +253,7 @@ const VpsDetailPage = async ({ params }: Props) => {
                   <PlanCompareItem label="メモリ" value={`${plan.memory} GB`} />
                   <PlanCompareItem
                     label="ストレージ"
-                    value={`${plan.storage} GB`}
+                    value={formatStorageLabel(plan.storage)}
                   />
                   <PlanCompareItem
                     label="転送量"
