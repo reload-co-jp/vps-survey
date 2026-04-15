@@ -108,7 +108,13 @@ const VpsDetailPage = async ({ params }: Props) => {
 
   return (
     <div
-      style={{ display: "grid", gap: "1.5rem", maxWidth: "100%", minWidth: 0, width: "100%" }}
+      style={{
+        display: "grid",
+        gap: "1.5rem",
+        maxWidth: "100%",
+        minWidth: 0,
+        width: "100%",
+      }}
     >
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
@@ -207,7 +213,9 @@ const VpsDetailPage = async ({ params }: Props) => {
               gap: "1rem",
               gridAutoColumns: "minmax(240px, 1fr)",
               gridAutoFlow: "column",
+              maxWidth: "100%",
               overflowX: "auto",
+              width: "100%",
             }}
           >
             {service.plans.map((plan) => (
@@ -219,13 +227,22 @@ const VpsDetailPage = async ({ params }: Props) => {
                   borderRadius: 18,
                   display: "grid",
                   gap: "0.9rem",
+                  maxWidth: "320px",
                   minHeight: "100%",
+                  minWidth: "240px",
                   padding: "1rem",
+                  width: "100%",
                 }}
               >
                 <div style={{ display: "grid", gap: "0.3rem" }}>
                   <strong style={{ fontSize: "1.05rem" }}>{plan.name}</strong>
-                  <span style={{ color: "#9edaff", fontSize: "1.1rem", fontWeight: 700 }}>
+                  <span
+                    style={{
+                      color: "#9edaff",
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                    }}
+                  >
                     ¥{plan.price.toLocaleString()}
                   </span>
                 </div>
@@ -349,6 +366,7 @@ const panelStyle = {
   border: "1px solid rgba(255,255,255,0.08)",
   borderRadius: "clamp(20px, 4vw, 24px)",
   padding: "clamp(0.9rem, 3vw, 1.25rem)",
+  maxWidth: "1180px",
 }
 
 const panelTitleStyle = {
