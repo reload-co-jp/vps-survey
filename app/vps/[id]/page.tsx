@@ -1,0 +1,293 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+import { notFound } from "next/navigation"
+import {
+  billingLabels,
+  getAllServices,
+  getServiceById,
+  regionLabels,
+  usageLabels,
+} from "../../../lib/vps"
+
+type Props = {
+  params: Promise<{
+    id: string
+  }>
+}
+
+export const generateStaticParams = () =>
+  getAllServices().map((service) => ({ id: service.id }))
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { id } = await params
+  const service = getServiceById(id)
+
+  if (!service) {
+    return {
+      title: "VPSが見つかりません",
+    }
+  }
+
+  return {
+    title: service.name,
+    description: `${service.name}の価格、スペック、メリット・デメリット、おすすめ用途を掲載した詳細ページです。`,
+  }
+}
+
+const VpsDetailPage = async ({ params }: Props) => {
+  const { id } = await params
+  const service = getServiceById(id)
+
+  if (!service) {
+    notFound()
+  }
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: service.name,
+    description: service.summary,
+    category: "VPS",
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "JPY",
+      price: service.price,
+      url: service.officialUrl,
+    },
+  }
+
+  return (
+    <div style={{ display: "grid", gap: "1.5rem" }}>
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        type="application/ld+json"
+      />
+      <section
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(111, 225, 255, 0.16), rgba(122, 141, 255, 0.12), rgba(255,255,255,0.03))",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 28,
+          display: "grid",
+          gap: "1rem",
+          padding: "1.5rem",
+        }}
+      >
+        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          ← 一覧へ戻る
+        </Link>
+        <div style={{ display: "grid", gap: "0.7rem" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
+            {service.tags.map((tag) => (
+              <span
+                key={tag}
+                style={{
+                  background: "rgba(255,255,255,0.08)",
+                  borderRadius: 999,
+                  color: "#bfeeff",
+                  fontSize: "0.82rem",
+                  padding: "0.35rem 0.7rem",
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1
+            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", lineHeight: 1.05 }}
+          >
+            {service.name}
+          </h1>
+          <p style={{ color: "#c7d8ef", lineHeight: 1.8, maxWidth: 760 }}>
+            {service.summary}
+          </p>
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gap: "0.85rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+          }}
+        >
+          <DetailMetric
+            label="月額料金"
+            value={`¥${service.price.toLocaleString()}`}
+          />
+          <DetailMetric label="CPU" value={`${service.cpu} vCPU`} />
+          <DetailMetric label="メモリ" value={`${service.memory} GB`} />
+          <DetailMetric label="ストレージ" value={`${service.storage} GB`} />
+        </div>
+      </section>
+
+      <section
+        style={{
+          display: "grid",
+          gap: "1rem",
+          gridTemplateColumns: "2fr 1fr",
+        }}
+      >
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>スペック詳細</h2>
+          <table style={{ width: "100%" }}>
+            <tbody>
+              <SpecRow label="サービス名" value={service.name} />
+              <SpecRow
+                label="月額料金"
+                value={`¥${service.price.toLocaleString()}`}
+              />
+              <SpecRow label="CPU" value={`${service.cpu} vCPU`} />
+              <SpecRow label="メモリ" value={`${service.memory} GB`} />
+              <SpecRow label="ストレージ" value={`${service.storage} GB`} />
+              <SpecRow label="転送量" value={service.traffic} />
+              <SpecRow
+                label="リージョン"
+                value={regionLabels[service.region]}
+              />
+              <SpecRow
+                label="課金方式"
+                value={billingLabels[service.billing]}
+              />
+              <SpecRow
+                label="おすすめ用途"
+                value={service.usage
+                  .map((usage) => usageLabels[usage])
+                  .join(" / ")}
+              />
+            </tbody>
+          </table>
+        </article>
+
+        <aside style={panelStyle}>
+          <h2 style={panelTitleStyle}>CTA</h2>
+          <p
+            style={{ color: "#aec4df", lineHeight: 1.8, marginBottom: "1rem" }}
+          >
+            公式サイトで最新の価格や仕様を確認して、実際のプラン選定に進めます。
+          </p>
+          <a
+            href={service.officialUrl}
+            rel="noreferrer"
+            style={ctaStyle}
+            target="_blank"
+          >
+            公式サイトを見る
+          </a>
+        </aside>
+      </section>
+
+      <section
+        style={{
+          display: "grid",
+          gap: "1rem",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+        }}
+      >
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>特徴</h2>
+          <BulletList items={service.features} />
+        </article>
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>メリット / デメリット</h2>
+          <h3 style={subTitleStyle}>メリット</h3>
+          <BulletList items={service.pros} />
+          <h3 style={{ ...subTitleStyle, marginTop: "1rem" }}>デメリット</h3>
+          <BulletList items={service.cons} />
+        </article>
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>おすすめ用途</h2>
+          <BulletList items={service.recommendedFor} />
+        </article>
+      </section>
+    </div>
+  )
+}
+
+const DetailMetric = ({ label, value }: { label: string; value: string }) => (
+  <div
+    style={{
+      background: "rgba(255,255,255,0.06)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: 18,
+      display: "grid",
+      gap: "0.35rem",
+      padding: "0.95rem",
+    }}
+  >
+    <span style={{ color: "#9cb5d6", fontSize: "0.82rem" }}>{label}</span>
+    <strong style={{ fontSize: "1.2rem" }}>{value}</strong>
+  </div>
+)
+
+const SpecRow = ({ label, value }: { label: string; value: string }) => (
+  <tr>
+    <th
+      style={{
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        color: "#a7bfdc",
+        padding: "0.9rem 0",
+        textAlign: "left",
+        width: "180px",
+      }}
+    >
+      {label}
+    </th>
+    <td
+      style={{
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        padding: "0.9rem 0",
+      }}
+    >
+      {value}
+    </td>
+  </tr>
+)
+
+const BulletList = ({ items }: { items: string[] }) => (
+  <ul
+    style={{
+      color: "#d9e7f8",
+      display: "grid",
+      gap: "0.7rem",
+      paddingLeft: "1.2rem",
+    }}
+  >
+    {items.map((item) => (
+      <li key={item} style={{ lineHeight: 1.8 }}>
+        {item}
+      </li>
+    ))}
+  </ul>
+)
+
+const panelStyle = {
+  background:
+    "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: 24,
+  padding: "1.25rem",
+}
+
+const panelTitleStyle = {
+  fontSize: "1.25rem",
+  marginBottom: "0.9rem",
+}
+
+const subTitleStyle = {
+  color: "#9bdaf7",
+  fontSize: "1rem",
+  marginBottom: "0.7rem",
+}
+
+const ctaStyle = {
+  background: "linear-gradient(135deg, #75efff, #9ca8ff)",
+  borderRadius: 999,
+  color: "#04111f",
+  display: "inline-flex",
+  fontWeight: 800,
+  padding: "0.85rem 1.15rem",
+  textDecoration: "none",
+}
+
+export default VpsDetailPage

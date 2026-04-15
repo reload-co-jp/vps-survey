@@ -1,0 +1,158 @@
+[
+  {
+    "id": "conoha",
+    "name": "ConoHa VPS",
+    "price": 968,
+    "cpu": 2,
+    "memory": 2,
+    "storage": 100,
+    "traffic": "unlimited",
+    "region": "JP",
+    "billing": "monthly",
+    "popularity": 92,
+    "usage": ["development", "production"],
+    "tags": ["初心者向け", "表示が分かりやすい", "国内向け"],
+    "summary": "国内向けで扱いやすく、個人開発から小規模本番まで広く選びやすい定番VPS。",
+    "features": [
+      "国内リージョン中心で低遅延",
+      "管理画面が分かりやすく初心者向け",
+      "時間課金と月額課金を選びやすい"
+    ],
+    "pros": ["セットアップが簡単", "国内案件に向く", "バランスが良い"],
+    "cons": ["超低価格帯ではない", "海外展開の選択肢は少なめ"],
+    "recommendedFor": ["Webアプリ運用", "個人開発", "国内サービスの公開"],
+    "officialUrl": "https://www.conoha.jp/vps/"
+  },
+  {
+    "id": "sakura",
+    "name": "さくらのVPS",
+    "price": 685,
+    "cpu": 2,
+    "memory": 1,
+    "storage": 100,
+    "traffic": "unlimited",
+    "region": "JP",
+    "billing": "monthly",
+    "popularity": 83,
+    "usage": ["development", "verification"],
+    "tags": ["老舗", "コスト重視", "国内向け"],
+    "summary": "国内で長く使われている安心感があり、検証や小規模用途に向いた選択肢。",
+    "features": [
+      "国内データセンターで安定運用",
+      "古くから利用者が多く情報が豊富",
+      "検証・学習用途で始めやすい価格帯"
+    ],
+    "pros": ["情報量が多い", "価格を抑えやすい", "国内利用に安心感がある"],
+    "cons": ["高性能帯の選択肢は控えめ", "UIはやや無骨"],
+    "recommendedFor": ["学習用サーバー", "社内検証", "小規模Webサイト"],
+    "officialUrl": "https://vps.sakura.ad.jp/"
+  },
+  {
+    "id": "xserver",
+    "name": "XServer VPS",
+    "price": 830,
+    "cpu": 2,
+    "memory": 2,
+    "storage": 50,
+    "traffic": "unlimited",
+    "region": "JP",
+    "billing": "monthly",
+    "popularity": 87,
+    "usage": ["development", "production"],
+    "tags": ["高速", "国内向け", "安定"],
+    "summary": "高速性と国内運用のしやすさが強みで、表示速度を意識するサービス向け。",
+    "features": [
+      "国内向けに安定したネットワーク",
+      "高速ストレージ構成",
+      "個人から中小規模まで扱いやすいプラン"
+    ],
+    "pros": [
+      "レスポンス重視に向く",
+      "国内案件と相性が良い",
+      "運用の安心感がある"
+    ],
+    "cons": ["最安帯ではない", "海外リージョンは限定的"],
+    "recommendedFor": ["ブログ運営", "中小規模サービス", "開発環境"],
+    "officialUrl": "https://vps.xserver.ne.jp/"
+  },
+  {
+    "id": "aws-lightsail",
+    "name": "Amazon Lightsail",
+    "price": 550,
+    "cpu": 2,
+    "memory": 1,
+    "storage": 40,
+    "traffic": "2TB",
+    "region": "GLOBAL",
+    "billing": "monthly",
+    "popularity": 80,
+    "usage": ["development", "verification"],
+    "tags": ["クラウド連携", "海外対応", "拡張性"],
+    "summary": "シンプルに始めつつ AWS 連携も視野に入れたいときに扱いやすいクラウドVPS。",
+    "features": [
+      "AWSサービスへ段階的に拡張しやすい",
+      "複数リージョンを選択可能",
+      "スナップショットなどクラウド運用と親和性が高い"
+    ],
+    "pros": [
+      "将来の拡張性が高い",
+      "海外リージョンが豊富",
+      "クラウド学習にも向く"
+    ],
+    "cons": ["料金体系の理解に少し慣れが必要", "国内特化ではない"],
+    "recommendedFor": ["PoC", "グローバル向け検証", "AWS入門"],
+    "officialUrl": "https://aws.amazon.com/lightsail/"
+  },
+  {
+    "id": "linode",
+    "name": "Linode",
+    "price": 720,
+    "cpu": 2,
+    "memory": 2,
+    "storage": 50,
+    "traffic": "2TB",
+    "region": "GLOBAL",
+    "billing": "monthly",
+    "popularity": 76,
+    "usage": ["development", "production"],
+    "tags": ["開発者向け", "海外VPS", "分かりやすい料金"],
+    "summary": "シンプルな料金と開発者フレンドリーな設計で、海外VPSの入門にも向くサービス。",
+    "features": [
+      "料金が分かりやすく比較しやすい",
+      "海外リージョンの選択肢が広い",
+      "ドキュメントが比較的充実"
+    ],
+    "pros": [
+      "価格と性能のバランスが良い",
+      "開発用途に使いやすい",
+      "海外向け配信に向く"
+    ],
+    "cons": ["日本リージョンがない", "日本語情報は少なめ"],
+    "recommendedFor": ["海外向けWebサービス", "開発環境", "小規模本番"],
+    "officialUrl": "https://www.linode.com/"
+  },
+  {
+    "id": "digitalocean",
+    "name": "DigitalOcean Droplets",
+    "price": 840,
+    "cpu": 2,
+    "memory": 2,
+    "storage": 60,
+    "traffic": "3TB",
+    "region": "GLOBAL",
+    "billing": "hourly",
+    "popularity": 89,
+    "usage": ["development", "production", "verification"],
+    "tags": ["海外人気", "ドキュメント豊富", "時間課金"],
+    "summary": "海外で人気が高く、ドキュメントやチュートリアルが豊富で開発効率を上げやすい。",
+    "features": [
+      "時間課金で検証環境を作りやすい",
+      "豊富なチュートリアル",
+      "アプリプラットフォームへの拡張も可能"
+    ],
+    "pros": ["学習情報が豊富", "検証用途に相性が良い", "海外展開しやすい"],
+    "cons": ["日本向け低遅延には不利", "円換算だと割高に感じる場合がある"],
+    "recommendedFor": ["チーム開発", "短期検証", "海外ユーザー向けサービス"],
+    "officialUrl": "https://www.digitalocean.com/"
+  }
+]
