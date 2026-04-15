@@ -383,35 +383,6 @@ export const VpsExplorer = ({ services }: Props) => {
                     {lowestPricePlan.storage} GB
                   </span>
                 </div>
-                <div style={{ display: "grid", gap: "0.5rem" }}>
-                  <strong style={{ fontSize: "0.92rem" }}>掲載プラン</strong>
-                  <div style={{ display: "grid", gap: "0.45rem" }}>
-                    {service.plans.map((plan) => (
-                      <div
-                        key={plan.id}
-                        style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.08)",
-                          borderRadius: 14,
-                          display: "grid",
-                          gap: "0.2rem",
-                          padding: "0.65rem 0.75rem",
-                        }}
-                      >
-                        <strong style={{ fontSize: "0.88rem" }}>
-                          {plan.name} / ¥{plan.price.toLocaleString()}
-                        </strong>
-                        <span style={subCellStyle}>
-                          {plan.cpu} vCPU / {plan.memory} GB / {plan.storage} GB
-                        </span>
-                        <span style={subCellStyle}>
-                          {formatTrafficLabel(plan.traffic)} /{" "}
-                          {billingLabels[plan.billing]}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
                 <Link href={`/vps/${service.id}/`} style={linkButtonStyle}>
                   詳細を見る
                 </Link>
