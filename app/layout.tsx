@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import "./reset.css"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
 const shellStyle = {
   margin: "0 auto",
   maxWidth: "1180px",

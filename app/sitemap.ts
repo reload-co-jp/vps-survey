@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 import { getAllServices } from "../lib/vps"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
 
 export const dynamic = "force-static"
 
