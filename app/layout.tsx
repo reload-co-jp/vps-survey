@@ -41,6 +41,14 @@ export const metadata: Metadata = {
   openGraph: {
     description:
       "国内・海外VPSの比較、フィルタ検索、詳細確認ができる比較サイト。",
+    images: [
+      {
+        alt: "VPS比較サイト OGP画像",
+        height: 630,
+        url: "/opengraph-image",
+        width: 1200,
+      },
+    ],
     locale: "ja_JP",
     siteName: "VPS比較サイト",
     title: "VPS比較サイト",
@@ -51,6 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     description:
       "国内・海外VPSの比較、フィルタ検索、詳細確認ができる比較サイト。",
+    images: ["/twitter-image"],
     title: "VPS比較サイト",
   },
   icons: {

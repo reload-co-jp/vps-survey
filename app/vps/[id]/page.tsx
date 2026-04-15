@@ -59,8 +59,22 @@ export const generateMetadata = async ({
     openGraph: {
       title: `${service.name}の料金・スペック・用途`,
       description: `${service.name}の料金帯、スペック、メリット・デメリット、おすすめ用途を確認できる詳細ページです。`,
+      images: [
+        {
+          alt: `${service.name}のOGP画像`,
+          height: 630,
+          url: `/vps/${service.id}/opengraph-image`,
+          width: 1200,
+        },
+      ],
       url: `/vps/${service.id}/`,
       type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      description: `${service.name}の料金帯、スペック、メリット・デメリット、おすすめ用途を確認できる詳細ページです。`,
+      images: [`/vps/${service.id}/twitter-image`],
+      title: `${service.name}の料金・スペック・用途`,
     },
   }
 }

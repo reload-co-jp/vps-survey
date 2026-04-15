@@ -14,7 +14,22 @@ export const metadata: Metadata = {
     title: "VPS比較サイト | 国内・海外VPSおすすめ一覧",
     description:
       "国内・海外のVPSを価格、CPU、メモリ、リージョン、用途で比較できる一覧ページ。",
+    images: [
+      {
+        alt: "VPS比較サイト 一覧ページ OGP画像",
+        height: 630,
+        url: "/opengraph-image",
+        width: 1200,
+      },
+    ],
     url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    description:
+      "国内・海外のVPSを価格、CPU、メモリ、リージョン、用途で比較できる一覧ページ。",
+    images: ["/twitter-image"],
+    title: "VPS比較サイト | 国内・海外VPSおすすめ一覧",
   },
 }
 
