@@ -1,94 +1,220 @@
-# Next.js Static Site Template
+# VPS比較サイト 仕様書
 
-Next.js 16 + React 19 + TypeScript を使用した静的サイト生成のテンプレートリポジトリです。GitHub Pages へのデプロイが自動化されています。
+## 1. 概要
 
-## 技術スタック
+日本および海外VPSサービスを比較できるWebサイトを構築する。
+ユーザーが用途・価格・性能などの条件から最適なVPSを選べるようにする。
 
-- **Next.js** 16 - App Router / Static Export
-- **React** 19
-- **TypeScript** 5
-- **ESLint** 9 - Flat Config
-- **Prettier** 3
+---
 
-## このテンプレートの使い方
+## 2. 目的
 
-1. **「Use this template」ボタン**をクリックして新しいリポジトリを作成
-2. リポジトリをクローン
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   cd YOUR_REPO
-   ```
-3. 依存関係をインストール
-   ```bash
-   pnpm install
-   ```
-4. 開発サーバーを起動
-   ```bash
-   pnpm dev
-   ```
+- VPS選定の意思決定を支援
+- 各サービスの違いを可視化
+- SEOによる集客
 
-## セットアップ後にやること
+---
 
-### 1. `next.config.js` の修正
+## 3. 対象ユーザー
 
-`basePath` をリポジトリ名に変更してください：
+- 個人開発者
+- スタートアップ
+- インフラエンジニア
+- VPS初心者
 
-```js
-basePath: process.env.NODE_ENV === "production" ? "/YOUR_REPO_NAME" : "",
-```
+---
 
-### 2. `app/layout.tsx` の修正
+## 4. 機能要件
 
-メタデータとサイト情報を更新してください：
+### 4.1 VPS一覧表示
 
-```tsx
-export const metadata: Metadata = {
-  title: "Your Site Title",
-  description: "Your site description",
+- VPS一覧をテーブル形式で表示
+- 表示項目：
+  - サービス名
+  - 月額料金
+  - CPU
+  - メモリ
+  - ストレージ
+  - 転送量
+  - リージョン
+  - 課金方式
+
+### 4.2 フィルタ機能
+
+- 価格帯
+- メモリ
+- CPUコア数
+- 国内 / 海外
+- 用途（開発 / 本番 / 検証）
+
+### 4.3 ソート機能
+
+- 価格
+- スペック
+- 人気
+
+### 4.4 詳細ページ
+
+各VPSの詳細情報を表示
+
+- スペック詳細
+- 特徴
+- メリット / デメリット
+- おすすめ用途
+
+### 4.5 比較機能
+
+- 複数VPSを選択
+- 横並びで比較表示
+
+### 4.6 検索機能
+
+- サービス名検索
+
+### 4.7 記事コンテンツ
+
+- VPSの選び方
+- 用途別おすすめ
+- 初心者向け解説
+
+---
+
+## 5. 非機能要件
+
+### 5.1 パフォーマンス
+
+- 初回表示 1秒以内
+- Lighthouseスコア 90以上
+
+### 5.2 SEO
+
+- SSRまたはSSG
+- 構造化データ（JSON-LD）対応
+- メタタグ最適化
+
+### 5.3 レスポンシブ対応
+
+- PC / タブレット / スマートフォン対応
+
+### 5.4 拡張性
+
+- VPSデータはJSONで管理
+- 将来的にCMS化可能
+
+---
+
+## 6. データ設計
+
+### 6.1 VPSデータ（JSON）
+
+```json
+{
+  "id": "conoha",
+  "name": "ConoHa VPS",
+  "price": 1000,
+  "cpu": 2,
+  "memory": 1,
+  "storage": 100,
+  "traffic": "unlimited",
+  "region": "JP",
+  "billing": "monthly",
+  "tags": ["初心者向け", "バランス"]
 }
 ```
 
-### 3. GitHub Pages の設定
+---
 
-1. リポジトリの **Settings** → **Pages** へ移動
-2. **Source** を「GitHub Actions」に設定
+## 7. 画面設計
 
-## ディレクトリ構成
+### 7.1 トップページ
 
-```
-.
-├── app/
-│   ├── layout.tsx      # ルートレイアウト
-│   ├── page.tsx        # ホームページ
-│   └── reset.css       # CSSリセット
-├── .github/
-│   └── workflows/
-│       ├── lint.yml    # リント自動実行
-│       └── deploy.yml  # GitHub Pages 自動デプロイ
-├── next.config.js      # Next.js 設定
-├── tsconfig.json       # TypeScript 設定
-├── eslint.config.mjs   # ESLint 設定
-└── .prettierrc.json    # Prettier 設定
-```
+- VPSランキング
+- 用途別おすすめ
+- 記事一覧
 
-## スクリプト
+### 7.2 一覧ページ
 
-| コマンド | 説明 |
-|---------|------|
-| `pnpm dev` | 開発サーバーを起動 |
-| `pnpm build` | 静的サイトをビルド（`/out` に出力） |
-| `pnpm lint` | ESLint を実行 |
-| `pnpm format` | Prettier でコードをフォーマット |
-| `pnpm typecheck` | TypeScript の型チェック |
+- フィルタ
+- ソート
+- VPSカード一覧
 
-## 機能
+### 7.3 詳細ページ
 
-- **静的サイト生成** - `next build` で `/out` に HTML を出力
-- **自動デプロイ** - main ブランチへの push で GitHub Pages に自動デプロイ
-- **自動リント** - push 時に ESLint / Prettier チェックを実行
-- **依存関係の自動更新** - Dependabot による週次チェック
-- **エディタ設定** - VS Code での自動フォーマット設定済み
+- スペック表
+- 解説
+- CTA（公式サイトリンク）
 
-## ライセンス
+---
 
-ISC
+## 8. 技術構成
+
+### フロントエンド
+
+- Next.js（SSG推奨）
+- Tailwind CSS
+
+### データ管理
+
+- JSONファイル
+
+### ホスティング
+
+- Vercel / Cloudflare Pages
+
+---
+
+## 9. SEO戦略
+
+- 「VPS 比較」
+- 「VPS おすすめ」
+- 「日本 VPS」
+- 「格安 VPS」
+
+記事コンテンツで流入を狙う
+
+---
+
+## 10. 今後の拡張
+
+- ユーザーレビュー機能
+- お気に入り機能
+- API連携（価格自動更新）
+- 海外VPS拡張
+
+---
+
+## 11. MVP範囲
+
+- VPS一覧
+- フィルタ
+- 詳細ページ
+
+比較機能は後回し
+
+---
+
+## 12. 成功指標（KPI）
+
+- 月間PV
+- 検索流入数
+- CTR
+- コンバージョン（公式リンククリック）
+
+---
+
+## 13. 開発ステップ
+
+1. JSONデータ作成
+2. 一覧ページ実装
+3. フィルタ実装
+4. 詳細ページ作成
+5. SEO対策
+6. 公開
+
+---
+
+## 14. 注意点
+
+- 情報の更新頻度を担保
+- 価格変更に注意
+- アフィリエイト導線の設計
