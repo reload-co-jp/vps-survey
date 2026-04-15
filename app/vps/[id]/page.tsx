@@ -35,6 +35,21 @@ export const generateMetadata = async ({
   return {
     title: service.name,
     description: `${service.name}の価格、スペック、メリット・デメリット、おすすめ用途を掲載した詳細ページです。`,
+    keywords: [
+      `${service.name} 評判`,
+      `${service.name} 料金`,
+      `${service.name} VPS`,
+      "VPS 比較",
+    ],
+    alternates: {
+      canonical: `/vps/${service.id}/`,
+    },
+    openGraph: {
+      title: `${service.name}の料金・スペック・用途`,
+      description: `${service.name}の料金帯、スペック、メリット・デメリット、おすすめ用途を確認できる詳細ページです。`,
+      url: `/vps/${service.id}/`,
+      type: "article",
+    },
   }
 }
 
@@ -48,7 +63,7 @@ const VpsDetailPage = async ({ params }: Props) => {
 
   const lowestPricePlan = getLowestPricePlan(service)
 
-  const jsonLd = {
+  const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: service.name,
@@ -62,10 +77,33 @@ const VpsDetailPage = async ({ params }: Props) => {
     },
   }
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "VPS比較サイト",
+        item: "/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: service.name,
+        item: `/vps/${service.id}/`,
+      },
+    ],
+  }
+
   return (
     <div style={{ display: "grid", gap: "1.5rem" }}>
       <script
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+        type="application/ld+json"
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         type="application/ld+json"
       />
       <section

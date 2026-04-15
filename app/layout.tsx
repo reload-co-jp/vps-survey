@@ -2,7 +2,11 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import "./reset.css"
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "VPS比較サイト | 国内・海外VPSを価格と用途で比較",
     template: "%s | VPS比較サイト",
@@ -10,12 +14,33 @@ export const metadata: Metadata = {
   description:
     "国内・海外のVPSを価格、CPU、メモリ、用途で比較できるNext.js製の比較サイトです。初心者向けの解説や詳細ページも掲載しています。",
   keywords: ["VPS 比較", "VPS おすすめ", "日本 VPS", "格安 VPS"],
+  alternates: {
+    canonical: "/",
+  },
+  category: "technology",
+  applicationName: "VPS比較サイト",
+  referrer: "origin-when-cross-origin",
+  creator: "VPS Survey",
+  publisher: "VPS Survey",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     description:
       "国内・海外VPSの比較、フィルタ検索、詳細確認ができる比較サイト。",
+    locale: "ja_JP",
     siteName: "VPS比較サイト",
     title: "VPS比較サイト",
     type: "website",
+    url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
