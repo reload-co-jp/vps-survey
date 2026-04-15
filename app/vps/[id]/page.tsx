@@ -194,6 +194,28 @@ const VpsDetailPage = async ({ params }: Props) => {
           />
           <DetailMetric label="プラン数" value={`${service.plans.length}件`} />
         </div>
+        <a
+          href={service.officialUrl}
+          rel="noopener noreferrer"
+          style={{
+            alignItems: "center",
+            background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
+            borderRadius: 18,
+            color: "#031321",
+            display: "inline-flex",
+            fontSize: "1rem",
+            fontWeight: 800,
+            justifyContent: "center",
+            maxWidth: "320px",
+            minHeight: 56,
+            padding: "0.95rem 1.2rem",
+            textDecoration: "none",
+            width: "100%",
+          }}
+          target="_blank"
+        >
+          公式ページを見る
+        </a>
       </section>
 
       <section>
