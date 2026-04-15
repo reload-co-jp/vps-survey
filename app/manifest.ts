@@ -12,6 +12,13 @@ const manifest = (): MetadataRoute.Manifest => ({
   background_color: "#050912",
   theme_color: "#10203e",
   lang: "ja",
+  icons: [
+    {
+      src: "/icon.svg",
+      sizes: "any",
+      type: "image/svg+xml",
+    },
+  ],
 })
 
 export default manifest

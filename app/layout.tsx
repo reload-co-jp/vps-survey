@@ -53,6 +53,14 @@ export const metadata: Metadata = {
       "国内・海外VPSの比較、フィルタ検索、詳細確認ができる比較サイト。",
     title: "VPS比較サイト",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", sizes: "any", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: ["/icon.svg"],
+  },
 }
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
