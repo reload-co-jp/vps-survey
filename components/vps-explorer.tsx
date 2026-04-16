@@ -210,12 +210,11 @@ export const VpsExplorer = ({ services }: Props) => {
                 lineHeight: 1,
               }}
             >
-              価格・性能・用途から、いま必要な VPS をすばやく比較。
+              今必要なVPSを性能・価格で比較して最安を探せる
             </h1>
             <p style={{ color: "#c9d8f2", fontSize: "1rem", lineHeight: 1.8 }}>
-              国内外の主要 VPS を、初心者にも分かりやすい軸で一覧化しました。
-              検索、フィルタ、ソート、比較、詳細ページまで MVP
-              として一通り使えます。
+              国内外の主要 VPS を、初心者にも分かりやすい軸で一覧化。
+              検索、フィルタ、ソート、比較してお好みのVPSがミツカします。
             </p>
           </div>
           <div data-grid="metrics">
@@ -227,7 +226,10 @@ export const VpsExplorer = ({ services }: Props) => {
         </div>
       </section>
 
-      <section data-surface="default" style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}>
+      <section
+        data-surface="default"
+        style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
+      >
         <div style={{ display: "grid", gap: "1rem" }}>
           <div data-grid="filters">
             <ControlField label="サービス名検索">
@@ -448,9 +450,7 @@ export const VpsExplorer = ({ services }: Props) => {
               項目ソート
               <select
                 onChange={(event) =>
-                  setComparisonSort(
-                    event.target.value as ComparisonSortKey
-                  )
+                  setComparisonSort(event.target.value as ComparisonSortKey)
                 }
                 style={{
                   ...controlStyle,
@@ -524,46 +524,46 @@ export const VpsExplorer = ({ services }: Props) => {
                       : service.plans.slice(0, 3)
 
                     return (
-                    <td key={`${service.id}-plans`} style={compareCellStyle}>
-                      <div style={{ display: "grid", gap: "0.55rem" }}>
-                        {visiblePlans.map((plan) => (
-                          <div
-                            key={plan.id}
-                            style={{
-                              background: "rgba(255,255,255,0.04)",
-                              border: "1px solid rgba(255,255,255,0.08)",
-                              borderRadius: 12,
-                              display: "grid",
-                              gap: "0.2rem",
-                              padding: "0.6rem",
-                            }}
-                          >
-                            <strong style={{ fontSize: "0.85rem" }}>
-                              {plan.name} / ¥{plan.price.toLocaleString()}
-                            </strong>
-                            <span style={subCellStyle}>
-                              {plan.cpu} vCPU / {plan.memory} GB /{" "}
-                              {formatStorageLabel(plan.storage)}
-                            </span>
-                            <span style={subCellStyle}>
-                              {formatTrafficLabel(plan.traffic)} /{" "}
-                              {billingLabels[plan.billing]}
-                            </span>
-                          </div>
-                        ))}
-                        {service.plans.length > 3 ? (
-                          <button
-                            onClick={() => toggleExpandedPlans(service.id)}
-                            style={compareMoreButtonStyle}
-                            type="button"
-                          >
-                            {isExpanded
-                              ? "閉じる"
-                              : `もっとみる（残り${service.plans.length - 3}件）`}
-                          </button>
-                        ) : null}
-                      </div>
-                    </td>
+                      <td key={`${service.id}-plans`} style={compareCellStyle}>
+                        <div style={{ display: "grid", gap: "0.55rem" }}>
+                          {visiblePlans.map((plan) => (
+                            <div
+                              key={plan.id}
+                              style={{
+                                background: "rgba(255,255,255,0.04)",
+                                border: "1px solid rgba(255,255,255,0.08)",
+                                borderRadius: 12,
+                                display: "grid",
+                                gap: "0.2rem",
+                                padding: "0.6rem",
+                              }}
+                            >
+                              <strong style={{ fontSize: "0.85rem" }}>
+                                {plan.name} / ¥{plan.price.toLocaleString()}
+                              </strong>
+                              <span style={subCellStyle}>
+                                {plan.cpu} vCPU / {plan.memory} GB /{" "}
+                                {formatStorageLabel(plan.storage)}
+                              </span>
+                              <span style={subCellStyle}>
+                                {formatTrafficLabel(plan.traffic)} /{" "}
+                                {billingLabels[plan.billing]}
+                              </span>
+                            </div>
+                          ))}
+                          {service.plans.length > 3 ? (
+                            <button
+                              onClick={() => toggleExpandedPlans(service.id)}
+                              style={compareMoreButtonStyle}
+                              type="button"
+                            >
+                              {isExpanded
+                                ? "閉じる"
+                                : `もっとみる（残り${service.plans.length - 3}件）`}
+                            </button>
+                          ) : null}
+                        </div>
+                      </td>
                     )
                   })}
                 </tr>
@@ -573,7 +573,10 @@ export const VpsExplorer = ({ services }: Props) => {
         )}
       </section>
 
-      <section data-grid="articles" style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}>
+      <section
+        data-grid="articles"
+        style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
+      >
         <ArticleCard
           title="VPSの選び方"
           body="価格だけでなく、CPU・メモリ・リージョン・課金方式を合わせて見ると、あとからの移行コストを抑えやすくなります。"
