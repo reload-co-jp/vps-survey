@@ -468,6 +468,8 @@
     "cons": ["海外リージョンはない", "転送量上限の情報は要確認"],
     "recommendedFor": ["開発環境", "国内Webサービス", "小中規模の本番運用"],
     "officialUrl": "https://www.kagoya.jp/vps/function-plan/",
+    "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CSTJ02+7YE+NWRNM",
+    "affiliatePixelUrl": "https://www19.a8.net/0.gif?a8mat=4B1MHK+CSTJ02+7YE+NWRNM",
     "plans": [
       {
         "id": "kagoya-1gb",
