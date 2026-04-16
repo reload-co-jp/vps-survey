@@ -241,7 +241,7 @@ const VpsDetailPage = async ({ params }: Props) => {
         </article>
       </section>
 
-      <section>
+      <section style={{ overflow: "scroll" }}>
         <article style={panelStyle}>
           <h2 style={panelTitleStyle}>プラン比較ビュー</h2>
           <div
