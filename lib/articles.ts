@@ -8,6 +8,14 @@ export type ArticleSummary = {
 
 const articles: ArticleSummary[] = [
   {
+    id: "what-is-vps",
+    title: "VPSとは何か",
+    description:
+      "VPSの基本、共有サーバーやクラウドとの違い、メリット・デメリット、向いている用途を解説する記事です。",
+    href: "/articles/what-is-vps/",
+    category: "基礎知識",
+  },
+  {
     id: "vps-choice",
     title: "VPSの選び方",
     description:
