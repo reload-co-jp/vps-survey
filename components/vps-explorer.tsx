@@ -578,18 +578,34 @@ export const VpsExplorer = ({ services }: Props) => {
         style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
       >
         <ArticleCard
+          href="/articles/vps-choice/"
           title="VPSの選び方"
           body="価格だけでなく、CPU・メモリ・リージョン・課金方式を合わせて見ると、あとからの移行コストを抑えやすくなります。"
         />
         <ArticleCard
+          href="/articles/use-case-recommendations/"
           title="用途別おすすめ"
           body="開発用途なら時間課金、本番用途なら国内リージョンと安定性、検証用途なら低価格帯と初期構築のしやすさが見極めやすい軸です。"
         />
         <ArticleCard
+          href="/articles/beginner-guide/"
           title="初心者向け解説"
           body="まずは 1〜2GB メモリ帯から始め、運用しながら CPU 使用率や転送量を見て上位プランへ拡張する進め方が安全です。"
         />
       </section>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Link
+          href="/articles/"
+          style={{
+            color: "#9edaff",
+            fontSize: "0.95rem",
+            fontWeight: 700,
+            textDecoration: "none",
+          }}
+        >
+          記事一覧を見る →
+        </Link>
+      </div>
     </div>
   )
 }
@@ -622,7 +638,15 @@ const ControlField = ({
   </label>
 )
 
-const ArticleCard = ({ body, title }: { body: string; title: string }) => (
+const ArticleCard = ({
+  body,
+  href,
+  title,
+}: {
+  body: string
+  href?: string
+  title: string
+}) => (
   <article
     data-surface="responsive"
     style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
@@ -630,6 +654,20 @@ const ArticleCard = ({ body, title }: { body: string; title: string }) => (
     <div style={{ display: "grid", gap: "0.6rem" }}>
       <h2 style={{ fontSize: "1.2rem" }}>{title}</h2>
       <p style={{ color: "#afc3dd", lineHeight: 1.8 }}>{body}</p>
+      {href ? (
+        <Link
+          href={href}
+          style={{
+            color: "#9edaff",
+            fontSize: "0.95rem",
+            fontWeight: 700,
+            textDecoration: "none",
+            width: "fit-content",
+          }}
+        >
+          記事を読む →
+        </Link>
+      ) : null}
     </div>
   </article>
 )
