@@ -16,6 +16,8 @@
     "cons": ["超低価格帯ではない", "海外展開の選択肢は少なめ"],
     "recommendedFor": ["Webアプリ運用", "個人開発", "国内サービスの公開"],
     "officialUrl": "https://www.conoha.jp/vps/",
+    "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CTEYLU+50+4Z5JN6",
+    "affiliatePixelUrl": "https://www12.a8.net/0.gif?a8mat=4B1MHK+CTEYLU+50+4Z5JN6",
     "plans": [
       {
         "id": "conoha-512mb",
@@ -126,6 +128,8 @@
     "cons": ["高性能帯の選択肢は控えめ", "UIはやや無骨"],
     "recommendedFor": ["学習用サーバー", "社内検証", "小規模Webサイト"],
     "officialUrl": "https://vps.sakura.ad.jp/",
+    "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CS83EA+D8Y+C9YHU",
+    "affiliatePixelUrl": "https://www13.a8.net/0.gif?a8mat=4B1MHK+CS83EA+D8Y+C9YHU",
     "plans": [
       {
         "id": "sakura-512mb",
@@ -220,6 +224,8 @@
     "cons": ["最安帯ではない", "海外リージョンは限定的"],
     "recommendedFor": ["ブログ運営", "中小規模サービス", "開発環境"],
     "officialUrl": "https://vps.xserver.ne.jp/",
+    "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CU0E7M+CO4+25F7IA",
+    "affiliatePixelUrl": "https://www16.a8.net/0.gif?a8mat=4B1MHK+CU0E7M+CO4+25F7IA",
     "plans": [
       {
         "id": "xserver-2g",
@@ -300,6 +306,8 @@
     "cons": ["海外リージョンはない", "クラウド周辺サービスは限定的"],
     "recommendedFor": ["国内Webサービス", "検証環境", "中規模アプリ運用"],
     "officialUrl": "https://www.shin-vps.jp/service/price.php",
+    "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY",
+    "affiliatePixelUrl": "https://www18.a8.net/0.gif?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY",
     "plans": [
       {
         "id": "shin-standard-512mb",

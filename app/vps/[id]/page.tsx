@@ -7,6 +7,7 @@ import {
   formatTrafficLabel,
   getAllServices,
   getLowestPricePlan,
+  getOutboundUrl,
   getPriceRangeLabel,
   getServiceById,
   regionLabels,
@@ -88,6 +89,7 @@ const VpsDetailPage = async ({ params }: Props) => {
   }
 
   const lowestPricePlan = getLowestPricePlan(service)
+  const outboundUrl = getOutboundUrl(service)
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -195,7 +197,7 @@ const VpsDetailPage = async ({ params }: Props) => {
           <DetailMetric label="プラン数" value={`${service.plans.length}件`} />
         </div>
         <a
-          href={service.officialUrl}
+          href={outboundUrl}
           rel="noopener noreferrer"
           style={{
             alignItems: "center",
@@ -216,6 +218,15 @@ const VpsDetailPage = async ({ params }: Props) => {
         >
           公式ページを見る
         </a>
+        {service.affiliatePixelUrl ? (
+          <img
+            alt=""
+            height={1}
+            src={service.affiliatePixelUrl}
+            style={{ border: 0, height: 1, width: 1 }}
+            width={1}
+          />
+        ) : null}
       </section>
 
       <section>

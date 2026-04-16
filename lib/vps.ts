@@ -28,8 +28,13 @@ export type VpsService = {
   cons: string[]
   recommendedFor: string[]
   officialUrl: string
+  affiliateUrl?: string
+  affiliatePixelUrl?: string
   plans: VpsPlan[]
 }
+
+export const getOutboundUrl = (service: VpsService) =>
+  service.affiliateUrl ?? service.officialUrl
 
 export type SortKey = "price" | "spec" | "popular"
 export type ComparisonSortKey =
