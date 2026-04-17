@@ -1,43 +1,33 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import {
+  buildArticleJsonLd,
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildLpMetadata,
+} from "../seo"
 
-export const metadata: Metadata = {
-  title: "シンVPSおすすめガイド | 高コスパ国内VPSの決定版",
-  description:
-    "シンVPSはNVMe SSD・大容量メモリプランが月540円から使える高コスパ国内VPS。料金・スペック・メリット・おすすめ用途を徹底解説します。",
+const pageTitle = "シンVPSおすすめガイド | 高コスパ国内VPSの決定版"
+const pageDescription =
+  "シンVPSはNVMe SSD・大容量メモリプランが月540円から使える高コスパ国内VPS。料金・スペック・メリット・おすすめ用途を徹底解説します。"
+const publishedAt = "2026-04-18T09:00:00+09:00"
+
+export const metadata: Metadata = buildLpMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  ogDescription:
+    "NVMe SSD・大容量メモリプランが月540円から。シンVPSの料金・スペック・特徴を詳しく解説します。",
+  path: "/lp/shin-vps/",
   keywords: [
     "シンVPS",
     "シンVPS おすすめ",
     "シンVPS 料金",
     "国内VPS おすすめ",
     "高コスパ VPS",
+    "シンVPS 評判",
+    "シンVPS 比較",
   ],
-  alternates: {
-    canonical: "/lp/shin-vps/",
-  },
-  openGraph: {
-    title: "シンVPSおすすめガイド | 高コスパ国内VPSの決定版",
-    description:
-      "NVMe SSD・大容量メモリプランが月540円から。シンVPSの料金・スペック・特徴を詳しく解説します。",
-    images: [
-      {
-        alt: "シンVPSおすすめガイド",
-        height: 630,
-        url: "/opengraph-image",
-        width: 1200,
-      },
-    ],
-    type: "article",
-    url: "/lp/shin-vps/",
-  },
-  twitter: {
-    card: "summary_large_image",
-    description:
-      "NVMe SSD・大容量メモリプランが月540円から。シンVPSの料金・スペック・特徴を詳しく解説します。",
-    images: ["/twitter-image"],
-    title: "シンVPSおすすめガイド | 高コスパ国内VPSの決定版",
-  },
-}
+})
 
 const affiliateUrl =
   "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY"
@@ -60,6 +50,24 @@ const standardPlans = [
   { name: "Standard 2GB", price: 1850, cpu: 3, memory: 2, storage: 150 },
   { name: "Standard 4GB", price: 3600, cpu: 4, memory: 4, storage: 200 },
   { name: "Standard 8GB", price: 7200, cpu: 6, memory: 8, storage: 400 },
+]
+
+const faqs = [
+  {
+    question: "シンVPSはどんな人に向いていますか？",
+    answer:
+      "コストを抑えつつ国内向けのWebサービスや個人開発環境を作りたい人に向いています。特にメモリ単価とNVMe SSDの速さを重視する人と相性が良いです。",
+  },
+  {
+    question: "シンVPSの強みは何ですか？",
+    answer:
+      "月540円から始められるメモリプラン、NVMe SSDによる高速ストレージ、分かりやすい月額料金が強みです。開発環境から小規模本番まで幅広く使えます。",
+  },
+  {
+    question: "シンVPSの注意点はありますか？",
+    answer:
+      "海外リージョン用途には向かず、時間課金もありません。短期の検証よりも、月額前提で継続利用する環境に向いているサービスです。",
+  },
 ]
 
 const CtaButton = ({ label = "シンVPSを見てみる" }: { label?: string }) => (
@@ -95,34 +103,21 @@ const panelStyle = {
 }
 
 const ShinVpsLpPage = () => {
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "シンVPSおすすめガイド | 高コスパ国内VPSの決定版",
-    description:
-      "シンVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
-    inLanguage: "ja",
-    mainEntityOfPage: "/lp/shin-vps/",
-  }
+  const articleJsonLd = buildArticleJsonLd({
+    title: pageTitle,
+    description: "シンVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
+    path: "/lp/shin-vps/",
+    datePublished: publishedAt,
+    dateModified: publishedAt,
+    keywords: metadata.keywords as string[],
+  })
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "VPS比較サイト",
-        item: "/",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "シンVPSおすすめガイド",
-        item: "/lp/shin-vps/",
-      },
-    ],
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "VPS比較サイト", path: "/" },
+    { name: "シンVPSおすすめガイド", path: "/lp/shin-vps/" },
+  ])
+
+  const faqJsonLd = buildFaqJsonLd(faqs)
 
   return (
     <div
@@ -140,6 +135,10 @@ const ShinVpsLpPage = () => {
       />
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        type="application/ld+json"
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         type="application/ld+json"
       />
 
@@ -600,6 +599,75 @@ const ShinVpsLpPage = () => {
         >
           VPS比較一覧を見る →
         </Link>
+      </section>
+
+      <section style={{ display: "grid", gap: "1rem" }}>
+        <h2
+          style={{
+            fontSize: "clamp(1.4rem, 3vw, 1.9rem)",
+            paddingInline: "0.25rem",
+          }}
+        >
+          よくある質問
+        </h2>
+        <div style={{ display: "grid", gap: "0.85rem" }}>
+          {faqs.map((faq) => (
+            <article
+              key={faq.question}
+              style={{ ...panelStyle, display: "grid", gap: "0.6rem" }}
+            >
+              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
+                {faq.question}
+              </h3>
+              <p style={{ color: "#b4c9e3", lineHeight: 1.8 }}>{faq.answer}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ ...panelStyle, display: "grid", gap: "0.85rem" }}>
+        <h2 style={{ fontSize: "1.2rem" }}>他の国内VPSも見る</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: "0.75rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 240px), 1fr))",
+          }}
+        >
+          {[
+            {
+              href: "/lp/conoha/",
+              title: "ConoHa VPS",
+              body: "初めてVPSを使う人向け。管理画面の分かりやすさと時間課金の柔軟さが魅力です。",
+            },
+            {
+              href: "/lp/sakura/",
+              title: "さくらのVPS",
+              body: "情報量と運用実績を重視する人向け。学習や検証環境として選びやすい老舗です。",
+            },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 18,
+                color: "inherit",
+                display: "grid",
+                gap: "0.45rem",
+                padding: "1rem",
+                textDecoration: "none",
+              }}
+            >
+              <strong style={{ color: "#9edaff", fontSize: "1rem" }}>
+                {item.title}
+              </strong>
+              <p style={{ color: "#b4c9e3", lineHeight: 1.75 }}>{item.body}</p>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <img

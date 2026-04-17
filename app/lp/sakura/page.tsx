@@ -1,43 +1,33 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import {
+  buildArticleJsonLd,
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildLpMetadata,
+} from "../seo"
 
-export const metadata: Metadata = {
-  title: "さくらのVPSおすすめガイド | 老舗国内VPSで安心の学習・検証環境",
-  description:
-    "さくらのVPSは月643円から使える国内老舗VPS。情報量の多さ・安定した国内データセンター・学習や検証に向く価格帯を徹底解説します。",
+const pageTitle = "さくらのVPSおすすめガイド | 老舗国内VPSで安心の学習・検証環境"
+const pageDescription =
+  "さくらのVPSは月643円から使える国内老舗VPS。情報量の多さ・安定した国内データセンター・学習や検証に向く価格帯を徹底解説します。"
+const publishedAt = "2026-04-18T09:00:00+09:00"
+
+export const metadata: Metadata = buildLpMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  ogDescription:
+    "月643円から・情報量豊富・国内安定運用。さくらのVPSの料金・スペック・特徴を詳しく解説します。",
+  path: "/lp/sakura/",
   keywords: [
     "さくらのVPS",
     "さくらのVPS おすすめ",
     "さくらのVPS 料金",
     "国内VPS おすすめ",
     "老舗 VPS",
+    "さくらのVPS 評判",
+    "さくらのVPS 比較",
   ],
-  alternates: {
-    canonical: "/lp/sakura/",
-  },
-  openGraph: {
-    title: "さくらのVPSおすすめガイド | 老舗国内VPSで安心の学習・検証環境",
-    description:
-      "月643円から・情報量豊富・国内安定運用。さくらのVPSの料金・スペック・特徴を詳しく解説します。",
-    images: [
-      {
-        alt: "さくらのVPSおすすめガイド",
-        height: 630,
-        url: "/opengraph-image",
-        width: 1200,
-      },
-    ],
-    type: "article",
-    url: "/lp/sakura/",
-  },
-  twitter: {
-    card: "summary_large_image",
-    description:
-      "月643円から・情報量豊富・国内安定運用。さくらのVPSの料金・スペック・特徴を詳しく解説します。",
-    images: ["/twitter-image"],
-    title: "さくらのVPSおすすめガイド | 老舗国内VPSで安心の学習・検証環境",
-  },
-}
+})
 
 const affiliateUrl =
   "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CS83EA+D8Y+C9YHU"
@@ -52,6 +42,24 @@ const plans = [
   { name: "8G", price: 7040, cpu: 6, memory: 8, storage: 400 },
   { name: "16G", price: 13200, cpu: 8, memory: 16, storage: 800 },
   { name: "32G", price: 26400, cpu: 10, memory: 32, storage: 1600 },
+]
+
+const faqs = [
+  {
+    question: "さくらのVPSは初心者や学習用途に向いていますか？",
+    answer:
+      "向いています。日本語の解説記事や導入事例が多く、困ったときに調べやすいため、LinuxやVPSの学習環境として選びやすいサービスです。",
+  },
+  {
+    question: "さくらのVPSの強みは何ですか？",
+    answer:
+      "国内老舗としての運用実績、情報量の多さ、上位プランの大容量ストレージが主な強みです。安定性や調べやすさを重視する人に向いています。",
+  },
+  {
+    question: "さくらのVPSを選ぶときの注意点はありますか？",
+    answer:
+      "最安重視のVPSと比べると価格が少し高めで、海外リージョン用途には向きません。国内向けサイト運用や検証環境として考えると相性が良いです。",
+  },
 ]
 
 const CtaButton = ({ label = "さくらのVPSを見てみる" }: { label?: string }) => (
@@ -87,29 +95,21 @@ const panelStyle = {
 }
 
 const SakuraLpPage = () => {
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "さくらのVPSおすすめガイド | 老舗国内VPSで安心の学習・検証環境",
-    description:
-      "さくらのVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
-    inLanguage: "ja",
-    mainEntityOfPage: "/lp/sakura/",
-  }
+  const articleJsonLd = buildArticleJsonLd({
+    title: pageTitle,
+    description: "さくらのVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
+    path: "/lp/sakura/",
+    datePublished: publishedAt,
+    dateModified: publishedAt,
+    keywords: metadata.keywords as string[],
+  })
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "VPS比較サイト", item: "/" },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "さくらのVPSおすすめガイド",
-        item: "/lp/sakura/",
-      },
-    ],
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "VPS比較サイト", path: "/" },
+    { name: "さくらのVPSおすすめガイド", path: "/lp/sakura/" },
+  ])
+
+  const faqJsonLd = buildFaqJsonLd(faqs)
 
   return (
     <div
@@ -127,6 +127,10 @@ const SakuraLpPage = () => {
       />
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        type="application/ld+json"
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         type="application/ld+json"
       />
 
@@ -507,6 +511,75 @@ const SakuraLpPage = () => {
         >
           VPS比較一覧を見る →
         </Link>
+      </section>
+
+      <section style={{ display: "grid", gap: "1rem" }}>
+        <h2
+          style={{
+            fontSize: "clamp(1.4rem, 3vw, 1.9rem)",
+            paddingInline: "0.25rem",
+          }}
+        >
+          よくある質問
+        </h2>
+        <div style={{ display: "grid", gap: "0.85rem" }}>
+          {faqs.map((faq) => (
+            <article
+              key={faq.question}
+              style={{ ...panelStyle, display: "grid", gap: "0.6rem" }}
+            >
+              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
+                {faq.question}
+              </h3>
+              <p style={{ color: "#b4c9e3", lineHeight: 1.8 }}>{faq.answer}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ ...panelStyle, display: "grid", gap: "0.85rem" }}>
+        <h2 style={{ fontSize: "1.2rem" }}>他の国内VPSも見る</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: "0.75rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 240px), 1fr))",
+          }}
+        >
+          {[
+            {
+              href: "/lp/conoha/",
+              title: "ConoHa VPS",
+              body: "管理画面の分かりやすさと時間課金を重視したい人向け。初心者にも扱いやすい定番です。",
+            },
+            {
+              href: "/lp/shin-vps/",
+              title: "シンVPS",
+              body: "コストパフォーマンスを重視したい人向け。NVMe SSDと大容量メモリが魅力です。",
+            },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 18,
+                color: "inherit",
+                display: "grid",
+                gap: "0.45rem",
+                padding: "1rem",
+                textDecoration: "none",
+              }}
+            >
+              <strong style={{ color: "#9edaff", fontSize: "1rem" }}>
+                {item.title}
+              </strong>
+              <p style={{ color: "#b4c9e3", lineHeight: 1.75 }}>{item.body}</p>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <img

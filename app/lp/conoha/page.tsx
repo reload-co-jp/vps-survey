@@ -1,43 +1,33 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import {
+  buildArticleJsonLd,
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildLpMetadata,
+} from "../seo"
 
-export const metadata: Metadata = {
-  title: "ConoHa VPSおすすめガイド | 初心者から本番まで使える定番国内VPS",
-  description:
-    "ConoHa VPSは月460円から使える初心者向け国内VPS。管理画面のわかりやすさ・時間課金・充実サポートの特徴を徹底解説します。",
+const pageTitle = "ConoHa VPSおすすめガイド | 初心者から本番まで使える定番国内VPS"
+const pageDescription =
+  "ConoHa VPSは月460円から使える初心者向け国内VPS。管理画面のわかりやすさ・時間課金・充実サポートの特徴を徹底解説します。"
+const publishedAt = "2026-04-18T09:00:00+09:00"
+
+export const metadata: Metadata = buildLpMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  ogDescription:
+    "月460円から・時間課金あり・管理画面わかりやすい。ConoHa VPSの料金・スペック・特徴を詳しく解説します。",
+  path: "/lp/conoha/",
   keywords: [
     "ConoHa VPS",
     "ConoHa VPS おすすめ",
     "ConoHa VPS 料金",
     "国内VPS おすすめ",
     "初心者 VPS",
+    "ConoHa VPS 評判",
+    "ConoHa VPS 比較",
   ],
-  alternates: {
-    canonical: "/lp/conoha/",
-  },
-  openGraph: {
-    title: "ConoHa VPSおすすめガイド | 初心者から本番まで使える定番国内VPS",
-    description:
-      "月460円から・時間課金あり・管理画面わかりやすい。ConoHa VPSの料金・スペック・特徴を詳しく解説します。",
-    images: [
-      {
-        alt: "ConoHa VPSおすすめガイド",
-        height: 630,
-        url: "/opengraph-image",
-        width: 1200,
-      },
-    ],
-    type: "article",
-    url: "/lp/conoha/",
-  },
-  twitter: {
-    card: "summary_large_image",
-    description:
-      "月460円から・時間課金あり・管理画面わかりやすい。ConoHa VPSの料金・スペック・特徴を詳しく解説します。",
-    images: ["/twitter-image"],
-    title: "ConoHa VPSおすすめガイド | 初心者から本番まで使える定番国内VPS",
-  },
-}
+})
 
 const affiliateUrl =
   "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CTEYLU+50+4Z5JN6"
@@ -54,6 +44,24 @@ const plans = [
   { name: "48GB", price: 21658, cpu: 12, memory: 48, storage: 100 },
   { name: "96GB", price: 43315, cpu: 24, memory: 96, storage: 100 },
   { name: "128GB", price: 64820, cpu: 40, memory: 128, storage: 100 },
+]
+
+const faqs = [
+  {
+    question: "ConoHa VPSは初心者でも使いやすいですか？",
+    answer:
+      "使いやすいです。サーバー作成画面やOSテンプレートの選択が分かりやすく、初めてVPSを契約する人でも迷いにくい構成になっています。",
+  },
+  {
+    question: "ConoHa VPSはどんな用途に向いていますか？",
+    answer:
+      "個人開発、ポートフォリオ公開、小規模なWebアプリ運用、検証環境の構築に向いています。時間課金があるため短期の試用にも使いやすいです。",
+  },
+  {
+    question: "ConoHa VPSの注意点はありますか？",
+    answer:
+      "最安特化のVPSと比べると価格は少し高めです。また海外リージョン重視の用途には向きにくいため、国内向け運用を前提に選ぶのが相性のよい使い方です。",
+  },
 ]
 
 const CtaButton = ({ label = "ConoHa VPSを見てみる" }: { label?: string }) => (
@@ -89,29 +97,21 @@ const panelStyle = {
 }
 
 const ConohaLpPage = () => {
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "ConoHa VPSおすすめガイド | 初心者から本番まで使える定番国内VPS",
-    description:
-      "ConoHa VPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
-    inLanguage: "ja",
-    mainEntityOfPage: "/lp/conoha/",
-  }
+  const articleJsonLd = buildArticleJsonLd({
+    title: pageTitle,
+    description: "ConoHa VPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
+    path: "/lp/conoha/",
+    datePublished: publishedAt,
+    dateModified: publishedAt,
+    keywords: metadata.keywords as string[],
+  })
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "VPS比較サイト", item: "/" },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "ConoHa VPSおすすめガイド",
-        item: "/lp/conoha/",
-      },
-    ],
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "VPS比較サイト", path: "/" },
+    { name: "ConoHa VPSおすすめガイド", path: "/lp/conoha/" },
+  ])
+
+  const faqJsonLd = buildFaqJsonLd(faqs)
 
   return (
     <div
@@ -129,6 +129,10 @@ const ConohaLpPage = () => {
       />
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        type="application/ld+json"
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         type="application/ld+json"
       />
 
@@ -515,6 +519,75 @@ const ConohaLpPage = () => {
         >
           VPS比較一覧を見る →
         </Link>
+      </section>
+
+      <section style={{ display: "grid", gap: "1rem" }}>
+        <h2
+          style={{
+            fontSize: "clamp(1.4rem, 3vw, 1.9rem)",
+            paddingInline: "0.25rem",
+          }}
+        >
+          よくある質問
+        </h2>
+        <div style={{ display: "grid", gap: "0.85rem" }}>
+          {faqs.map((faq) => (
+            <article
+              key={faq.question}
+              style={{ ...panelStyle, display: "grid", gap: "0.6rem" }}
+            >
+              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
+                {faq.question}
+              </h3>
+              <p style={{ color: "#b4c9e3", lineHeight: 1.8 }}>{faq.answer}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ ...panelStyle, display: "grid", gap: "0.85rem" }}>
+        <h2 style={{ fontSize: "1.2rem" }}>他の国内VPSも見る</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: "0.75rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 240px), 1fr))",
+          }}
+        >
+          {[
+            {
+              href: "/lp/shin-vps/",
+              title: "シンVPS",
+              body: "高コスパ重視で選びたい人向け。NVMe SSDとメモリ単価の強さが魅力です。",
+            },
+            {
+              href: "/lp/sakura/",
+              title: "さくらのVPS",
+              body: "情報量と運用実績を重視したい人向け。学習用や検証用途との相性が良い定番です。",
+            },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 18,
+                color: "inherit",
+                display: "grid",
+                gap: "0.45rem",
+                padding: "1rem",
+                textDecoration: "none",
+              }}
+            >
+              <strong style={{ color: "#9edaff", fontSize: "1rem" }}>
+                {item.title}
+              </strong>
+              <p style={{ color: "#b4c9e3", lineHeight: 1.75 }}>{item.body}</p>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <img
