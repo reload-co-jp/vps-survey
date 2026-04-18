@@ -3,6 +3,11 @@ import type { ReactNode } from "react"
 import "./reset.css"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
+const footerLpLinks = [
+  { href: "/lp/conoha/", label: "ConoHa VPS" },
+  { href: "/lp/sakura/", label: "さくらのVPS" },
+  { href: "/lp/shin-vps/", label: "シンVPS" },
+]
 const shellStyle = {
   margin: "0 auto",
   maxWidth: "1180px",
@@ -142,16 +147,46 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
               style={{
                 ...shellStyle,
                 color: "#95accb",
-                display: "flex",
-                flexWrap: "wrap",
+                display: "grid",
                 fontSize: "clamp(0.8rem, 1.8vw, 0.85rem)",
-                gap: "0.75rem",
-                justifyContent: "space-between",
+                gap: "1rem",
                 padding: "1.25rem 0 2rem",
               }}
             >
-              <p>VPS比較サイト</p>
-              <p>&copy; 2026 Reload, Inc.</p>
+              <div
+                style={{
+                  alignItems: "center",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.75rem 1rem",
+                  justifyContent: "space-between",
+                }}
+              >
+                <p>VPS比較サイト</p>
+                <p>&copy; 2026 Reload, Inc.</p>
+              </div>
+              <div
+                style={{
+                  alignItems: "center",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.6rem 1rem",
+                }}
+              >
+                <span style={{ color: "#b8cae3" }}>LP</span>
+                {footerLpLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    style={{
+                      color: "#cfe2ff",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </footer>
         </div>
