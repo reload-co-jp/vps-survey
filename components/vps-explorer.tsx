@@ -31,9 +31,9 @@ const initialFilters: FilterState = {
 
 const controlStyle = {
   appearance: "none" as const,
-  background: "rgba(9, 18, 32, 0.88)",
+  background: "rgba(18, 30, 48, 0.9)",
   border: "1px solid rgba(128, 170, 255, 0.24)",
-  borderRadius: 14,
+  borderRadius: 4,
   color: "#eff4ff",
   fontSize: "0.95rem",
   minHeight: 48,
@@ -166,9 +166,9 @@ export const VpsExplorer = ({ services }: Props) => {
       <section
         style={{
           background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 28%), linear-gradient(135deg, #10203e 0%, #07101f 55%, #040812 100%)",
+            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 28%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
           border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(20px, 4vw, 32px)",
+          borderRadius: "clamp(2px, 1vw, 4px)",
           maxWidth: "100%",
           minWidth: 0,
           overflow: "hidden",
@@ -193,7 +193,7 @@ export const VpsExplorer = ({ services }: Props) => {
               color: "#9ee9ff",
               display: "inline-flex",
               fontSize: "0.75rem",
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: "0.08em",
               padding: "0.45rem 0.7rem",
               textTransform: "uppercase",
@@ -530,9 +530,9 @@ export const VpsExplorer = ({ services }: Props) => {
                             <div
                               key={plan.id}
                               style={{
-                                background: "rgba(255,255,255,0.04)",
-                                border: "1px solid rgba(255,255,255,0.08)",
-                                borderRadius: 12,
+                                background: "rgba(255,255,255,0.1)",
+                                border: "1px solid rgba(255,255,255,0.1)",
+                                borderRadius: 4,
                                 display: "grid",
                                 gap: "0.2rem",
                                 padding: "0.6rem",
@@ -599,7 +599,7 @@ export const VpsExplorer = ({ services }: Props) => {
           style={{
             color: "#9edaff",
             fontSize: "0.95rem",
-            fontWeight: 700,
+            fontWeight: 600,
             textDecoration: "none",
           }}
         >
@@ -660,7 +660,7 @@ const ArticleCard = ({
           style={{
             color: "#9edaff",
             fontSize: "0.95rem",
-            fontWeight: 700,
+            fontWeight: 600,
             textDecoration: "none",
             width: "fit-content",
           }}
@@ -683,7 +683,7 @@ const linkButtonStyle = {
   color: "#031321",
   display: "inline-flex",
   fontSize: "0.9rem",
-  fontWeight: 700,
+  fontWeight: 600,
   whiteSpace: "nowrap" as const,
   padding: "0.7rem 1rem",
   textDecoration: "none",
@@ -691,7 +691,7 @@ const linkButtonStyle = {
 
 const compareHeadStyle = {
   background: "rgba(13, 25, 43, 0.96)",
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  borderBottom: "1px solid rgba(255,255,255,0.1)",
   minWidth: "220px",
   padding: "0.9rem",
   textAlign: "left" as const,
@@ -701,16 +701,16 @@ const compareHeadStyle = {
 }
 
 const compareCellLabelStyle = {
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  borderBottom: "1px solid rgba(255,255,255,0.1)",
   color: "#c8d9f1",
-  fontWeight: 700,
+  fontWeight: 600,
   minWidth: "140px",
   padding: "0.9rem",
   whiteSpace: "nowrap" as const,
 }
 
 const compareCellStyle = {
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  borderBottom: "1px solid rgba(255,255,255,0.1)",
   maxWidth: "220px",
   minWidth: "220px",
   padding: "0.9rem",
@@ -729,19 +729,19 @@ const compareMoreButtonStyle = {
   appearance: "none" as const,
   background: "rgba(123, 225, 255, 0.12)",
   border: "1px solid rgba(123, 225, 255, 0.24)",
-  borderRadius: 12,
+  borderRadius: 4,
   color: "#9edaff",
   cursor: "pointer",
   fontSize: "0.82rem",
-  fontWeight: 700,
+  fontWeight: 600,
   padding: "0.7rem 0.75rem",
   textAlign: "center" as const,
   width: "100%",
 }
 
 const pillStyle = {
-  background: "rgba(255,255,255,0.06)",
-  border: "1px solid rgba(255,255,255,0.08)",
+  background: "rgba(255,255,255,0.1)",
+  border: "1px solid rgba(255,255,255,0.1)",
   borderRadius: 999,
   color: "#bcd1eb",
   fontSize: "0.8rem",

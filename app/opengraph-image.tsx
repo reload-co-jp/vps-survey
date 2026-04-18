@@ -19,7 +19,7 @@ const OpengraphImage = () => {
         style={{
           alignItems: "stretch",
           background:
-            "radial-gradient(circle at top left, #1a4fff 0%, #10203e 40%, #050912 100%)",
+            "radial-gradient(circle at top left, #3b67ff 0%, #18345a 42%, #0a1220 100%)",
           color: "#f7fbff",
           display: "flex",
           flexDirection: "column",
@@ -35,7 +35,7 @@ const OpengraphImage = () => {
             color: "#8fe9ff",
             display: "flex",
             fontSize: 28,
-            fontWeight: 700,
+            fontWeight: 600,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
           }}
@@ -55,7 +55,7 @@ const OpengraphImage = () => {
               color: "#dff8ff",
               display: "flex",
               fontSize: 64,
-              fontWeight: 800,
+              fontWeight: 600,
               lineHeight: 1.1,
             }}
           >
@@ -88,9 +88,9 @@ const OpengraphImage = () => {
             <div
               key={item.label}
               style={{
-                background: "rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.1)",
                 border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 24,
+                borderRadius: 4,
                 display: "flex",
                 flexDirection: "column",
                 minWidth: 210,
@@ -112,7 +112,7 @@ const OpengraphImage = () => {
                   color: "#ffffff",
                   display: "flex",
                   fontSize: 32,
-                  fontWeight: 800,
+                  fontWeight: 600,
                 }}
               >
                 {item.value}

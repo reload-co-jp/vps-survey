@@ -34,18 +34,18 @@ export const metadata: Metadata = {
 
 const sectionStyle = {
   background:
-    "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: "clamp(20px, 4vw, 24px)",
+    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: "clamp(2px, 1vw, 4px)",
   display: "grid",
   gap: "0.9rem",
   padding: "clamp(1rem, 3vw, 1.35rem)",
 }
 
 const codeStyle = {
-  background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: 18,
+  background: "rgba(255,255,255,0.1)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: 4,
   color: "#dff2ff",
   fontFamily: "monospace",
   fontSize: "0.92rem",
@@ -104,9 +104,9 @@ const DockerComposeSmallServicePage = () => {
       <section
         style={{
           background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #10203e 0%, #07101f 55%, #040812 100%)",
+            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
           border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(20px, 4vw, 32px)",
+          borderRadius: "clamp(2px, 1vw, 4px)",
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
@@ -144,7 +144,7 @@ const DockerComposeSmallServicePage = () => {
               color: "#9ee9ff",
               display: "inline-flex",
               fontSize: "0.75rem",
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: "0.08em",
               padding: "0.45rem 0.7rem",
               textTransform: "uppercase",
@@ -311,9 +311,9 @@ const itemStyle = {
 }
 
 const miniCardStyle = {
-  background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: 18,
+  background: "rgba(255,255,255,0.1)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: 4,
   display: "grid",
   gap: "0.45rem",
   padding: "1rem",
@@ -327,11 +327,11 @@ const miniCardTextStyle = {
 const buttonStyle = {
   alignItems: "center",
   background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
-  borderRadius: 18,
+  borderRadius: 4,
   color: "#031321",
   display: "inline-flex",
   fontSize: "1rem",
-  fontWeight: 800,
+  fontWeight: 600,
   justifyContent: "center",
   minHeight: 54,
   padding: "0.9rem 1.1rem",

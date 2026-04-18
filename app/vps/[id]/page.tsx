@@ -146,8 +146,8 @@ const VpsDetailPage = async ({ params }: Props) => {
         style={{
           background:
             "linear-gradient(135deg, rgba(111, 225, 255, 0.16), rgba(122, 141, 255, 0.12), rgba(255,255,255,0.03))",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: "clamp(20px, 4vw, 28px)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: "clamp(2px, 1vw, 4px)",
           display: "grid",
           gap: "1rem",
           padding: "clamp(0.9rem, 3vw, 1.5rem)",
@@ -162,7 +162,7 @@ const VpsDetailPage = async ({ params }: Props) => {
               <span
                 key={tag}
                 style={{
-                  background: "rgba(255,255,255,0.08)",
+                  background: "rgba(255,255,255,0.1)",
                   borderRadius: 999,
                   color: "#bfeeff",
                   fontSize: "0.82rem",
@@ -202,11 +202,11 @@ const VpsDetailPage = async ({ params }: Props) => {
           style={{
             alignItems: "center",
             background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
-            borderRadius: 18,
+            borderRadius: 4,
             color: "#031321",
             display: "inline-flex",
             fontSize: "1rem",
-            fontWeight: 800,
+            fontWeight: 600,
             justifyContent: "center",
             maxWidth: "320px",
             minHeight: 56,
@@ -271,9 +271,9 @@ const VpsDetailPage = async ({ params }: Props) => {
               <article
                 key={plan.id}
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: 18,
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: 4,
                   display: "grid",
                   gap: "0.9rem",
                   maxWidth: "320px",
@@ -289,7 +289,7 @@ const VpsDetailPage = async ({ params }: Props) => {
                     style={{
                       color: "#9edaff",
                       fontSize: "1.1rem",
-                      fontWeight: 700,
+                      fontWeight: 600,
                     }}
                   >
                     ¥{plan.price.toLocaleString()}
@@ -345,9 +345,9 @@ const VpsDetailPage = async ({ params }: Props) => {
 const DetailMetric = ({ label, value }: { label: string; value: string }) => (
   <div
     style={{
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(255,255,255,0.08)",
-      borderRadius: 18,
+      background: "rgba(255,255,255,0.1)",
+      border: "1px solid rgba(255,255,255,0.1)",
+      borderRadius: 4,
       display: "grid",
       gap: "0.35rem",
       padding: "0.95rem",
@@ -375,7 +375,7 @@ const SpecRow = ({ label, value }: { label: string; value: string }) => (
   <tr>
     <th
       style={{
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        borderBottom: "1px solid rgba(255,255,255,0.1)",
         color: "#a7bfdc",
         padding: "0.9rem 0",
         textAlign: "left",
@@ -386,7 +386,7 @@ const SpecRow = ({ label, value }: { label: string; value: string }) => (
     </th>
     <td
       style={{
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        borderBottom: "1px solid rgba(255,255,255,0.1)",
         padding: "0.9rem 0",
       }}
     >
@@ -414,9 +414,9 @@ const BulletList = ({ items }: { items: string[] }) => (
 
 const panelStyle = {
   background:
-    "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: "clamp(20px, 4vw, 24px)",
+    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: "clamp(2px, 1vw, 4px)",
   padding: "clamp(0.9rem, 3vw, 1.25rem)",
   maxWidth: "1180px",
 }

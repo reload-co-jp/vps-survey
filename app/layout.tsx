@@ -80,7 +80,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           <header
             style={{
               backdropFilter: "blur(18px)",
-              background: "rgba(3, 8, 18, 0.7)",
+              background: "rgba(12, 20, 34, 0.76)",
               borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
               position: "sticky",
               top: 0,
@@ -103,7 +103,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 href="/"
                 style={{
                   fontSize: "clamp(0.92rem, 2vw, 1rem)",
-                  fontWeight: 800,
+                  fontWeight: 600,
                   letterSpacing: "0.08em",
                   textDecoration: "none",
                   textTransform: "uppercase",

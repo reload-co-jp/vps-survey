@@ -63,7 +63,7 @@ const OpengraphImage = async ({ params }: Props) => {
             <div
               key={tag}
               style={{
-                background: "rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.1)",
                 border: "1px solid rgba(255,255,255,0.12)",
                 borderRadius: 999,
                 color: "#bfeeff",
@@ -89,7 +89,7 @@ const OpengraphImage = async ({ params }: Props) => {
               color: "#ffffff",
               display: "flex",
               fontSize: 66,
-              fontWeight: 800,
+              fontWeight: 600,
               lineHeight: 1.05,
             }}
           >
@@ -124,9 +124,9 @@ const OpengraphImage = async ({ params }: Props) => {
             <div
               key={item.label}
               style={{
-                background: "rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.1)",
                 border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 24,
+                borderRadius: 4,
                 display: "flex",
                 flexDirection: "column",
                 minWidth: 220,
@@ -148,7 +148,7 @@ const OpengraphImage = async ({ params }: Props) => {
                   color: "#ffffff",
                   display: "flex",
                   fontSize: 30,
-                  fontWeight: 800,
+                  fontWeight: 600,
                   lineHeight: 1.2,
                 }}
               >

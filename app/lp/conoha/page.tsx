@@ -71,11 +71,11 @@ const CtaButton = ({ label = "ConoHa VPSを見てみる" }: { label?: string }) 
     style={{
       alignItems: "center",
       background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
-      borderRadius: 18,
+      borderRadius: 4,
       color: "#031321",
       display: "inline-flex",
       fontSize: "1.05rem",
-      fontWeight: 800,
+      fontWeight: 600,
       justifyContent: "center",
       minHeight: 58,
       padding: "1rem 1.4rem",
@@ -90,9 +90,9 @@ const CtaButton = ({ label = "ConoHa VPSを見てみる" }: { label?: string }) 
 
 const panelStyle = {
   background:
-    "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: "clamp(20px, 4vw, 24px)" as const,
+    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: "clamp(2px, 1vw, 4px)" as const,
   padding: "clamp(1rem, 3vw, 1.35rem)",
 }
 
@@ -140,9 +140,9 @@ const ConohaLpPage = () => {
       <section
         style={{
           background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 40%), linear-gradient(135deg, #0d1e3a 0%, #07101f 60%, #040812 100%)",
+            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 40%), linear-gradient(135deg, #18345a 0%, #0e2037 60%, #09111d 100%)",
           border: "1px solid rgba(139, 197, 255, 0.2)",
-          borderRadius: "clamp(20px, 4vw, 32px)",
+          borderRadius: "clamp(2px, 1vw, 4px)",
           display: "grid",
           gap: "1.2rem",
           padding: "clamp(1.2rem, 4vw, 2rem)",
@@ -157,7 +157,7 @@ const ConohaLpPage = () => {
               <span
                 key={tag}
                 style={{
-                  background: "rgba(255,255,255,0.08)",
+                  background: "rgba(255,255,255,0.1)",
                   borderRadius: 999,
                   color: "#bfeeff",
                   fontSize: "0.82rem",
@@ -205,9 +205,9 @@ const ConohaLpPage = () => {
             <div
               key={label}
               style={{
-                background: "rgba(255,255,255,0.07)",
+                background: "rgba(255,255,255,0.11)",
                 border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: 18,
+                borderRadius: 4,
                 display: "grid",
                 gap: "0.3rem",
                 padding: "0.9rem",
@@ -270,7 +270,7 @@ const ConohaLpPage = () => {
                 style={{
                   color: "#5ab9e0",
                   fontSize: "0.78rem",
-                  fontWeight: 800,
+                  fontWeight: 600,
                   letterSpacing: "0.12em",
                 }}
               >
@@ -319,9 +319,9 @@ const ConohaLpPage = () => {
             <article
               key={plan.name}
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.09)",
-                borderRadius: 18,
+                background: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.11)",
+                borderRadius: 4,
                 display: "grid",
                 gap: "0.85rem",
                 minWidth: "200px",
@@ -334,7 +334,7 @@ const ConohaLpPage = () => {
                   style={{
                     color: "#9edaff",
                     fontSize: "1.15rem",
-                    fontWeight: 700,
+                    fontWeight: 600,
                   }}
                 >
                   ¥{plan.price.toLocaleString()}
@@ -475,7 +475,7 @@ const ConohaLpPage = () => {
           background:
             "linear-gradient(135deg, rgba(123, 225, 255, 0.13), rgba(139, 179, 255, 0.13))",
           border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(20px, 4vw, 32px)",
+          borderRadius: "clamp(2px, 1vw, 4px)",
           display: "grid",
           gap: "1.2rem",
           padding: "clamp(1.2rem, 4vw, 2rem)",
@@ -515,7 +515,7 @@ const ConohaLpPage = () => {
         </p>
         <Link
           href="/"
-          style={{ color: "#9edaff", fontWeight: 700, textDecoration: "none" }}
+          style={{ color: "#9edaff", fontWeight: 600, textDecoration: "none" }}
         >
           VPS比較一覧を見る →
         </Link>
@@ -571,9 +571,9 @@ const ConohaLpPage = () => {
               key={item.href}
               href={item.href}
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                borderRadius: 18,
+                background: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: 4,
                 color: "inherit",
                 display: "grid",
                 gap: "0.45rem",

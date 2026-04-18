@@ -85,9 +85,9 @@ const ArticlesPage = () => {
       <section
         style={{
           background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #10203e 0%, #07101f 55%, #040812 100%)",
+            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
           border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(20px, 4vw, 32px)",
+          borderRadius: "clamp(2px, 1vw, 4px)",
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
@@ -121,7 +121,7 @@ const ArticlesPage = () => {
               color: "#9ee9ff",
               display: "inline-flex",
               fontSize: "0.75rem",
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: "0.08em",
               padding: "0.45rem 0.7rem",
               textTransform: "uppercase",
@@ -151,9 +151,9 @@ const ArticlesPage = () => {
             key={article.id}
             style={{
               background:
-                "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "clamp(20px, 4vw, 24px)",
+                "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: "clamp(2px, 1vw, 4px)",
               display: "grid",
               gap: "0.85rem",
               padding: "clamp(1rem, 3vw, 1.25rem)",
@@ -161,8 +161,8 @@ const ArticlesPage = () => {
           >
             <span
               style={{
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 999,
                 color: "#bcd1eb",
                 fontSize: "0.78rem",
@@ -183,7 +183,7 @@ const ArticlesPage = () => {
               style={{
                 color: "#9edaff",
                 fontSize: "0.95rem",
-                fontWeight: 700,
+                fontWeight: 600,
                 textDecoration: "none",
                 width: "fit-content",
               }}
