@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { getAllServices } from "../lib/vps"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
-const lpPages = ["conoha", "sakura", "shin-vps"] as const
+const lpPages = ["conoha", "sakura", "shin-vps", "2026-04-campaign"] as const
 const lastModified = "2026-04-19T00:00:00+09:00"
 
 export const dynamic = "force-static"

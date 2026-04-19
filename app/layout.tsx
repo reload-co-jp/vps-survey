@@ -7,6 +7,7 @@ const footerLpLinks = [
   { href: "/lp/conoha/", label: "ConoHa VPS" },
   { href: "/lp/sakura/", label: "さくらのVPS" },
   { href: "/lp/shin-vps/", label: "シンVPS" },
+  { href: "/lp/2026-04-campaign/", label: "2026年4月キャンペーン" },
 ]
 const shellStyle = {
   margin: "0 auto",
