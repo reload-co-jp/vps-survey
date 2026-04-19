@@ -3,6 +3,7 @@ import { getAllServices } from "../lib/vps"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
 const lpPages = ["conoha", "sakura", "shin-vps"] as const
+const lastModified = "2026-04-19T00:00:00+09:00"
 
 export const dynamic = "force-static"
 
@@ -11,20 +12,20 @@ const sitemap = (): MetadataRoute.Sitemap => {
 
   return [
     {
-      url: siteUrl,
-      lastModified: new Date(),
+      url: `${siteUrl}/`,
+      lastModified,
       changeFrequency: "weekly",
       priority: 1,
     },
     ...services.map((service) => ({
       url: `${siteUrl}/vps/${service.id}/`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
     ...lpPages.map((page) => ({
       url: `${siteUrl}/lp/${page}/`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),
