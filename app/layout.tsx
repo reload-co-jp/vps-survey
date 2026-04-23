@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import type { ReactNode } from "react"
 import "./reset.css"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
+const googleAnalyticsId = "G-BH2STWSGXR"
+const isProduction = process.env.NODE_ENV === "production"
 const footerLpLinks = [
   { href: "/lp/conoha/", label: "ConoHa VPS" },
   { href: "/lp/sakura/", label: "さくらのVPS" },
@@ -82,6 +85,22 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ja">
       <body>
+        {isProduction ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${googleAnalyticsId}');
+              `}
+            </Script>
+          </>
+        ) : null}
         <div style={{ minHeight: "100vh", width: "100%" }}>
           <header
             style={{
