@@ -33,10 +33,10 @@ export const metadata: Metadata = {
 }
 
 const articleSectionStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   display: "grid",
   gap: "0.9rem",
   padding: "clamp(1rem, 3vw, 1.35rem)",
@@ -99,33 +99,32 @@ const VpsChoiceArticlePage = () => {
 
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← 一覧へ戻る
         </Link>
         <nav
           aria-label="パンくず"
           style={{
-            color: "#9cb6d8",
+            color: "#718096",
             display: "flex",
             flexWrap: "wrap",
             fontSize: "0.88rem",
             gap: "0.5rem",
           }}
         >
-          <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             記事一覧
           </Link>
           <span>/</span>
@@ -134,10 +133,10 @@ const VpsChoiceArticlePage = () => {
         <div style={{ display: "grid", gap: "0.8rem", maxWidth: 860 }}>
           <span
             style={{
-              background: "rgba(112, 214, 255, 0.14)",
-              border: "1px solid rgba(112, 214, 255, 0.25)",
+              background: "#ebf8ff",
+              border: "1px solid #bee3f8",
               borderRadius: 999,
-              color: "#9ee9ff",
+              color: "#2b6cb0",
               display: "inline-flex",
               fontSize: "0.75rem",
               fontWeight: 600,
@@ -149,10 +148,10 @@ const VpsChoiceArticlePage = () => {
           >
             VPS Guide
           </span>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: 1.05 }}>
+          <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2, color: "#1a202c" }}>
             VPSの選び方
           </h1>
-          <p style={{ color: "#c9d8f2", lineHeight: 1.9, maxWidth: 760 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
             VPSは価格だけで選ぶと、あとからCPU不足やメモリ不足で移行が必要になることがあります。
             最初に見るべき軸を決めておくと、開発用・本番用・検証用のどれでも失敗しにくくなります。
           </p>
@@ -162,12 +161,12 @@ const VpsChoiceArticlePage = () => {
       <section style={{ display: "grid", gap: "1rem" }}>
         <article style={articleSectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>最初に決めるべき3つのこと</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             まずは「何を動かすか」「どれくらい安定性が必要か」「予算はいくらか」を決めます。
             個人開発の検証なら最安プランから始めやすいですが、本番公開するWebサービスなら、
             突発的なアクセス増にも耐えられる余裕を持った構成が安心です。
           </p>
-          <ul style={{ color: "#d9e7f8", display: "grid", gap: "0.65rem", paddingLeft: "1.2rem" }}>
+          <ul style={{ color: "#4a5568", display: "grid", gap: "0.65rem", paddingLeft: "1.2rem" }}>
             <li style={{ lineHeight: 1.8 }}>学習や検証なら、まずは低価格帯で十分です。</li>
             <li style={{ lineHeight: 1.8 }}>本番運用なら、国内リージョンと安定性を優先すると失敗しにくいです。</li>
             <li style={{ lineHeight: 1.8 }}>将来的に拡張するなら、上位プランが豊富なサービスを選ぶと移行負担を減らせます。</li>
@@ -176,7 +175,7 @@ const VpsChoiceArticlePage = () => {
 
         <article style={articleSectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>価格だけでなくCPU・メモリも見る</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             VPS比較では月額料金が目に入りやすいですが、快適さを左右するのはCPUとメモリです。
             小さなWebサイトなら1〜2GBでも動きますが、Dockerや複数プロセスを動かす開発環境では
             2〜4GBから見たほうが余裕があります。
@@ -205,12 +204,12 @@ const VpsChoiceArticlePage = () => {
 
         <article style={articleSectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>リージョンと用途の相性を考える</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             日本向けサービスなら、まずは国内リージョンのVPSが候補です。表示速度だけでなく、
             サポートや請求の分かりやすさでも有利です。逆に海外ユーザー向けや開発者向けサービスなら、
             海外VPSの選択肢も強くなります。
           </p>
-          <ul style={{ color: "#d9e7f8", display: "grid", gap: "0.65rem", paddingLeft: "1.2rem" }}>
+          <ul style={{ color: "#4a5568", display: "grid", gap: "0.65rem", paddingLeft: "1.2rem" }}>
             <li style={{ lineHeight: 1.8 }}>国内向けメディアやコーポレートサイトなら国内VPSが無難です。</li>
             <li style={{ lineHeight: 1.8 }}>検証や短期利用なら、時間課金プランがあるサービスが便利です。</li>
             <li style={{ lineHeight: 1.8 }}>海外配信や英語圏向けなら、海外リージョンの豊富さも比較ポイントになります。</li>
@@ -219,7 +218,7 @@ const VpsChoiceArticlePage = () => {
 
         <article style={articleSectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>迷ったらこの順で選ぶ</h2>
-          <ol style={{ color: "#d9e7f8", display: "grid", gap: "0.75rem", paddingLeft: "1.2rem" }}>
+          <ol style={{ color: "#4a5568", display: "grid", gap: "0.75rem", paddingLeft: "1.2rem" }}>
             <li style={{ lineHeight: 1.8 }}>用途を決める: 開発、本番、検証のどれが中心かを決めます。</li>
             <li style={{ lineHeight: 1.8 }}>国内か海外かを決める: 日本向けなら国内を優先します。</li>
             <li style={{ lineHeight: 1.8 }}>最低メモリを決める: 迷ったら2GB以上から比較します。</li>
@@ -231,12 +230,11 @@ const VpsChoiceArticlePage = () => {
         <article
           style={{
             ...articleSectionStyle,
-            background:
-              "linear-gradient(135deg, rgba(123, 225, 255, 0.12), rgba(139, 179, 255, 0.12))",
+            background: "#eef6ff",
           }}
         >
           <h2 style={{ fontSize: "1.3rem" }}>比較一覧でチェックするときの見方</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             このサイトでは、価格帯、最安プラン、CPU、メモリ、リージョン、用途で絞り込めます。
             まず国内VPSだけに絞り、次にメモリ2GB以上、最後に価格順で並べると候補がかなり見やすくなります。
           </p>
@@ -244,9 +242,9 @@ const VpsChoiceArticlePage = () => {
             href="/"
             style={{
               alignItems: "center",
-              background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
+              background: "#3EA8FF",
               borderRadius: 4,
-              color: "#031321",
+              color: "#ffffff",
               display: "inline-flex",
               fontSize: "1rem",
               fontWeight: 600,
@@ -266,8 +264,8 @@ const VpsChoiceArticlePage = () => {
 }
 
 const miniCardStyle = {
-  background: "rgba(255,255,255,0.1)",
-  border: "1px solid rgba(255,255,255,0.1)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
   borderRadius: 4,
   display: "grid",
   gap: "0.45rem",
@@ -275,7 +273,7 @@ const miniCardStyle = {
 }
 
 const miniCardTextStyle = {
-  color: "#b8cce6",
+  color: "#718096",
   lineHeight: 1.7,
 }
 

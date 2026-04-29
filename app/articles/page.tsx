@@ -84,29 +84,28 @@ const ArticlesPage = () => {
       />
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", fontSize: "0.9rem", textDecoration: "none" }}>
           ← 一覧へ戻る
         </Link>
         <nav
           aria-label="パンくず"
           style={{
-            color: "#9cb6d8",
+            color: "#718096",
             display: "flex",
             flexWrap: "wrap",
             fontSize: "0.88rem",
             gap: "0.5rem",
           }}
         >
-          <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             ホーム
           </Link>
           <span>/</span>
@@ -115,25 +114,25 @@ const ArticlesPage = () => {
         <div style={{ display: "grid", gap: "0.8rem", maxWidth: 860 }}>
           <span
             style={{
-              background: "rgba(112, 214, 255, 0.14)",
-              border: "1px solid rgba(112, 214, 255, 0.25)",
+              background: "#ebf8ff",
+              border: "1px solid #bee3f8",
               borderRadius: 999,
-              color: "#9ee9ff",
+              color: "#2b6cb0",
               display: "inline-flex",
               fontSize: "0.75rem",
               fontWeight: 600,
               letterSpacing: "0.08em",
-              padding: "0.45rem 0.7rem",
+              padding: "0.35rem 0.7rem",
               textTransform: "uppercase",
               width: "fit-content",
             }}
           >
             Articles
           </span>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: 1.05 }}>
+          <h1 style={{ color: "#1a202c", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2 }}>
             VPSの記事一覧
           </h1>
-          <p style={{ color: "#c9d8f2", lineHeight: 1.9, maxWidth: 760 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
             VPSの選び方から、用途別の考え方、初心者向けの基礎、実際の構成例まで、まとめて読める記事一覧です。
           </p>
         </div>
@@ -150,10 +149,10 @@ const ArticlesPage = () => {
           <article
             key={article.id}
             style={{
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: "clamp(2px, 1vw, 4px)",
+              background: "#ffffff",
+              border: "1px solid #e2e8f0",
+              borderRadius: 12,
+              boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
               display: "grid",
               gap: "0.85rem",
               padding: "clamp(1rem, 3vw, 1.25rem)",
@@ -161,28 +160,29 @@ const ArticlesPage = () => {
           >
             <span
               style={{
-                background: "rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                background: "#ebf8ff",
+                border: "1px solid #bee3f8",
                 borderRadius: 999,
-                color: "#bcd1eb",
+                color: "#2b6cb0",
                 fontSize: "0.78rem",
+                fontWeight: 500,
                 padding: "0.35rem 0.65rem",
                 width: "fit-content",
               }}
             >
               {article.category}
             </span>
-            <h2 style={{ fontSize: "1.2rem", lineHeight: 1.4 }}>
+            <h2 style={{ color: "#1a202c", fontSize: "1.1rem", fontWeight: 700, lineHeight: 1.4 }}>
               {article.title}
             </h2>
-            <p style={{ color: "#afc3dd", lineHeight: 1.8 }}>
+            <p style={{ color: "#718096", lineHeight: 1.8 }}>
               {article.description}
             </p>
             <Link
               href={article.href}
               style={{
-                color: "#9edaff",
-                fontSize: "0.95rem",
+                color: "#3EA8FF",
+                fontSize: "0.9rem",
                 fontWeight: 600,
                 textDecoration: "none",
                 width: "fit-content",

@@ -33,18 +33,18 @@ export const metadata: Metadata = {
 }
 
 const sectionStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   display: "grid",
   gap: "0.9rem",
   padding: "clamp(1rem, 3vw, 1.35rem)",
 }
 
 const alertCardStyle = {
-  background: "rgba(255,255,255,0.1)",
-  border: "1px solid rgba(255,255,255,0.1)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
   borderRadius: 4,
   display: "grid",
   gap: "0.45rem",
@@ -99,33 +99,32 @@ const WhenToScaleUpPage = () => {
       />
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← 一覧へ戻る
         </Link>
         <nav
           aria-label="パンくず"
           style={{
-            color: "#9cb6d8",
+            color: "#718096",
             display: "flex",
             flexWrap: "wrap",
             fontSize: "0.88rem",
             gap: "0.5rem",
           }}
         >
-          <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             記事一覧
           </Link>
           <span>/</span>
@@ -134,10 +133,10 @@ const WhenToScaleUpPage = () => {
         <div style={{ display: "grid", gap: "0.8rem", maxWidth: 900 }}>
           <span
             style={{
-              background: "rgba(112, 214, 255, 0.14)",
-              border: "1px solid rgba(112, 214, 255, 0.25)",
+              background: "#ebf8ff",
+              border: "1px solid #bee3f8",
               borderRadius: 999,
-              color: "#9ee9ff",
+              color: "#2b6cb0",
               display: "inline-flex",
               fontSize: "0.75rem",
               fontWeight: 600,
@@ -154,7 +153,7 @@ const WhenToScaleUpPage = () => {
             <br />
             VPSをスケールアップすべきか
           </h1>
-          <p style={{ color: "#c9d8f2", lineHeight: 1.9, maxWidth: 820 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 820 }}>
             VPSは早すぎる増強も、遅すぎる増強もコストにつながります。CPU使用率が高いだけではなく、
             メモリ不足、レスポンス悪化、ディスク逼迫、運用のしんどさまで含めて判断すると失敗しにくくなります。
           </p>
@@ -164,7 +163,7 @@ const WhenToScaleUpPage = () => {
       <section style={{ display: "grid", gap: "1rem" }}>
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>まず見るべきはCPUよりメモリ</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             小規模Webサービスでは、CPUが少し高いだけでは即スケールアップとは限りません。
             それよりも、メモリ不足でスワップが発生している状態のほうが深刻です。コンテナ再起動、
             DBの不安定化、レスポンス低下につながりやすいからです。
@@ -174,14 +173,14 @@ const WhenToScaleUpPage = () => {
             <li style={itemStyle}>スワップが継続的に使われる。</li>
             <li style={itemStyle}>DBやAPIがメモリ不足で落ちることがある。</li>
           </ul>
-          <p style={{ color: "#b8cce6", lineHeight: 1.8 }}>
+          <p style={{ color: "#718096", lineHeight: 1.8 }}>
             この状態なら、まずは1段階上のメモリ帯を検討したほうが効果が出やすいです。
           </p>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>CPU使用率が高いときの見方</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             CPU使用率が一瞬高いだけなら、ただのピークかもしれません。問題なのは、
             平常時でも高止まりしているケースです。特にAPIサーバーやワーカーが常に忙しいなら、
             スケールアップの優先度は高くなります。
@@ -211,7 +210,7 @@ const WhenToScaleUpPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>レスポンスが落ちてきたら要注意</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             ユーザー視点でいちばん分かりやすいサインは、ページ表示やAPIレスポンスの遅さです。
             サーバー監視だけでなく、アプリ側の体感速度も重要な判断材料になります。
           </p>
@@ -224,7 +223,7 @@ const WhenToScaleUpPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>ディスク容量とIOも見落とさない</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             DB、ログ、Dockerイメージ、バックアップを同居させていると、ストレージは意外と早く埋まります。
             空き容量が少なくなると、更新やバックアップの失敗が起きやすくなります。
           </p>
@@ -233,14 +232,14 @@ const WhenToScaleUpPage = () => {
             <li style={itemStyle}>ログローテーションしても圧迫感がある。</li>
             <li style={itemStyle}>DBサイズの成長が明らかに見えている。</li>
           </ul>
-          <p style={{ color: "#b8cce6", lineHeight: 1.8 }}>
+          <p style={{ color: "#718096", lineHeight: 1.8 }}>
             この場合はCPUやメモリだけでなく、ストレージ容量が大きい上位プランを見るべきです。
           </p>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>運用がしんどくなったら、それもサイン</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             毎回リリース前に不要コンテナを消したり、メモリ節約のためにサービスを止めたりしているなら、
             すでに小さすぎる可能性があります。技術的には動いていても、運用コストが高い状態です。
           </p>
@@ -265,12 +264,11 @@ const WhenToScaleUpPage = () => {
         <article
           style={{
             ...sectionStyle,
-            background:
-              "linear-gradient(135deg, rgba(123, 225, 255, 0.12), rgba(139, 179, 255, 0.12))",
+            background: "#eef6ff",
           }}
         >
           <h2 style={{ fontSize: "1.3rem" }}>実際に比較するときの見方</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             いま使っている構成より、1段階上のメモリ帯とストレージ帯を持つプランを見比べると判断しやすいです。
             特に2GBから4GB、4GBから8GBは変化が大きく、体感も変わりやすい帯です。
           </p>
@@ -284,14 +282,14 @@ const WhenToScaleUpPage = () => {
 }
 
 const listStyle = {
-  color: "#d9e7f8",
+  color: "#4a5568",
   display: "grid",
   gap: "0.65rem",
   paddingLeft: "1.2rem",
 }
 
 const orderedListStyle = {
-  color: "#d9e7f8",
+  color: "#4a5568",
   display: "grid",
   gap: "0.75rem",
   paddingLeft: "1.2rem",
@@ -302,15 +300,15 @@ const itemStyle = {
 }
 
 const cardTextStyle = {
-  color: "#b8cce6",
+  color: "#718096",
   lineHeight: 1.7,
 }
 
 const buttonStyle = {
   alignItems: "center",
-  background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
+  background: "#3EA8FF",
   borderRadius: 4,
-  color: "#031321",
+  color: "#ffffff",
   display: "inline-flex",
   fontSize: "1rem",
   fontWeight: 600,

@@ -4,16 +4,11 @@
 }
 
 :root {
-  background: radial-gradient(
-    circle at top,
-    #23416c 0%,
-    #13233a 42%,
-    #0a1321 100%
-  );
-  color: #f0f5ff;
-  color-scheme: dark;
+  background: #f0f4f8;
+  color: #1a202c;
+  color-scheme: light;
   font-family:
-    "Avenir Next", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+    "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
   line-height: 1.5;
 }
 

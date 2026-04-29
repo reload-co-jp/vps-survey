@@ -110,16 +110,16 @@ const faqs = [
 ]
 
 const panelStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)" as const,
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12 as const,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   padding: "clamp(1rem, 3vw, 1.35rem)",
 }
 
 const linkCardStyle = {
   ...panelStyle,
-  color: "inherit",
+  color: "#1a202c",
   display: "grid",
   gap: "0.75rem",
   textDecoration: "none",
@@ -168,16 +168,15 @@ const CampaignApril2026Page = () => {
 
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 40%), linear-gradient(135deg, #18345a 0%, #0e2037 60%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.2)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1.2rem",
           padding: "clamp(1.2rem, 4vw, 2rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← VPS一覧へ戻る
         </Link>
         <div style={{ display: "grid", gap: "1rem", maxWidth: 900 }}>
@@ -186,9 +185,9 @@ const CampaignApril2026Page = () => {
               <span
                 key={tag}
                 style={{
-                  background: "rgba(255,255,255,0.1)",
+                  background: "#ffffff",
                   borderRadius: 999,
-                  color: "#bfeeff",
+                  color: "#2b6cb0",
                   fontSize: "0.82rem",
                   padding: "0.35rem 0.7rem",
                 }}
@@ -206,7 +205,7 @@ const CampaignApril2026Page = () => {
           </h1>
           <p
             style={{
-              color: "#c7d8ef",
+              color: "#4a5568",
               fontSize: "clamp(1rem, 2.5vw, 1.12rem)",
               lineHeight: 1.85,
               maxWidth: 760,
@@ -234,15 +233,15 @@ const CampaignApril2026Page = () => {
             <div
               key={label}
               style={{
-                background: "rgba(255,255,255,0.11)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
                 borderRadius: 4,
                 display: "grid",
                 gap: "0.3rem",
                 padding: "0.9rem",
               }}
             >
-              <span style={{ color: "#9cb5d6", fontSize: "0.8rem" }}>
+              <span style={{ color: "#718096", fontSize: "0.8rem" }}>
                 {label}
               </span>
               <strong style={{ fontSize: "1.15rem" }}>{value}</strong>
@@ -256,7 +255,7 @@ const CampaignApril2026Page = () => {
           <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
             実施中を確認できた国内VPSキャンペーン
           </h2>
-          <p style={{ color: "#a7bfd8", lineHeight: 1.8 }}>
+          <p style={{ color: "#718096", lineHeight: 1.8 }}>
             期間限定値引きと、現在申し込み時に使える常設特典をまとめています。
           </p>
         </div>
@@ -288,16 +287,16 @@ const CampaignApril2026Page = () => {
                   <strong style={{ fontSize: "1.05rem", lineHeight: 1.45 }}>
                     {campaign.name}
                   </strong>
-                  <span style={{ color: "#8fb9da", fontSize: "0.82rem" }}>
+                  <span style={{ color: "#718096", fontSize: "0.82rem" }}>
                     {campaign.period}
                   </span>
                 </div>
                 <span
                   style={{
-                    background: "rgba(123, 225, 255, 0.12)",
-                    border: "1px solid rgba(123, 225, 255, 0.2)",
+                    background: "#ebf8ff",
+                    border: "1px solid #bee3f8",
                     borderRadius: 999,
-                    color: "#9edaff",
+                    color: "#3EA8FF",
                     fontSize: "0.78rem",
                     padding: "0.35rem 0.65rem",
                     whiteSpace: "nowrap",
@@ -306,11 +305,11 @@ const CampaignApril2026Page = () => {
                   {campaign.label}
                 </span>
               </div>
-              <p style={{ color: "#c8d8ed", lineHeight: 1.8 }}>{campaign.body}</p>
-              <p style={{ color: "#8faecc", fontSize: "0.82rem", lineHeight: 1.7 }}>
+              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{campaign.body}</p>
+              <p style={{ color: "#718096", fontSize: "0.82rem", lineHeight: 1.7 }}>
                 {campaign.note}
               </p>
-              <span style={{ color: "#9edaff" }}>公式ページを見る →</span>
+              <span style={{ color: "#3EA8FF" }}>公式ページを見る →</span>
             </a>
           ))}
         </div>
@@ -348,7 +347,7 @@ const CampaignApril2026Page = () => {
           ].map((item) => (
             <article key={item.title} style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}>
               <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>{item.title}</h3>
-              <p style={{ color: "#b9cde4", lineHeight: 1.8 }}>{item.body}</p>
+              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{item.body}</p>
             </article>
           ))}
         </div>
@@ -374,7 +373,7 @@ const CampaignApril2026Page = () => {
           {noCampaignItems.map((item) => (
             <article key={item.name} style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}>
               <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>{item.name}</h3>
-              <p style={{ color: "#b9cde4", lineHeight: 1.8 }}>{item.body}</p>
+              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{item.body}</p>
             </article>
           ))}
         </div>
@@ -398,19 +397,19 @@ const CampaignApril2026Page = () => {
               <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
                 {faq.question}
               </h3>
-              <p style={{ color: "#b4c9e3", lineHeight: 1.8 }}>{faq.answer}</p>
+              <p style={{ color: "#718096", lineHeight: 1.8 }}>{faq.answer}</p>
             </article>
           ))}
         </div>
       </section>
 
       <section style={{ ...panelStyle, display: "grid", gap: "0.75rem" }}>
-        <p style={{ color: "#a7bfd8", lineHeight: 1.8 }}>
+        <p style={{ color: "#718096", lineHeight: 1.8 }}>
           他のVPSとの料金やスペックも含めて見比べたい場合は、VPS一覧ページで横断比較できます。
         </p>
         <Link
           href="/"
-          style={{ color: "#9edaff", fontWeight: 600, textDecoration: "none" }}
+          style={{ color: "#3EA8FF", fontWeight: 600, textDecoration: "none" }}
         >
           VPS比較一覧を見る →
         </Link>

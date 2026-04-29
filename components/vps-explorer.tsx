@@ -31,13 +31,13 @@ const initialFilters: FilterState = {
 
 const controlStyle = {
   appearance: "none" as const,
-  background: "rgba(18, 30, 48, 0.9)",
-  border: "1px solid rgba(128, 170, 255, 0.24)",
-  borderRadius: 4,
-  color: "#eff4ff",
+  background: "#ffffff",
+  border: "1px solid #cbd5e0",
+  borderRadius: 6,
+  color: "#1a202c",
   fontSize: "0.95rem",
-  minHeight: 48,
-  padding: "0.8rem 0.95rem",
+  minHeight: 44,
+  padding: "0.65rem 0.9rem",
   width: "100%",
 }
 
@@ -95,24 +95,18 @@ export const VpsExplorer = ({ services }: Props) => {
     >
       <style>{`
         [data-vps-explorer] [data-surface='default'] {
-          background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.06),
-            rgba(255, 255, 255, 0.02)
-          );
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 24px;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
           padding: 1.25rem;
         }
 
         [data-vps-explorer] [data-surface='responsive'] {
-          background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.06),
-            rgba(255, 255, 255, 0.02)
-          );
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: clamp(20px, 4vw, 24px);
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: clamp(8px, 2vw, 12px);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
           padding: clamp(0.9rem, 3vw, 1.25rem);
         }
 
@@ -165,14 +159,13 @@ export const VpsExplorer = ({ services }: Props) => {
       `}</style>
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 28%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           maxWidth: "100%",
           minWidth: 0,
           overflow: "hidden",
-          padding: "clamp(0.9rem, 3vw, 1.5rem)",
+          padding: "clamp(1.25rem, 4vw, 2rem)",
           position: "relative",
           width: "100%",
         }}
@@ -187,15 +180,15 @@ export const VpsExplorer = ({ services }: Props) => {
         >
           <span
             style={{
-              background: "rgba(112, 214, 255, 0.14)",
-              border: "1px solid rgba(112, 214, 255, 0.25)",
+              background: "#ebf8ff",
+              border: "1px solid #bee3f8",
               borderRadius: 999,
-              color: "#9ee9ff",
+              color: "#2b6cb0",
               display: "inline-flex",
               fontSize: "0.75rem",
               fontWeight: 600,
               letterSpacing: "0.08em",
-              padding: "0.45rem 0.7rem",
+              padding: "0.35rem 0.7rem",
               textTransform: "uppercase",
               width: "fit-content",
             }}
@@ -205,14 +198,16 @@ export const VpsExplorer = ({ services }: Props) => {
           <div style={{ display: "grid", gap: "0.75rem", maxWidth: 760 }}>
             <h1
               style={{
-                fontSize: "clamp(2rem, 4vw, 4rem)",
-                letterSpacing: "-0.04em",
-                lineHeight: 1,
+                color: "#1a202c",
+                fontSize: "clamp(1.75rem, 4vw, 3rem)",
+                fontWeight: 700,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.2,
               }}
             >
               今必要なVPSを性能・価格で比較して最安を探せる
             </h1>
-            <p style={{ color: "#c9d8f2", fontSize: "1rem", lineHeight: 1.8 }}>
+            <p style={{ color: "#4a5568", fontSize: "1rem", lineHeight: 1.8 }}>
               国内外の主要 VPS を、初心者にも分かりやすい軸で一覧化。
               検索、フィルタ、ソート、比較してお好みのVPSがミツカします。
             </p>
@@ -338,7 +333,7 @@ export const VpsExplorer = ({ services }: Props) => {
               </select>
             </ControlField>
           </div>
-          <p style={{ color: "#a4bad8", fontSize: "0.92rem" }}>
+          <p style={{ color: "#718096", fontSize: "0.92rem" }}>
             {filteredServices.length}
             件が条件に一致しています。フィルタ結果はそのまま下部の比較表に横並び表示されます。
           </p>
@@ -357,12 +352,12 @@ export const VpsExplorer = ({ services }: Props) => {
             >
               <div style={{ display: "grid", gap: "0.75rem" }}>
                 <div style={{ display: "grid", gap: "0.35rem" }}>
-                  <strong style={{ fontSize: "1.05rem" }}>
+                  <strong style={{ color: "#1a202c", fontSize: "1.05rem" }}>
                     {service.name}
                   </strong>
                   <p
                     style={{
-                      color: "#a5bbd8",
+                      color: "#718096",
                       fontSize: "0.92rem",
                       lineHeight: 1.7,
                     }}
@@ -385,7 +380,7 @@ export const VpsExplorer = ({ services }: Props) => {
                   <span style={pillStyle}>{regionLabels[service.region]}</span>
                 </div>
                 <div style={{ display: "grid", gap: "0.35rem" }}>
-                  <strong style={{ fontSize: "1.15rem" }}>
+                  <strong style={{ color: "#1a202c", fontSize: "1.15rem" }}>
                     {getPriceRangeLabel(service)}
                   </strong>
                   <span style={subCellStyle}>
@@ -420,10 +415,10 @@ export const VpsExplorer = ({ services }: Props) => {
           }}
         >
           <div>
-            <h2 style={{ fontSize: "1.35rem", marginBottom: "0.35rem" }}>
+            <h2 style={{ color: "#1a202c", fontSize: "1.35rem", marginBottom: "0.35rem" }}>
               比較ビュー
             </h2>
-            <p style={{ color: "#a4bad8" }}>
+            <p style={{ color: "#718096" }}>
               フィルタ条件に一致した VPS を最初から横並びで比較できます。
             </p>
           </div>
@@ -435,13 +430,13 @@ export const VpsExplorer = ({ services }: Props) => {
               gap: "0.75rem",
             }}
           >
-            <span style={{ color: "#9ed9ff", fontSize: "0.9rem" }}>
+            <span style={{ color: "#3EA8FF", fontSize: "0.9rem" }}>
               表示中: {comparisonServices.length}件
             </span>
             <label
               style={{
                 alignItems: "center",
-                color: "#cfe1fb",
+                color: "#4a5568",
                 display: "flex",
                 fontSize: "0.9rem",
                 gap: "0.5rem",
@@ -472,7 +467,7 @@ export const VpsExplorer = ({ services }: Props) => {
           </div>
         </div>
         {filteredServices.length === 0 ? (
-          <p style={{ color: "#a4bad8" }}>
+          <p style={{ color: "#718096" }}>
             条件に一致するサービスがありません。フィルタ条件を調整してください。
           </p>
         ) : (
@@ -530,9 +525,9 @@ export const VpsExplorer = ({ services }: Props) => {
                             <div
                               key={plan.id}
                               style={{
-                                background: "rgba(255,255,255,0.1)",
-                                border: "1px solid rgba(255,255,255,0.1)",
-                                borderRadius: 4,
+                                background: "#f7fafc",
+                                border: "1px solid #e2e8f0",
+                                borderRadius: 6,
                                 display: "grid",
                                 gap: "0.2rem",
                                 padding: "0.6rem",
@@ -597,8 +592,8 @@ export const VpsExplorer = ({ services }: Props) => {
         <Link
           href="/articles/"
           style={{
-            color: "#9edaff",
-            fontSize: "0.95rem",
+            color: "#3EA8FF",
+            fontSize: "0.9rem",
             fontWeight: 600,
             textDecoration: "none",
           }}
@@ -612,14 +607,17 @@ export const VpsExplorer = ({ services }: Props) => {
 
 const MetricCard = ({ label, value }: { label: string; value: string }) => (
   <div
-    data-surface="default"
     style={{
+      background: "#ffffff",
+      border: "1px solid #bee3f8",
+      borderRadius: 8,
       display: "grid",
       gap: "0.35rem",
+      padding: "0.85rem 1rem",
     }}
   >
-    <span style={{ color: "#a6b9d2", fontSize: "0.82rem" }}>{label}</span>
-    <strong style={{ fontSize: "1.25rem", letterSpacing: "-0.03em" }}>
+    <span style={{ color: "#718096", fontSize: "0.82rem" }}>{label}</span>
+    <strong style={{ color: "#1a202c", fontSize: "1.2rem", letterSpacing: "-0.02em" }}>
       {value}
     </strong>
   </div>
@@ -633,7 +631,7 @@ const ControlField = ({
   label: string
 }) => (
   <label style={{ display: "grid", gap: "0.45rem" }}>
-    <span style={{ color: "#cfe1fb", fontSize: "0.86rem" }}>{label}</span>
+    <span style={{ color: "#4a5568", fontSize: "0.86rem", fontWeight: 500 }}>{label}</span>
     {children}
   </label>
 )
@@ -652,14 +650,14 @@ const ArticleCard = ({
     style={{ maxWidth: "100%", minWidth: 0, width: "100%" }}
   >
     <div style={{ display: "grid", gap: "0.6rem" }}>
-      <h2 style={{ fontSize: "1.2rem" }}>{title}</h2>
-      <p style={{ color: "#afc3dd", lineHeight: 1.8 }}>{body}</p>
+      <h2 style={{ color: "#1a202c", fontSize: "1.1rem", fontWeight: 700 }}>{title}</h2>
+      <p style={{ color: "#718096", lineHeight: 1.8 }}>{body}</p>
       {href ? (
         <Link
           href={href}
           style={{
-            color: "#9edaff",
-            fontSize: "0.95rem",
+            color: "#3EA8FF",
+            fontSize: "0.9rem",
             fontWeight: 600,
             textDecoration: "none",
             width: "fit-content",
@@ -673,25 +671,25 @@ const ArticleCard = ({
 )
 
 const subCellStyle = {
-  color: "#9bc2ea",
+  color: "#718096",
   fontSize: "0.8rem",
 }
 
 const linkButtonStyle = {
-  background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
-  borderRadius: 999,
-  color: "#031321",
+  background: "#3EA8FF",
+  borderRadius: 6,
+  color: "#ffffff",
   display: "inline-flex",
   fontSize: "0.9rem",
   fontWeight: 600,
   whiteSpace: "nowrap" as const,
-  padding: "0.7rem 1rem",
+  padding: "0.6rem 1rem",
   textDecoration: "none",
 }
 
 const compareHeadStyle = {
-  background: "rgba(13, 25, 43, 0.96)",
-  borderBottom: "1px solid rgba(255,255,255,0.1)",
+  background: "#f7fafc",
+  borderBottom: "1px solid #e2e8f0",
   minWidth: "220px",
   padding: "0.9rem",
   textAlign: "left" as const,
@@ -701,8 +699,8 @@ const compareHeadStyle = {
 }
 
 const compareCellLabelStyle = {
-  borderBottom: "1px solid rgba(255,255,255,0.1)",
-  color: "#c8d9f1",
+  borderBottom: "1px solid #e2e8f0",
+  color: "#4a5568",
   fontWeight: 600,
   minWidth: "140px",
   padding: "0.9rem",
@@ -710,7 +708,8 @@ const compareCellLabelStyle = {
 }
 
 const compareCellStyle = {
-  borderBottom: "1px solid rgba(255,255,255,0.1)",
+  borderBottom: "1px solid #e2e8f0",
+  color: "#1a202c",
   maxWidth: "220px",
   minWidth: "220px",
   padding: "0.9rem",
@@ -720,17 +719,17 @@ const compareCellStyle = {
 }
 
 const compareLinkStyle = {
-  color: "#9edaff",
+  color: "#3EA8FF",
   fontSize: "0.82rem",
   textDecoration: "none",
 }
 
 const compareMoreButtonStyle = {
   appearance: "none" as const,
-  background: "rgba(123, 225, 255, 0.12)",
-  border: "1px solid rgba(123, 225, 255, 0.24)",
-  borderRadius: 4,
-  color: "#9edaff",
+  background: "#ebf8ff",
+  border: "1px solid #bee3f8",
+  borderRadius: 6,
+  color: "#3EA8FF",
   cursor: "pointer",
   fontSize: "0.82rem",
   fontWeight: 600,
@@ -740,10 +739,10 @@ const compareMoreButtonStyle = {
 }
 
 const pillStyle = {
-  background: "rgba(255,255,255,0.1)",
-  border: "1px solid rgba(255,255,255,0.1)",
+  background: "#ebf8ff",
+  border: "1px solid #bee3f8",
   borderRadius: 999,
-  color: "#bcd1eb",
+  color: "#2b6cb0",
   fontSize: "0.8rem",
   padding: "0.3rem 0.6rem",
 }

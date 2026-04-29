@@ -33,10 +33,10 @@ export const metadata: Metadata = {
 }
 
 const sectionStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   display: "grid",
   gap: "0.9rem",
   padding: "clamp(1rem, 3vw, 1.35rem)",
@@ -91,33 +91,32 @@ const WhatIsVpsPage = () => {
 
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← 一覧へ戻る
         </Link>
         <nav
           aria-label="パンくず"
           style={{
-            color: "#9cb6d8",
+            color: "#718096",
             display: "flex",
             flexWrap: "wrap",
             fontSize: "0.88rem",
             gap: "0.5rem",
           }}
         >
-          <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             記事一覧
           </Link>
           <span>/</span>
@@ -126,10 +125,10 @@ const WhatIsVpsPage = () => {
         <div style={{ display: "grid", gap: "0.8rem", maxWidth: 860 }}>
           <span
             style={{
-              background: "rgba(112, 214, 255, 0.14)",
-              border: "1px solid rgba(112, 214, 255, 0.25)",
+              background: "#ebf8ff",
+              border: "1px solid #bee3f8",
               borderRadius: 999,
-              color: "#9ee9ff",
+              color: "#2b6cb0",
               display: "inline-flex",
               fontSize: "0.75rem",
               fontWeight: 600,
@@ -141,10 +140,10 @@ const WhatIsVpsPage = () => {
           >
             Basic Guide
           </span>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: 1.05 }}>
+          <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2, color: "#1a202c" }}>
             VPSとは何か
           </h1>
-          <p style={{ color: "#c9d8f2", lineHeight: 1.9, maxWidth: 760 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
             VPS は Virtual Private Server の略で、1台の物理サーバーを仮想的に分けて使う仕組みです。
             共有サーバーより自由度が高く、専用サーバーより低コストで始めやすいのが特徴です。
           </p>
@@ -154,7 +153,7 @@ const WhatIsVpsPage = () => {
       <section style={{ display: "grid", gap: "1rem" }}>
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>VPSの基本</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             VPS は、サーバーのCPU、メモリ、ストレージの一部を専有に近い形で使えるサービスです。
             Linux を自由に設定でき、アプリやDB、Webサーバーを自分で構成できるため、
             個人開発から本番運用まで幅広く使われています。
@@ -163,7 +162,7 @@ const WhatIsVpsPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>共有サーバーとの違い</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             共有サーバーは手軽ですが、使えるソフトや設定に制約があります。
             VPS はその制約が少なく、自由に環境を作れるのが大きな違いです。
           </p>
@@ -176,7 +175,7 @@ const WhatIsVpsPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>クラウドとの違い</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             AWS や Google Cloud のようなクラウドは機能が非常に豊富ですが、
             最初は構成や料金が複雑に感じることがあります。VPS はもっとシンプルで、
             1台のサーバーを借りる感覚で始めやすいのが魅力です。
@@ -204,7 +203,7 @@ const WhatIsVpsPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>どんな用途に向いているか</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             VPS は、個人開発、社内ツール、MVP、学習用サーバー、小規模な本番サービスに向いています。
             WordPress のような定番CMSだけでなく、API サーバーや Docker Compose を使う構成とも相性がよいです。
           </p>
@@ -212,7 +211,7 @@ const WhatIsVpsPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>最初はどのくらいのプランを選ぶか</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             最初の1台なら、国内VPSの1〜2GB帯から始める人が多いです。Docker やDB を使うなら2GB以上、
             本番公開するなら4GB前後も候補になります。大事なのは、今の用途だけでなく上位プランへの伸び方も見ることです。
           </p>
@@ -221,12 +220,11 @@ const WhatIsVpsPage = () => {
         <article
           style={{
             ...sectionStyle,
-            background:
-              "linear-gradient(135deg, rgba(123, 225, 255, 0.12), rgba(139, 179, 255, 0.12))",
+            background: "#eef6ff",
           }}
         >
           <h2 style={{ fontSize: "1.3rem" }}>実際に比較するときの見方</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             まずは国内か海外か、次に価格帯、メモリ、用途で絞ると候補を整理しやすいです。
             そのあと詳細ページで全プランを見れば、将来の拡張も含めて判断できます。
           </p>
@@ -240,7 +238,7 @@ const WhatIsVpsPage = () => {
 }
 
 const listStyle = {
-  color: "#d9e7f8",
+  color: "#4a5568",
   display: "grid",
   gap: "0.65rem",
   paddingLeft: "1.2rem",
@@ -252,9 +250,9 @@ const itemStyle = {
 
 const buttonStyle = {
   alignItems: "center",
-  background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
+  background: "#3EA8FF",
   borderRadius: 4,
-  color: "#031321",
+  color: "#ffffff",
   display: "inline-flex",
   fontSize: "1rem",
   fontWeight: 600,

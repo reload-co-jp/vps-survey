@@ -144,16 +144,15 @@ const VpsDetailPage = async ({ params }: Props) => {
       />
       <section
         style={{
-          background:
-            "linear-gradient(135deg, rgba(111, 225, 255, 0.16), rgba(122, 141, 255, 0.12), rgba(255,255,255,0.03))",
-          border: "1px solid rgba(255,255,255,0.1)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1rem",
           padding: "clamp(0.9rem, 3vw, 1.5rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", fontSize: "0.9rem", textDecoration: "none" }}>
           ← 一覧へ戻る
         </Link>
         <div style={{ display: "grid", gap: "0.7rem" }}>
@@ -162,9 +161,10 @@ const VpsDetailPage = async ({ params }: Props) => {
               <span
                 key={tag}
                 style={{
-                  background: "rgba(255,255,255,0.1)",
+                  background: "#ebf8ff",
+                  border: "1px solid #bee3f8",
                   borderRadius: 999,
-                  color: "#bfeeff",
+                  color: "#2b6cb0",
                   fontSize: "0.82rem",
                   padding: "0.35rem 0.7rem",
                 }}
@@ -174,11 +174,11 @@ const VpsDetailPage = async ({ params }: Props) => {
             ))}
           </div>
           <h1
-            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)", lineHeight: 1.05 }}
+            style={{ color: "#1a202c", fontSize: "clamp(1.75rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.2 }}
           >
             {service.name}
           </h1>
-          <p style={{ color: "#c7d8ef", lineHeight: 1.8, maxWidth: 760 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.8, maxWidth: 760 }}>
             {service.summary}
           </p>
         </div>
@@ -201,16 +201,16 @@ const VpsDetailPage = async ({ params }: Props) => {
           rel="noopener noreferrer"
           style={{
             alignItems: "center",
-            background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
-            borderRadius: 4,
-            color: "#031321",
+            background: "#3EA8FF",
+            borderRadius: 8,
+            color: "#ffffff",
             display: "inline-flex",
             fontSize: "1rem",
             fontWeight: 600,
             justifyContent: "center",
             maxWidth: "320px",
-            minHeight: 56,
-            padding: "0.95rem 1.2rem",
+            minHeight: 52,
+            padding: "0.9rem 1.2rem",
             textDecoration: "none",
             width: "100%",
           }}
@@ -271,9 +271,10 @@ const VpsDetailPage = async ({ params }: Props) => {
               <article
                 key={plan.id}
                 style={{
-                  background: "rgba(255,255,255,0.1)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  borderRadius: 4,
+                  background: "#ffffff",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: 8,
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
                   display: "grid",
                   gap: "0.9rem",
                   maxWidth: "320px",
@@ -284,10 +285,10 @@ const VpsDetailPage = async ({ params }: Props) => {
                 }}
               >
                 <div style={{ display: "grid", gap: "0.3rem" }}>
-                  <strong style={{ fontSize: "1.05rem" }}>{plan.name}</strong>
+                  <strong style={{ color: "#1a202c", fontSize: "1.05rem" }}>{plan.name}</strong>
                   <span
                     style={{
-                      color: "#9edaff",
+                      color: "#3EA8FF",
                       fontSize: "1.1rem",
                       fontWeight: 600,
                     }}
@@ -345,16 +346,16 @@ const VpsDetailPage = async ({ params }: Props) => {
 const DetailMetric = ({ label, value }: { label: string; value: string }) => (
   <div
     style={{
-      background: "rgba(255,255,255,0.1)",
-      border: "1px solid rgba(255,255,255,0.1)",
-      borderRadius: 4,
+      background: "#ffffff",
+      border: "1px solid #bee3f8",
+      borderRadius: 8,
       display: "grid",
       gap: "0.35rem",
       padding: "0.95rem",
     }}
   >
-    <span style={{ color: "#9cb5d6", fontSize: "0.82rem" }}>{label}</span>
-    <strong style={{ fontSize: "1.2rem" }}>{value}</strong>
+    <span style={{ color: "#718096", fontSize: "0.82rem" }}>{label}</span>
+    <strong style={{ color: "#1a202c", fontSize: "1.2rem" }}>{value}</strong>
   </div>
 )
 
@@ -375,8 +376,8 @@ const SpecRow = ({ label, value }: { label: string; value: string }) => (
   <tr>
     <th
       style={{
-        borderBottom: "1px solid rgba(255,255,255,0.1)",
-        color: "#a7bfdc",
+        borderBottom: "1px solid #e2e8f0",
+        color: "#718096",
         padding: "0.9rem 0",
         textAlign: "left",
         width: "180px",
@@ -386,7 +387,8 @@ const SpecRow = ({ label, value }: { label: string; value: string }) => (
     </th>
     <td
       style={{
-        borderBottom: "1px solid rgba(255,255,255,0.1)",
+        borderBottom: "1px solid #e2e8f0",
+        color: "#1a202c",
         padding: "0.9rem 0",
       }}
     >
@@ -398,7 +400,7 @@ const SpecRow = ({ label, value }: { label: string; value: string }) => (
 const BulletList = ({ items }: { items: string[] }) => (
   <ul
     style={{
-      color: "#d9e7f8",
+      color: "#4a5568",
       display: "grid",
       gap: "0.7rem",
       paddingLeft: "1.2rem",
@@ -413,32 +415,35 @@ const BulletList = ({ items }: { items: string[] }) => (
 )
 
 const panelStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   padding: "clamp(0.9rem, 3vw, 1.25rem)",
   maxWidth: "1180px",
 }
 
 const panelTitleStyle = {
-  fontSize: "1.25rem",
+  color: "#1a202c",
+  fontSize: "1.15rem",
+  fontWeight: 700,
   marginBottom: "0.9rem",
 }
 
 const subTitleStyle = {
-  color: "#9bdaf7",
-  fontSize: "1rem",
+  color: "#3EA8FF",
+  fontSize: "0.95rem",
+  fontWeight: 600,
   marginBottom: "0.7rem",
 }
 
 const planCompareCellLabelStyle = {
-  color: "#9db7d5",
+  color: "#718096",
   fontSize: "0.82rem",
 }
 
 const planCompareCellStyle = {
-  color: "#eef5ff",
+  color: "#1a202c",
   fontSize: "0.95rem",
 }
 

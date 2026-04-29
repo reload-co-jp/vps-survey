@@ -33,18 +33,18 @@ export const metadata: Metadata = {
 }
 
 const sectionStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   display: "grid",
   gap: "0.9rem",
   padding: "clamp(1rem, 3vw, 1.35rem)",
 }
 
 const codeStyle = {
-  background: "rgba(255,255,255,0.1)",
-  border: "1px solid rgba(255,255,255,0.1)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
   borderRadius: 4,
   color: "#dff2ff",
   fontFamily: "monospace",
@@ -103,33 +103,32 @@ const DockerComposeSmallServicePage = () => {
       />
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← 一覧へ戻る
         </Link>
         <nav
           aria-label="パンくず"
           style={{
-            color: "#9cb6d8",
+            color: "#718096",
             display: "flex",
             flexWrap: "wrap",
             fontSize: "0.88rem",
             gap: "0.5rem",
           }}
         >
-          <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             記事一覧
           </Link>
           <span>/</span>
@@ -138,10 +137,10 @@ const DockerComposeSmallServicePage = () => {
         <div style={{ display: "grid", gap: "0.8rem", maxWidth: 900 }}>
           <span
             style={{
-              background: "rgba(112, 214, 255, 0.14)",
-              border: "1px solid rgba(112, 214, 255, 0.25)",
+              background: "#ebf8ff",
+              border: "1px solid #bee3f8",
               borderRadius: 999,
-              color: "#9ee9ff",
+              color: "#2b6cb0",
               display: "inline-flex",
               fontSize: "0.75rem",
               fontWeight: 600,
@@ -158,7 +157,7 @@ const DockerComposeSmallServicePage = () => {
             <br />
             小規模WebサービスのVPS選び
           </h1>
-          <p style={{ color: "#c9d8f2", lineHeight: 1.9, maxWidth: 820 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 820 }}>
             FastAPIやNode.jsのAPIサーバーとPostgreSQLをDocker Composeでまとめて立てる、
             小規模Webサービスを例にします。実際にどのくらいのメモリが必要か、2GBで足りるのか、
             4GBにしたほうがよいのかを具体的に考えます。
@@ -169,7 +168,7 @@ const DockerComposeSmallServicePage = () => {
       <section style={{ display: "grid", gap: "1rem" }}>
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>想定する構成</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             ここでは、APIサーバー1つ、DB1つ、必要ならNginxかCaddyを1つ置く構成を想定します。
             いわゆるMVPや小規模な社内ツール、予約フォーム、会員制サイトの初期構成に近いです。
           </p>
@@ -191,14 +190,14 @@ const DockerComposeSmallServicePage = () => {
 volumes:
   db-data:`}
           </div>
-          <p style={{ color: "#b8cce6", lineHeight: 1.8 }}>
+          <p style={{ color: "#718096", lineHeight: 1.8 }}>
             実際には Redis やワーカーを足すこともありますが、まずはこの最小構成で考えると必要スペックが分かりやすいです。
           </p>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>2GBで足りるか</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             結論から言うと、2GBでも動くケースはあります。ただし、Dockerデーモン、
             APIアプリ、PostgreSQL、OSのキャッシュを全部同居させるので、余裕はかなり少なめです。
           </p>
@@ -207,14 +206,14 @@ volumes:
             <li style={itemStyle}>DBのメモリ使用量が増えると、すぐに窮屈になります。</li>
             <li style={itemStyle}>CIや追加コンテナを同居させるなら、2GBは厳しくなりやすいです。</li>
           </ul>
-          <p style={{ color: "#b8cce6", lineHeight: 1.8 }}>
+          <p style={{ color: "#718096", lineHeight: 1.8 }}>
             個人開発の初期リリースなら2GBから始めて、監視しながら4GBへ上げる考え方は十分現実的です。
           </p>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>最初から4GBを選ぶと安心なケース</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             小規模でも、管理画面、バッチ処理、画像処理、メール送信、監視エージェントなどが入ると
             コンテナ数は増えます。そうなると4GBの安心感がかなり大きいです。
           </p>
@@ -249,7 +248,7 @@ volumes:
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>CPUより先にメモリを見る</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             この構成では、最初に不足しやすいのはCPUよりメモリです。APIの処理が重くない限り、
             小規模サービスでは2〜3 vCPUでも足りることが多いです。一方でメモリ不足はコンテナ再起動や
             体感速度の低下につながりやすいので、まずはメモリ帯で比較するほうが失敗しにくいです。
@@ -258,7 +257,7 @@ volumes:
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>ディスクはSSD/NVMeと容量の両方を見る</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             DBを同居させるなら、ストレージ性能も大事です。ログ、DBデータ、Dockerイメージ、
             バックアップを考えると、50GBより100GBあるほうがかなり安心です。
           </p>
@@ -271,7 +270,7 @@ volumes:
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>このケースならどんなVPSを選ぶか</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             日本向けの小規模Webサービスなら、国内リージョン、2GB〜4GB、できればNVMe SSD、
             将来的に8GB以上へ素直に拡張できるサービスがおすすめです。初期費用を抑えたいなら2GB、
             本番で最初から安定性を取りたいなら4GBから見るのが分かりやすいです。
@@ -281,12 +280,11 @@ volumes:
         <article
           style={{
             ...sectionStyle,
-            background:
-              "linear-gradient(135deg, rgba(123, 225, 255, 0.12), rgba(139, 179, 255, 0.12))",
+            background: "#eef6ff",
           }}
         >
           <h2 style={{ fontSize: "1.3rem" }}>比較一覧で候補を絞るなら</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             まず国内VPSに絞り、最小メモリを2GB以上にして、価格順または人気順で並べると候補を探しやすいです。
             そのあと詳細ページでプランの伸び方を見れば、2GBから始めるか4GBから始めるか判断しやすくなります。
           </p>
@@ -300,7 +298,7 @@ volumes:
 }
 
 const listStyle = {
-  color: "#d9e7f8",
+  color: "#4a5568",
   display: "grid",
   gap: "0.65rem",
   paddingLeft: "1.2rem",
@@ -311,8 +309,8 @@ const itemStyle = {
 }
 
 const miniCardStyle = {
-  background: "rgba(255,255,255,0.1)",
-  border: "1px solid rgba(255,255,255,0.1)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
   borderRadius: 4,
   display: "grid",
   gap: "0.45rem",
@@ -320,15 +318,15 @@ const miniCardStyle = {
 }
 
 const miniCardTextStyle = {
-  color: "#b8cce6",
+  color: "#718096",
   lineHeight: 1.7,
 }
 
 const buttonStyle = {
   alignItems: "center",
-  background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
+  background: "#3EA8FF",
   borderRadius: 4,
-  color: "#031321",
+  color: "#ffffff",
   display: "inline-flex",
   fontSize: "1rem",
   fontWeight: 600,

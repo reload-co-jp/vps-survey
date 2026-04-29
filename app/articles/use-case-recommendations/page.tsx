@@ -33,10 +33,10 @@ export const metadata: Metadata = {
 }
 
 const sectionStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)",
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   display: "grid",
   gap: "0.9rem",
   padding: "clamp(1rem, 3vw, 1.35rem)",
@@ -90,33 +90,32 @@ const UseCaseRecommendationsPage = () => {
       />
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.22), transparent 32%), linear-gradient(135deg, #173052 0%, #0d1c31 55%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1rem",
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← 一覧へ戻る
         </Link>
         <nav
           aria-label="パンくず"
           style={{
-            color: "#9cb6d8",
+            color: "#718096",
             display: "flex",
             flexWrap: "wrap",
             fontSize: "0.88rem",
             gap: "0.5rem",
           }}
         >
-          <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#9edaff", textDecoration: "none" }}>
+          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
             記事一覧
           </Link>
           <span>/</span>
@@ -125,10 +124,10 @@ const UseCaseRecommendationsPage = () => {
         <div style={{ display: "grid", gap: "0.8rem", maxWidth: 860 }}>
           <span
             style={{
-              background: "rgba(112, 214, 255, 0.14)",
-              border: "1px solid rgba(112, 214, 255, 0.25)",
+              background: "#ebf8ff",
+              border: "1px solid #bee3f8",
               borderRadius: 999,
-              color: "#9ee9ff",
+              color: "#2b6cb0",
               display: "inline-flex",
               fontSize: "0.75rem",
               fontWeight: 600,
@@ -140,10 +139,10 @@ const UseCaseRecommendationsPage = () => {
           >
             Use Cases
           </span>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: 1.05 }}>
+          <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2, color: "#1a202c" }}>
             用途別おすすめVPS
           </h1>
-          <p style={{ color: "#c9d8f2", lineHeight: 1.9, maxWidth: 760 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
             VPSは「どれが最強か」よりも、「何に使うか」によっておすすめが変わります。
             開発、本番、検証、学習、それぞれに合う選び方を先に決めると、比較がかなり楽になります。
           </p>
@@ -153,7 +152,7 @@ const UseCaseRecommendationsPage = () => {
       <section style={{ display: "grid", gap: "1rem" }}>
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>開発環境なら時間課金か低価格帯</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             ローカルの代わりに使う開発用VPSなら、まずは低価格帯か時間課金に向いたサービスがおすすめです。
             Docker、簡単なAPI、管理画面の確認なら2GB前後から始めると扱いやすいです。
           </p>
@@ -166,7 +165,7 @@ const UseCaseRecommendationsPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>本番運用なら安定性と拡張性を優先</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             本番公開するなら、価格だけでなく国内リージョン、上位プランの豊富さ、管理画面の使いやすさも重要です。
             後から移行しなくて済むように、余裕を持った構成を選ぶほうが安心です。
           </p>
@@ -179,7 +178,7 @@ const UseCaseRecommendationsPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>検証や学習用途なら分かりやすさ重視</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             VPSに慣れていない場合は、料金表が分かりやすく国内情報が多いサービスのほうが安心です。
             管理画面が見やすいか、初期セットアップがしやすいかも使いやすさに直結します。
           </p>
@@ -192,7 +191,7 @@ const UseCaseRecommendationsPage = () => {
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>社内利用や業務用途ならサポートも見る</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             社内ツールや業務向け用途では、料金よりも請求の分かりやすさや国内サポートの安心感が重要になることがあります。
             逆引きDNSやローカル接続のような周辺機能も比較ポイントです。
           </p>
@@ -201,12 +200,11 @@ const UseCaseRecommendationsPage = () => {
         <article
           style={{
             ...sectionStyle,
-            background:
-              "linear-gradient(135deg, rgba(123, 225, 255, 0.12), rgba(139, 179, 255, 0.12))",
+            background: "#eef6ff",
           }}
         >
           <h2 style={{ fontSize: "1.3rem" }}>迷ったら一覧で条件を絞る</h2>
-          <p style={{ color: "#d4e1f3", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             まず用途を決めて、次に国内/海外、最後にメモリと価格帯で絞ると、候補がかなり整理されます。
           </p>
           <Link href="/" style={buttonStyle}>
@@ -219,7 +217,7 @@ const UseCaseRecommendationsPage = () => {
 }
 
 const listStyle = {
-  color: "#d9e7f8",
+  color: "#4a5568",
   display: "grid",
   gap: "0.65rem",
   paddingLeft: "1.2rem",
@@ -231,9 +229,9 @@ const itemStyle = {
 
 const buttonStyle = {
   alignItems: "center",
-  background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
+  background: "#3EA8FF",
   borderRadius: 4,
-  color: "#031321",
+  color: "#ffffff",
   display: "inline-flex",
   fontSize: "1rem",
   fontWeight: 600,

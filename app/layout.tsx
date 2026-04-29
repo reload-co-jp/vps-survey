@@ -104,9 +104,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <div style={{ minHeight: "100vh", width: "100%" }}>
           <header
             style={{
-              backdropFilter: "blur(18px)",
-              background: "rgba(12, 20, 34, 0.76)",
-              borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+              background: "#ffffff",
+              borderBottom: "1px solid #e2e8f0",
               position: "sticky",
               top: 0,
               zIndex: 20,
@@ -120,31 +119,35 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 flexWrap: "wrap" as const,
                 gap: "1rem",
                 justifyContent: "space-between",
-                minHeight: "72px",
-                paddingBlock: "1rem",
+                minHeight: "60px",
+                paddingBlock: "0.75rem",
               }}
             >
               <a
                 href="/"
                 style={{
+                  color: "#1a202c",
                   fontSize: "clamp(0.92rem, 2vw, 1rem)",
-                  fontWeight: 600,
-                  letterSpacing: "0.08em",
+                  fontWeight: 700,
+                  letterSpacing: "0.02em",
                   textDecoration: "none",
-                  textTransform: "uppercase",
                 }}
               >
                 VPS比較サイト
               </a>
-              <p
-                style={{
-                  color: "#a7bddb",
-                  fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
-                  textAlign: "left" as const,
-                }}
-              >
-                日本・海外VPSを価格と用途から比較できるガイド
-              </p>
+              <nav style={{ display: "flex", gap: "1.25rem" }}>
+                <a
+                  href="/articles/"
+                  style={{
+                    color: "#4a5568",
+                    fontSize: "0.9rem",
+                    fontWeight: 500,
+                    textDecoration: "none",
+                  }}
+                >
+                  記事
+                </a>
+              </nav>
             </div>
           </header>
           <main
@@ -159,14 +162,15 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           </main>
           <footer
             style={{
-              borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+              background: "#ffffff",
+              borderTop: "1px solid #e2e8f0",
               marginTop: "2rem",
             }}
           >
             <div
               style={{
                 ...shellStyle,
-                color: "#95accb",
+                color: "#718096",
                 display: "grid",
                 fontSize: "clamp(0.8rem, 1.8vw, 0.85rem)",
                 gap: "1rem",
@@ -182,7 +186,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                   justifyContent: "space-between",
                 }}
               >
-                <p>VPS比較サイト</p>
+                <p style={{ color: "#1a202c", fontWeight: 600 }}>VPS比較サイト</p>
                 <p>&copy; 2026 Reload, Inc.</p>
               </div>
               <div
@@ -193,13 +197,13 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                   gap: "0.6rem 1rem",
                 }}
               >
-                <span style={{ color: "#b8cae3" }}>LP</span>
+                <span style={{ color: "#a0aec0" }}>LP</span>
                 {footerLpLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     style={{
-                      color: "#cfe2ff",
+                      color: "#3EA8FF",
                       textDecoration: "none",
                     }}
                   >

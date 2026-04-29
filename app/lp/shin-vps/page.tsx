@@ -76,9 +76,9 @@ const CtaButton = ({ label = "シンVPSを見てみる" }: { label?: string }) =
     rel="noopener noreferrer"
     style={{
       alignItems: "center",
-      background: "linear-gradient(135deg, #7be1ff, #8bb3ff)",
+      background: "#3EA8FF",
       borderRadius: 4,
-      color: "#031321",
+      color: "#ffffff",
       display: "inline-flex",
       fontSize: "1.05rem",
       fontWeight: 600,
@@ -95,10 +95,10 @@ const CtaButton = ({ label = "シンVPSを見てみる" }: { label?: string }) =
 )
 
 const panelStyle = {
-  background:
-    "linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02))",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "clamp(2px, 1vw, 4px)" as const,
+  background: "#ffffff",
+  border: "1px solid #e2e8f0",
+  borderRadius: 12 as const,
+  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   padding: "clamp(1rem, 3vw, 1.35rem)",
 }
 
@@ -145,16 +145,15 @@ const ShinVpsLpPage = () => {
       {/* Hero */}
       <section
         style={{
-          background:
-            "radial-gradient(circle at top left, rgba(103, 199, 255, 0.28), transparent 40%), linear-gradient(135deg, #18345a 0%, #0e2037 60%, #09111d 100%)",
-          border: "1px solid rgba(139, 197, 255, 0.2)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1.2rem",
           padding: "clamp(1.2rem, 4vw, 2rem)",
         }}
       >
-        <Link href="/" style={{ color: "#9edaff", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← VPS一覧へ戻る
         </Link>
         <div style={{ display: "grid", gap: "1rem", maxWidth: 860 }}>
@@ -163,9 +162,9 @@ const ShinVpsLpPage = () => {
               <span
                 key={tag}
                 style={{
-                  background: "rgba(255,255,255,0.1)",
+                  background: "#ffffff",
                   borderRadius: 999,
-                  color: "#bfeeff",
+                  color: "#2b6cb0",
                   fontSize: "0.82rem",
                   padding: "0.35rem 0.7rem",
                 }}
@@ -183,7 +182,7 @@ const ShinVpsLpPage = () => {
           </h1>
           <p
             style={{
-              color: "#c7d8ef",
+              color: "#4a5568",
               fontSize: "clamp(1rem, 2.5vw, 1.15rem)",
               lineHeight: 1.85,
               maxWidth: 680,
@@ -210,15 +209,15 @@ const ShinVpsLpPage = () => {
             <div
               key={label}
               style={{
-                background: "rgba(255,255,255,0.11)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
                 borderRadius: 4,
                 display: "grid",
                 gap: "0.3rem",
                 padding: "0.9rem",
               }}
             >
-              <span style={{ color: "#9cb5d6", fontSize: "0.8rem" }}>
+              <span style={{ color: "#718096", fontSize: "0.8rem" }}>
                 {label}
               </span>
               <strong style={{ fontSize: "1.15rem" }}>{value}</strong>
@@ -273,7 +272,7 @@ const ShinVpsLpPage = () => {
             >
               <span
                 style={{
-                  color: "#5ab9e0",
+                  color: "#2b6cb0",
                   fontSize: "0.78rem",
                   fontWeight: 600,
                   letterSpacing: "0.12em",
@@ -282,7 +281,7 @@ const ShinVpsLpPage = () => {
                 {num}
               </span>
               <h3 style={{ fontSize: "1.1rem", lineHeight: 1.4 }}>{title}</h3>
-              <p style={{ color: "#b8cce6", lineHeight: 1.85 }}>{body}</p>
+              <p style={{ color: "#718096", lineHeight: 1.85 }}>{body}</p>
             </article>
           ))}
         </div>
@@ -301,7 +300,7 @@ const ShinVpsLpPage = () => {
           </h2>
           <p
             style={{
-              color: "#9cb8d8",
+              color: "#718096",
               fontSize: "0.9rem",
               marginTop: "0.4rem",
               paddingInline: "0.25rem",
@@ -324,8 +323,8 @@ const ShinVpsLpPage = () => {
             <article
               key={plan.name}
               style={{
-                background: "rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.11)",
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
                 borderRadius: 4,
                 display: "grid",
                 gap: "0.85rem",
@@ -337,7 +336,7 @@ const ShinVpsLpPage = () => {
                 <strong style={{ fontSize: "0.95rem" }}>{plan.name}</strong>
                 <span
                   style={{
-                    color: "#9edaff",
+                    color: "#3EA8FF",
                     fontSize: "1.15rem",
                     fontWeight: 600,
                   }}
@@ -352,10 +351,10 @@ const ShinVpsLpPage = () => {
                   { label: "NVMe", value: `${plan.storage} GB` },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ display: "grid", gap: "0.1rem" }}>
-                    <span style={{ color: "#8dacc8", fontSize: "0.78rem" }}>
+                    <span style={{ color: "#718096", fontSize: "0.78rem" }}>
                       {label}
                     </span>
-                    <strong style={{ color: "#eef5ff", fontSize: "0.9rem" }}>
+                    <strong style={{ color: "#1a202c", fontSize: "0.9rem" }}>
                       {value}
                     </strong>
                   </div>
@@ -379,7 +378,7 @@ const ShinVpsLpPage = () => {
           </h2>
           <p
             style={{
-              color: "#9cb8d8",
+              color: "#718096",
               fontSize: "0.9rem",
               marginTop: "0.4rem",
               paddingInline: "0.25rem",
@@ -402,8 +401,8 @@ const ShinVpsLpPage = () => {
             <article
               key={plan.name}
               style={{
-                background: "rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.11)",
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
                 borderRadius: 4,
                 display: "grid",
                 gap: "0.85rem",
@@ -415,7 +414,7 @@ const ShinVpsLpPage = () => {
                 <strong style={{ fontSize: "0.95rem" }}>{plan.name}</strong>
                 <span
                   style={{
-                    color: "#9edaff",
+                    color: "#3EA8FF",
                     fontSize: "1.15rem",
                     fontWeight: 600,
                   }}
@@ -430,10 +429,10 @@ const ShinVpsLpPage = () => {
                   { label: "NVMe", value: `${plan.storage} GB` },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ display: "grid", gap: "0.1rem" }}>
-                    <span style={{ color: "#8dacc8", fontSize: "0.78rem" }}>
+                    <span style={{ color: "#718096", fontSize: "0.78rem" }}>
                       {label}
                     </span>
-                    <strong style={{ color: "#eef5ff", fontSize: "0.9rem" }}>
+                    <strong style={{ color: "#1a202c", fontSize: "0.9rem" }}>
                       {value}
                     </strong>
                   </div>
@@ -489,7 +488,7 @@ const ShinVpsLpPage = () => {
               }}
             >
               <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>{title}</h3>
-              <p style={{ color: "#b4c9e3", lineHeight: 1.8 }}>{body}</p>
+              <p style={{ color: "#718096", lineHeight: 1.8 }}>{body}</p>
             </article>
           ))}
         </div>
@@ -507,7 +506,7 @@ const ShinVpsLpPage = () => {
           <h2 style={{ fontSize: "1.2rem" }}>メリット</h2>
           <ul
             style={{
-              color: "#d9e7f8",
+              color: "#4a5568",
               display: "grid",
               gap: "0.65rem",
               paddingLeft: "1.2rem",
@@ -530,7 +529,7 @@ const ShinVpsLpPage = () => {
           <h2 style={{ fontSize: "1.2rem" }}>デメリット・注意点</h2>
           <ul
             style={{
-              color: "#d9e7f8",
+              color: "#4a5568",
               display: "grid",
               gap: "0.65rem",
               paddingLeft: "1.2rem",
@@ -552,10 +551,9 @@ const ShinVpsLpPage = () => {
       {/* Final CTA */}
       <section
         style={{
-          background:
-            "linear-gradient(135deg, rgba(123, 225, 255, 0.13), rgba(139, 179, 255, 0.13))",
-          border: "1px solid rgba(139, 197, 255, 0.18)",
-          borderRadius: "clamp(2px, 1vw, 4px)",
+          background: "#eef6ff",
+          border: "1px solid #bee3f8",
+          borderRadius: 12,
           display: "grid",
           gap: "1.2rem",
           padding: "clamp(1.2rem, 4vw, 2rem)",
@@ -572,12 +570,12 @@ const ShinVpsLpPage = () => {
             <br />
             シンVPSが最有力候補です
           </h2>
-          <p style={{ color: "#c1d5ee", lineHeight: 1.85 }}>
+          <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             メモリプランは月540円から試せます。まずは公式ページでプランと料金を確認してみてください。
           </p>
         </div>
         <CtaButton label="シンVPS公式ページを確認する" />
-        <p style={{ color: "#7b9bb8", fontSize: "0.78rem" }}>
+        <p style={{ color: "#a0aec0", fontSize: "0.78rem" }}>
           ※ 本ページにはアフィリエイトリンクが含まれます。
         </p>
       </section>
@@ -590,12 +588,12 @@ const ShinVpsLpPage = () => {
           gap: "0.75rem",
         }}
       >
-        <p style={{ color: "#a7bfd8", lineHeight: 1.8 }}>
+        <p style={{ color: "#718096", lineHeight: 1.8 }}>
           他のVPSとも比較したい場合は、VPS一覧ページで価格・スペックを並べて確認できます。
         </p>
         <Link
           href="/"
-          style={{ color: "#9edaff", fontWeight: 600, textDecoration: "none" }}
+          style={{ color: "#3EA8FF", fontWeight: 600, textDecoration: "none" }}
         >
           VPS比較一覧を見る →
         </Link>
@@ -619,7 +617,7 @@ const ShinVpsLpPage = () => {
               <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
                 {faq.question}
               </h3>
-              <p style={{ color: "#b4c9e3", lineHeight: 1.8 }}>{faq.answer}</p>
+              <p style={{ color: "#718096", lineHeight: 1.8 }}>{faq.answer}</p>
             </article>
           ))}
         </div>
@@ -651,20 +649,20 @@ const ShinVpsLpPage = () => {
               key={item.href}
               href={item.href}
               style={{
-                background: "rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
                 borderRadius: 4,
-                color: "inherit",
+                color: "#1a202c",
                 display: "grid",
                 gap: "0.45rem",
                 padding: "1rem",
                 textDecoration: "none",
               }}
             >
-              <strong style={{ color: "#9edaff", fontSize: "1rem" }}>
+              <strong style={{ color: "#3EA8FF", fontSize: "1rem" }}>
                 {item.title}
               </strong>
-              <p style={{ color: "#b4c9e3", lineHeight: 1.75 }}>{item.body}</p>
+              <p style={{ color: "#718096", lineHeight: 1.75 }}>{item.body}</p>
             </Link>
           ))}
         </div>
