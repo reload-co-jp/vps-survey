@@ -8,7 +8,7 @@ import {
 } from "../seo"
 
 const pageTitle =
-  "2026年4月の国内VPSキャンペーンまとめ | いま安く始めやすいサービスを比較"
+  "2026年4月・VPSキャンペーンまとめ | いまいちばんお得に始められるのはどれ？"
 const pageDescription =
   "2026年4月19日時点で確認できた国内VPSのキャンペーンをまとめました。ConoHa VPS、XServer VPS、シンVPS、さくらのVPS、WebARENA Indigo、お名前.com VPSの特典内容と期限を比較できます。"
 const publishedAt = "2026-04-19T09:00:00+09:00"
@@ -199,9 +199,9 @@ const CampaignApril2026Page = () => {
           <h1
             style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)", lineHeight: 1.05 }}
           >
-            2026年4月の
+            2026年4月・いまいちばん
             <br />
-            国内VPSキャンペーンまとめ
+            お得に始めるVPSはどれ？
           </h1>
           <p
             style={{
@@ -253,7 +253,7 @@ const CampaignApril2026Page = () => {
       <section style={{ display: "grid", gap: "1rem" }}>
         <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
           <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
-            実施中を確認できた国内VPSキャンペーン
+            いま使えるキャンペーン・特典まとめ
           </h2>
           <p style={{ color: "#718096", lineHeight: 1.8 }}>
             期間限定値引きと、現在申し込み時に使える常設特典をまとめています。
@@ -317,7 +317,7 @@ const CampaignApril2026Page = () => {
 
       <section style={{ ...panelStyle, display: "grid", gap: "0.85rem" }}>
         <h2 style={{ fontSize: "clamp(1.35rem, 3vw, 1.8rem)" }}>
-          いま選ぶならどこが向いているか
+          目的別・いまどれを選ぶべきか
         </h2>
         <div
           style={{

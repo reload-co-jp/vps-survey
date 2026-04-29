@@ -7,7 +7,7 @@ import {
   buildLpMetadata,
 } from "../seo"
 
-const pageTitle = "ConoHa VPSおすすめガイド | 初心者から本番まで使える定番国内VPS"
+const pageTitle = "2026年版 ConoHa VPS完全ガイド | 初めてのVPSに迷ったら定番の国内VPS"
 const pageDescription =
   "ConoHa VPSは月460円から使える初心者向け国内VPS。管理画面のわかりやすさ・時間課金・充実サポートの特徴を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
@@ -170,9 +170,9 @@ const ConohaLpPage = () => {
           <h1
             style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", lineHeight: 1.05 }}
           >
-            ConoHa VPSが
+            2026年版・初めてのVPSに
             <br />
-            おすすめな理由
+            迷ったらConoHa VPS
           </h1>
           <p
             style={{
@@ -230,7 +230,7 @@ const ConohaLpPage = () => {
             paddingInline: "0.25rem",
           }}
         >
-          ConoHa VPSをおすすめする3つの理由
+          ConoHaが初心者に選ばれ続ける3つの理由
         </h2>
         <div
           style={{
@@ -291,7 +291,7 @@ const ConohaLpPage = () => {
               paddingInline: "0.25rem",
             }}
           >
-            プラン一覧
+            月460円から。ConoHaのプラン一覧
           </h2>
           <p
             style={{
@@ -371,7 +371,7 @@ const ConohaLpPage = () => {
             paddingInline: "0.25rem",
           }}
         >
-          こんな用途に向いています
+          こんな人に刺さるConoHa VPS
         </h2>
         <div
           style={{
@@ -486,9 +486,9 @@ const ConohaLpPage = () => {
               lineHeight: 1.15,
             }}
           >
-            国内VPSをバランスよく使うなら
+            迷ったらConoHa。月460円から、
             <br />
-            ConoHa VPSが定番の選択肢です
+            いつでも気軽に始められる
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             月460円の入門プランから試せます。時間課金で気軽に始め、必要に応じてスケールアップも可能です。

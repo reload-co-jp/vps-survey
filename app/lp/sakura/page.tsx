@@ -7,7 +7,7 @@ import {
   buildLpMetadata,
 } from "../seo"
 
-const pageTitle = "さくらのVPSおすすめガイド | 老舗国内VPSで安心の学習・検証環境"
+const pageTitle = "2026年版 さくらのVPS完全ガイド | 安定性で選ぶなら老舗の国内VPS"
 const pageDescription =
   "さくらのVPSは月643円から使える国内老舗VPS。情報量の多さ・安定した国内データセンター・学習や検証に向く価格帯を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
@@ -168,9 +168,9 @@ const SakuraLpPage = () => {
           <h1
             style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", lineHeight: 1.05 }}
           >
-            さくらのVPSが
+            2026年版・安定性で選ぶなら
             <br />
-            おすすめな理由
+            さくらのVPS一択
           </h1>
           <p
             style={{
@@ -228,7 +228,7 @@ const SakuraLpPage = () => {
             paddingInline: "0.25rem",
           }}
         >
-          さくらのVPSをおすすめする3つの理由
+          20年以上選ばれ続ける、さくらの3つの強み
         </h2>
         <div
           style={{
@@ -289,7 +289,7 @@ const SakuraLpPage = () => {
               paddingInline: "0.25rem",
             }}
           >
-            プラン一覧
+            月643円から。さくらのVPSプラン一覧
           </h2>
           <p
             style={{
@@ -369,7 +369,7 @@ const SakuraLpPage = () => {
             paddingInline: "0.25rem",
           }}
         >
-          こんな用途に向いています
+          こんな人にさくらのVPSがハマる
         </h2>
         <div
           style={{
@@ -484,9 +484,9 @@ const SakuraLpPage = () => {
               lineHeight: 1.15,
             }}
           >
-            国内VPSを安心して使い始めるなら
+            20年の実績が証明する安心感。
             <br />
-            さくらのVPSが老舗の定番です
+            学習・検証・本番まで、さくらのVPS
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             月643円の入門プランから試せます。情報量が多く、調べながら進めやすい環境です。

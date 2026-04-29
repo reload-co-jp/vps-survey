@@ -7,7 +7,7 @@ import {
   buildLpMetadata,
 } from "../seo"
 
-const pageTitle = "シンVPSおすすめガイド | 高コスパ国内VPSの決定版"
+const pageTitle = "2026年版 シンVPS完全ガイド | コスパで選ぶなら国内VPSの最有力候補"
 const pageDescription =
   "シンVPSはNVMe SSD・大容量メモリプランが月540円から使える高コスパ国内VPS。料金・スペック・メリット・おすすめ用途を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
@@ -176,9 +176,9 @@ const ShinVpsLpPage = () => {
           <h1
             style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", lineHeight: 1.05 }}
           >
-            シンVPSが
+            2026年版・コスパで選ぶなら
             <br />
-            おすすめな理由
+            シンVPSが最有力候補
           </h1>
           <p
             style={{
@@ -235,7 +235,7 @@ const ShinVpsLpPage = () => {
             paddingInline: "0.25rem",
           }}
         >
-          シンVPSをおすすめする3つの理由
+          シンVPSが「安くて速い」と言われる3つの根拠
         </h2>
         <div
           style={{
@@ -296,7 +296,7 @@ const ShinVpsLpPage = () => {
               paddingInline: "0.25rem",
             }}
           >
-            Memoryプラン一覧
+            月540円から。Memoryプラン一覧
           </h2>
           <p
             style={{
@@ -374,7 +374,7 @@ const ShinVpsLpPage = () => {
               paddingInline: "0.25rem",
             }}
           >
-            Standardプラン一覧
+            大容量SSDが欲しいならStandardプラン一覧
           </h2>
           <p
             style={{
@@ -451,7 +451,7 @@ const ShinVpsLpPage = () => {
             paddingInline: "0.25rem",
           }}
         >
-          こんな用途に向いています
+          こんな人にシンVPSが刺さる
         </h2>
         <div
           style={{
@@ -566,9 +566,9 @@ const ShinVpsLpPage = () => {
               lineHeight: 1.15,
             }}
           >
-            国内VPSを高コスパで使うなら
+            安くて速いVPSが欲しいなら、
             <br />
-            シンVPSが最有力候補です
+            シンVPSで決まり
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             メモリプランは月540円から試せます。まずは公式ページでプランと料金を確認してみてください。

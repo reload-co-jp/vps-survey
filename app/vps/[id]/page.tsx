@@ -216,7 +216,7 @@ const VpsDetailPage = async ({ params }: Props) => {
           }}
           target="_blank"
         >
-          公式ページを見る
+          公式サイトで料金・申込みを確認する
         </a>
         {service.affiliatePixelUrl ? (
           <img
@@ -231,7 +231,7 @@ const VpsDetailPage = async ({ params }: Props) => {
 
       <section>
         <article style={panelStyle}>
-          <h2 style={panelTitleStyle}>スペック詳細</h2>
+          <h2 style={panelTitleStyle}>スペック早見表</h2>
           <table style={{ width: "100%" }}>
             <tbody>
               <SpecRow label="サービス名" value={service.name} />
@@ -254,7 +254,7 @@ const VpsDetailPage = async ({ params }: Props) => {
 
       <section style={{ overflow: "scroll" }}>
         <article style={panelStyle}>
-          <h2 style={panelTitleStyle}>プラン比較ビュー</h2>
+          <h2 style={panelTitleStyle}>全プランを並べて比較</h2>
           <div
             style={{
               WebkitOverflowScrolling: "touch",
@@ -324,18 +324,18 @@ const VpsDetailPage = async ({ params }: Props) => {
         }}
       >
         <article style={panelStyle}>
-          <h2 style={panelTitleStyle}>特徴</h2>
+          <h2 style={panelTitleStyle}>他にない強み</h2>
           <BulletList items={service.features} />
         </article>
         <article style={panelStyle}>
-          <h2 style={panelTitleStyle}>メリット / デメリット</h2>
-          <h3 style={subTitleStyle}>メリット</h3>
+          <h2 style={panelTitleStyle}>正直なメリット・デメリット</h2>
+          <h3 style={subTitleStyle}>ここが良い</h3>
           <BulletList items={service.pros} />
-          <h3 style={{ ...subTitleStyle, marginTop: "1rem" }}>デメリット</h3>
+          <h3 style={{ ...subTitleStyle, marginTop: "1rem" }}>ここが惜しい</h3>
           <BulletList items={service.cons} />
         </article>
         <article style={panelStyle}>
-          <h2 style={panelTitleStyle}>おすすめ用途</h2>
+          <h2 style={panelTitleStyle}>こんな用途にハマる</h2>
           <BulletList items={service.recommendedFor} />
         </article>
       </section>

@@ -43,10 +43,10 @@ const sectionStyle = {
 }
 
 const codeStyle = {
-  background: "#ffffff",
+  background: "#f7fafc",
   border: "1px solid #e2e8f0",
   borderRadius: 4,
-  color: "#dff2ff",
+  color: "#2d3748",
   fontFamily: "monospace",
   fontSize: "0.92rem",
   lineHeight: 1.7,

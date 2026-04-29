@@ -205,11 +205,11 @@ export const VpsExplorer = ({ services }: Props) => {
                 lineHeight: 1.2,
               }}
             >
-              今必要なVPSを性能・価格で比較して最安を探せる
+              月550円から。あなたに合うVPSを今すぐ見つける
             </h1>
             <p style={{ color: "#4a5568", fontSize: "1rem", lineHeight: 1.8 }}>
-              国内外の主要 VPS を、初心者にも分かりやすい軸で一覧化。
-              検索、フィルタ、ソート、比較してお好みのVPSがミツカします。
+              国内・海外15社以上を価格・スペック・用途で絞り込み。
+              横並び比較でサクッと決めよう。
             </p>
           </div>
           <div data-grid="metrics">
@@ -416,10 +416,10 @@ export const VpsExplorer = ({ services }: Props) => {
         >
           <div>
             <h2 style={{ color: "#1a202c", fontSize: "1.35rem", marginBottom: "0.35rem" }}>
-              比較ビュー
+              全サービス横並び比較
             </h2>
             <p style={{ color: "#718096" }}>
-              フィルタ条件に一致した VPS を最初から横並びで比較できます。
+              フィルタ条件のVPSを横並びで比較。価格・スペック・プランを一気見できる。
             </p>
           </div>
           <div
@@ -574,18 +574,18 @@ export const VpsExplorer = ({ services }: Props) => {
       >
         <ArticleCard
           href="/articles/vps-choice/"
-          title="VPSの選び方"
-          body="価格だけでなく、CPU・メモリ・リージョン・課金方式を合わせて見ると、あとからの移行コストを抑えやすくなります。"
+          title="失敗しないVPSの選び方"
+          body="価格だけで選ぶと後悔する。CPU・メモリ・リージョン・課金方式で絞り込む実践的な選び方を解説。"
         />
         <ArticleCard
           href="/articles/use-case-recommendations/"
-          title="用途別おすすめ"
-          body="開発用途なら時間課金、本番用途なら国内リージョンと安定性、検証用途なら低価格帯と初期構築のしやすさが見極めやすい軸です。"
+          title="用途別・迷わないVPS選び"
+          body="開発・本番・検証で最適解は変わる。用途ごとに「どこを見るべきか」を整理した。"
         />
         <ArticleCard
           href="/articles/beginner-guide/"
-          title="初心者向け解説"
-          body="まずは 1〜2GB メモリ帯から始め、運用しながら CPU 使用率や転送量を見て上位プランへ拡張する進め方が安全です。"
+          title="VPS初心者が最初に読む記事"
+          body="1〜2GBで始めてスペック不足になったら上げる。この進め方が一番安全で費用も最小になる。"
         />
       </section>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
