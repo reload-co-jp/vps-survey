@@ -40,6 +40,14 @@ const articles: ArticleSummary[] = [
     category: "初心者向け",
   },
   {
+    id: "object-storage",
+    title: "オブジェクトストレージとは何か",
+    description:
+      "オブジェクトストレージの基本、ファイル/ブロックストレージとの違い、VPSと組み合わせる使い方、向いている用途を解説します。",
+    href: "/articles/object-storage/",
+    category: "基礎知識",
+  },
+  {
     id: "docker-compose-small-service",
     title: "Docker Composeで小規模Webサービスを動かすときのVPS選び",
     description:
