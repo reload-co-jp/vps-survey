@@ -179,6 +179,22 @@ const CampaignApril2026Page = () => {
         <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← VPS一覧へ戻る
         </Link>
+        <nav
+          aria-label="パンくず"
+          style={{
+            color: "#718096",
+            display: "flex",
+            flexWrap: "wrap",
+            fontSize: "0.88rem",
+            gap: "0.5rem",
+          }}
+        >
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+            ホーム
+          </Link>
+          <span>/</span>
+          <span>2026年4月の国内VPSキャンペーンまとめ</span>
+        </nav>
         <div style={{ display: "grid", gap: "1rem", maxWidth: 900 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
             {["2026年4月", "国内VPS", "キャンペーン速報"].map((tag) => (

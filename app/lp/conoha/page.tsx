@@ -150,6 +150,22 @@ const ConohaLpPage = () => {
         <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
           ← VPS一覧へ戻る
         </Link>
+        <nav
+          aria-label="パンくず"
+          style={{
+            color: "#718096",
+            display: "flex",
+            flexWrap: "wrap",
+            fontSize: "0.88rem",
+            gap: "0.5rem",
+          }}
+        >
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+            ホーム
+          </Link>
+          <span>/</span>
+          <span>ConoHa VPSおすすめガイド</span>
+        </nav>
         <div style={{ display: "grid", gap: "1rem", maxWidth: 860 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
             {["初心者向け", "表示が分かりやすい", "国内向け"].map((tag) => (
