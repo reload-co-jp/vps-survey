@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 import "./reset.css"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
+const companyUrl = "https://reload.co.jp/"
 const googleAnalyticsId = "G-BH2STWSGXR"
 const isProduction = process.env.NODE_ENV === "production"
 const footerLpLinks = [
@@ -11,6 +12,9 @@ const footerLpLinks = [
   { href: "/lp/sakura/", label: "さくらのVPS" },
   { href: "/lp/shin-vps/", label: "シンVPS" },
   { href: "/lp/2026-04-campaign/", label: "2026年4月キャンペーン" },
+]
+const footerSiteLinks = [
+  { href: "/about/", label: "このサイトについて" },
 ]
 const shellStyle = {
   margin: "0 auto",
@@ -210,6 +214,39 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                     {link.label}
                   </a>
                 ))}
+              </div>
+              <div
+                style={{
+                  alignItems: "center",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.6rem 1rem",
+                }}
+              >
+                <span style={{ color: "#a0aec0" }}>サイト情報</span>
+                {footerSiteLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    style={{
+                      color: "#3EA8FF",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a
+                  href={companyUrl}
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#3EA8FF",
+                    textDecoration: "none",
+                  }}
+                  target="_blank"
+                >
+                  運営会社
+                </a>
               </div>
             </div>
           </footer>
