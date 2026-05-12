@@ -12,6 +12,7 @@ const footerLpLinks = [
   { href: "/lp/sakura/", label: "さくらのVPS" },
   { href: "/lp/shin-vps/", label: "シンVPS" },
   { href: "/lp/2026-04-campaign/", label: "2026年4月キャンペーン" },
+  { href: "/lp/2026-05-campaign/", label: "2026年5月キャンペーン" },
 ]
 const footerSiteLinks = [
   { href: "/about/", label: "このサイトについて" },
