@@ -165,6 +165,11 @@ const UseCaseRecommendationsPage = () => {
             <li style={itemStyle}>継続開発なら月額が安い国内VPSが扱いやすいです。</li>
             <li style={itemStyle}>複数コンテナを動かすなら2GB以上を目安にします。</li>
           </ul>
+          <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
+            時間課金対応の国内VPS:{" "}
+            <Link href="/vps/conoha/" style={inlineLinkStyle}>ConoHa VPS</Link>、
+            <Link href="/vps/shin-vps/" style={inlineLinkStyle}>シンVPS</Link>
+          </p>
         </article>
 
         <article style={sectionStyle}>
@@ -178,6 +183,11 @@ const UseCaseRecommendationsPage = () => {
             <li style={itemStyle}>CPUとメモリに余裕があるサービスを比較します。</li>
             <li style={itemStyle}>上位プランへの拡張が自然なサービスを選ぶと移行しやすいです。</li>
           </ul>
+          <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
+            本番向け国内VPS候補:{" "}
+            <Link href="/vps/shin-vps/" style={inlineLinkStyle}>シンVPS</Link>、
+            <Link href="/vps/xserver/" style={inlineLinkStyle}>XServer VPS</Link>
+          </p>
         </article>
 
         <article style={sectionStyle}>
@@ -191,6 +201,11 @@ const UseCaseRecommendationsPage = () => {
             <li style={itemStyle}>日本語情報が多い国内サービスだと詰まりにくいです。</li>
             <li style={itemStyle}>時間課金よりも月額固定のほうが安心して触れる場合もあります。</li>
           </ul>
+          <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
+            学習・検証向け候補:{" "}
+            <Link href="/vps/conoha/" style={inlineLinkStyle}>ConoHa VPS</Link>、
+            <Link href="/vps/sakura/" style={inlineLinkStyle}>さくらのVPS</Link>
+          </p>
         </article>
 
         <article style={sectionStyle}>
@@ -218,6 +233,11 @@ const UseCaseRecommendationsPage = () => {
       </section>
     </div>
   )
+}
+
+const inlineLinkStyle = {
+  color: "#3EA8FF",
+  textDecoration: "none",
 }
 
 const listStyle = {

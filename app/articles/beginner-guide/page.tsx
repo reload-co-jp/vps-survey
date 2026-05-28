@@ -188,6 +188,11 @@ const BeginnerGuidePage = () => {
               <p style={miniCardTextStyle}>まずは月額固定で分かりやすいものがおすすめです。</p>
             </div>
           </div>
+          <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
+            初心者向け国内VPS候補:{" "}
+            <Link href="/vps/conoha/" style={inlineLinkStyle}>ConoHa VPS</Link>、
+            <Link href="/vps/sakura/" style={inlineLinkStyle}>さくらのVPS</Link>
+          </p>
         </article>
 
         <article style={sectionStyle}>
@@ -225,6 +230,11 @@ const BeginnerGuidePage = () => {
       </section>
     </div>
   )
+}
+
+const inlineLinkStyle = {
+  color: "#3EA8FF",
+  textDecoration: "none",
 }
 
 const miniCardStyle = {

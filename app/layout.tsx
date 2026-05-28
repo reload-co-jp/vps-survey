@@ -86,10 +86,43 @@ export const metadata: Metadata = {
   },
 }
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "VPS比較サイト",
+  url: siteUrl,
+  logo: `${siteUrl}/icon.svg`,
+  sameAs: [companyUrl],
+}
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "VPS比較サイト",
+  url: siteUrl,
+  inLanguage: "ja",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+}
+
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ja">
       <body>
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          type="application/ld+json"
+        />
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+          type="application/ld+json"
+        />
         {isProduction ? (
           <>
             <Script
