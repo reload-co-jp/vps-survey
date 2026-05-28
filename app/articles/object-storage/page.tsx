@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "オブジェクトストレージとは何か",
   description:
     "オブジェクトストレージの基本、ファイルストレージやブロックストレージとの違い、VPSと組み合わせるメリット、向いている用途を分かりやすく解説する記事です。",
+  keywords: ["オブジェクトストレージ とは", "オブジェクトストレージ VPS", "ブロックストレージ 違い", "S3 VPS", "ファイルストレージ 違い"],
   alternates: {
     canonical: "/articles/object-storage/",
   },

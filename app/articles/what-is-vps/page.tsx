@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "VPSとは何か",
   description:
     "VPSの基本、共有サーバーやクラウドとの違い、メリット・デメリット、向いている用途を分かりやすく解説する記事です。",
+  keywords: ["VPSとは", "VPS 仮想サーバー", "VPS 共有サーバー 違い", "VPS クラウド 違い", "VPS メリット デメリット"],
   alternates: {
     canonical: "/articles/what-is-vps/",
   },

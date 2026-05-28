@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "初心者向けVPS解説",
   description:
     "VPS初心者が最初に知っておきたい基礎知識、選び方、よくある失敗、最初のおすすめ構成を分かりやすく解説した記事です。",
+  keywords: ["VPS 初心者", "VPS 始め方", "VPS 入門", "初心者 VPS おすすめ", "VPS 失敗しない選び方"],
   alternates: {
     canonical: "/articles/beginner-guide/",
   },

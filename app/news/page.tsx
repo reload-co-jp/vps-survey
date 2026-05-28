@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "ニュース一覧",
   description:
     "VPSに関するニュースやリリースまとめを読める一覧ページです。",
+  keywords: ["VPS ニュース", "VPS リリース", "VPS 最新情報", "VPS キャンペーン"],
   alternates: {
     canonical: "/news/",
   },

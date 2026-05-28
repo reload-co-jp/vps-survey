@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "VPSの選び方",
   description:
     "VPSを選ぶときに見るべき価格、CPU、メモリ、ストレージ、リージョン、用途の考え方を初心者向けにまとめた記事です。",
+  keywords: ["VPS 選び方", "VPS 比較 方法", "VPS おすすめ 選び方", "VPS CPU メモリ 選び方", "VPS リージョン"],
   alternates: {
     canonical: "/articles/vps-choice/",
   },

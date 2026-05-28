@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Docker Composeで小規模Webサービスを動かすときのVPS選び",
   description:
     "Docker ComposeでAPIサーバーとDBを立てる小規模Webサービスを例に、必要なVPSスペックと選び方を具体的に解説します。",
+  keywords: ["Docker Compose VPS", "VPS Docker", "小規模 Webサービス VPS", "VPS 2GB 4GB", "Docker Compose スペック"],
   alternates: {
     canonical: "/articles/docker-compose-small-service/",
   },

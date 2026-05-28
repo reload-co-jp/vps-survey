@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "用途別おすすめVPS",
   description:
     "開発、本番、検証、個人開発、社内利用など用途ごとにVPSをどう選ぶかを分かりやすく整理した記事です。",
+  keywords: ["VPS 用途", "VPS おすすめ 用途", "開発用 VPS", "本番 VPS", "VPS 個人開発"],
   alternates: {
     canonical: "/articles/use-case-recommendations/",
   },

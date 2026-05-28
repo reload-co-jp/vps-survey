@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "どの状態になったらVPSをスケールアップすべきか",
   description:
     "CPU、メモリ、ディスク、レスポンス時間、DB負荷などから、VPSをスケールアップする判断基準を分かりやすく解説します。",
+  keywords: ["VPS スケールアップ", "VPS スペック 増強", "VPS メモリ 不足", "VPS CPU 使用率", "VPS 増強 タイミング"],
   alternates: {
     canonical: "/articles/when-to-scale-up/",
   },
