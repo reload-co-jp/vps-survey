@@ -50,6 +50,10 @@ const UseCaseRecommendationsPage = () => {
     description:
       "開発、本番、検証、個人開発、社内利用など用途ごとにVPSをどう選ぶかを分かりやすく整理した記事です。",
     inLanguage: "ja",
+    datePublished: "2026-04-30T00:00:00+09:00",
+    dateModified: "2026-05-12T00:00:00+09:00",
+    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
+    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
     mainEntityOfPage: "/articles/use-case-recommendations/",
   }
 

@@ -63,6 +63,10 @@ const DockerComposeSmallServicePage = () => {
     description:
       "Docker ComposeでAPIサーバーとDBを立てる小規模Webサービスを例に、必要なVPSスペックと選び方を具体的に解説します。",
     inLanguage: "ja",
+    datePublished: "2026-04-30T00:00:00+09:00",
+    dateModified: "2026-05-12T00:00:00+09:00",
+    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
+    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
     mainEntityOfPage: "/articles/docker-compose-small-service/",
   }
 

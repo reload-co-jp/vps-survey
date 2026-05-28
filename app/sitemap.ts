@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next"
+import { getAllArticles } from "../lib/articles"
+import { getAllNews } from "../lib/news"
 import { getAllServices } from "../lib/vps"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
@@ -16,6 +18,8 @@ export const dynamic = "force-static"
 
 const sitemap = (): MetadataRoute.Sitemap => {
   const services = getAllServices()
+  const articles = getAllArticles()
+  const newsItems = getAllNews()
 
   return [
     {
@@ -29,6 +33,30 @@ const sitemap = (): MetadataRoute.Sitemap => {
       lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    {
+      url: `${siteUrl}/articles/`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...articles.map((article) => ({
+      url: `${siteUrl}${article.href}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    {
+      url: `${siteUrl}/news/`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    ...newsItems.map((news) => ({
+      url: `${siteUrl}${news.href}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
     })),
     ...staticPages.map((page) => ({
       url: `${siteUrl}/${page}/`,

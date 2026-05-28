@@ -59,6 +59,10 @@ const WhenToScaleUpPage = () => {
     description:
       "CPU、メモリ、ディスク、レスポンス時間、DB負荷などから、VPSをスケールアップする判断基準を分かりやすく解説します。",
     inLanguage: "ja",
+    datePublished: "2026-04-30T00:00:00+09:00",
+    dateModified: "2026-05-12T00:00:00+09:00",
+    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
+    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
     mainEntityOfPage: "/articles/when-to-scale-up/",
   }
 

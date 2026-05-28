@@ -55,6 +55,10 @@ const PrtimesVpsNewsPage = () => {
     description:
       "PR TIMESに掲載されたVPS関連のリリースから、注目しやすい動きをニュース記事として分かりやすく整理したまとめです。",
     inLanguage: "ja",
+    datePublished: "2026-04-16T00:00:00+09:00",
+    dateModified: "2026-05-12T00:00:00+09:00",
+    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
+    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
     mainEntityOfPage: "/news/prtimes-vps/",
   }
 

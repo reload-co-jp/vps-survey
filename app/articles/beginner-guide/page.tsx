@@ -50,6 +50,10 @@ const BeginnerGuidePage = () => {
     description:
       "VPS初心者が最初に知っておきたい基礎知識、選び方、よくある失敗、最初のおすすめ構成を分かりやすく解説した記事です。",
     inLanguage: "ja",
+    datePublished: "2026-04-30T00:00:00+09:00",
+    dateModified: "2026-05-12T00:00:00+09:00",
+    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
+    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
     mainEntityOfPage: "/articles/beginner-guide/",
   }
 

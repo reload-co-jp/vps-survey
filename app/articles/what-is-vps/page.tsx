@@ -50,6 +50,10 @@ const WhatIsVpsPage = () => {
     description:
       "VPSの基本、共有サーバーやクラウドとの違い、メリット・デメリット、向いている用途を分かりやすく解説する記事です。",
     inLanguage: "ja",
+    datePublished: "2026-04-30T00:00:00+09:00",
+    dateModified: "2026-05-12T00:00:00+09:00",
+    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
+    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
     mainEntityOfPage: "/articles/what-is-vps/",
   }
 
