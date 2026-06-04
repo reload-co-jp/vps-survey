@@ -8,6 +8,14 @@ export type ArticleSummary = {
 
 const articles: ArticleSummary[] = [
   {
+    id: "vps-price-trend",
+    title: "VPS料金の推移と今後の見通し（2026年）",
+    description:
+      "2026年4〜6月の料金変動データをもとに、値上がりしたVPS・安定したVPS・円安の影響・今後の動向の見通しを整理した記事です。",
+    href: "/articles/vps-price-trend/",
+    category: "料金動向",
+  },
+  {
     id: "what-is-vps",
     title: "VPSとは何か",
     description:
