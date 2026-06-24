@@ -6,6 +6,7 @@ import "./reset.css"
 
 const googleAnalyticsId = "G-BH2STWSGXR"
 const googleAdsenseClient = "ca-pub-6542845006087970"
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 const isProduction = process.env.NODE_ENV === "production"
 const footerLpLinks = [
   { href: "/lp/conoha/", label: "ConoHa VPS" },
@@ -38,6 +39,11 @@ export const metadata: Metadata = {
   },
   category: "technology",
   applicationName: siteName,
+  verification: googleSiteVerification
+    ? {
+        google: googleSiteVerification,
+      }
+    : undefined,
   referrer: "origin-when-cross-origin",
   creator: siteName,
   publisher: siteName,
@@ -101,14 +107,6 @@ const webSiteJsonLd = {
   name: siteName,
   url: siteUrl,
   inLanguage: "ja",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${siteUrl}/?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 }
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

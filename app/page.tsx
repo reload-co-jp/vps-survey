@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { VpsExplorer } from "../components/vps-explorer"
+import { absoluteUrl, siteName } from "../lib/site"
 import { getAllServices, getLowestPricePlan } from "../lib/vps"
 
 export const metadata: Metadata = {
@@ -40,17 +41,38 @@ const Page = () => {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "VPS比較サイト",
+    url: absoluteUrl("/"),
+    mainEntityOfPage: absoluteUrl("/"),
+    inLanguage: "ja",
     description:
       "国内外の VPS を価格・性能・用途から比較できる一覧ページ。検索、フィルタ、比較、詳細ページへの導線を提供します。",
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: absoluteUrl("/"),
+    },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: services.map((service, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `/vps/${service.id}/`,
+        url: absoluteUrl(`/vps/${service.id}/`),
         name: service.name,
       })),
     },
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: siteName,
+        item: absoluteUrl("/"),
+      },
+    ],
   }
 
   const faqJsonLd = {
@@ -88,6 +110,10 @@ const Page = () => {
     <>
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        type="application/ld+json"
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         type="application/ld+json"
       />
       <script

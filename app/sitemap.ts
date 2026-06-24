@@ -29,18 +29,6 @@ const sitemap = (): MetadataRoute.Sitemap => {
       changeFrequency: "weekly",
       priority: 1,
     },
-    {
-      url: `${siteUrl}/llms.txt`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.4,
-    },
-    {
-      url: `${siteUrl}/llms-full.txt`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.4,
-    },
     ...services.map((service) => ({
       url: `${siteUrl}/vps/${service.id}/`,
       lastModified,
