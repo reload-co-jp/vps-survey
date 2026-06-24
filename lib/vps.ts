@@ -118,7 +118,7 @@ const matchesMinimum = (
 ) => (selected === "all" ? true : value >= Number(selected))
 
 const getPlanSpecScore = (plan: VpsPlan) =>
-  plan.cpu * 1.5 + plan.memory * 2 + plan.storage / 50
+  plan.cpu * 1.5 + plan.memory * 2 + (plan.storage ?? 0) / 50
 
 export const filterAndSortServices = (
   items: VpsService[],
@@ -185,14 +185,14 @@ export const getComparisonRows = (servicesToCompare: VpsService[]) => [
   },
   {
     label: "最小ストレージ",
-    values: servicesToCompare.map(
-      (service) => formatStorageLabel(getLowestPricePlan(service).storage)
+    values: servicesToCompare.map((service) =>
+      formatStorageLabel(getLowestPricePlan(service).storage)
     ),
   },
   {
     label: "転送量",
-    values: servicesToCompare.map(
-      (service) => formatTrafficLabel(getLowestPricePlan(service).traffic)
+    values: servicesToCompare.map((service) =>
+      formatTrafficLabel(getLowestPricePlan(service).traffic)
     ),
   },
   {
