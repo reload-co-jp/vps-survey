@@ -5,6 +5,7 @@ import { companyUrl, siteName, siteUrl } from "../lib/site"
 import "./reset.css"
 
 const googleAnalyticsId = "G-BH2STWSGXR"
+const googleAdsenseClient = "ca-pub-6542845006087970"
 const isProduction = process.env.NODE_ENV === "production"
 const footerLpLinks = [
   { href: "/lp/conoha/", label: "ConoHa VPS" },
@@ -13,6 +14,7 @@ const footerLpLinks = [
   { href: "/lp/2026-04-campaign/", label: "2026年4月キャンペーン" },
   { href: "/lp/2026-05-campaign/", label: "2026年5月キャンペーン" },
   { href: "/lp/2026-06-campaign/", label: "2026年6月キャンペーン" },
+  { href: "/lp/2026-07-campaign/", label: "2026年7月キャンペーン" },
 ]
 const footerSiteLinks = [{ href: "/about/", label: "このサイトについて" }]
 const shellStyle = {
@@ -141,6 +143,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 gtag('config', '${googleAnalyticsId}');
               `}
             </Script>
+            <Script
+              async
+              crossOrigin="anonymous"
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${googleAdsenseClient}`}
+              strategy="afterInteractive"
+            />
           </>
         ) : null}
         <div style={{ minHeight: "100vh", width: "100%" }}>
