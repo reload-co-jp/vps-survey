@@ -125,6 +125,21 @@ const articleLinks = [
   },
 ]
 
+const decisionSummaries = [
+  {
+    title: "初心者・個人開発",
+    body: "国内VPSの1〜2GB帯から始めると、料金を抑えつつ管理画面や情報量の面で迷いにくい。",
+  },
+  {
+    title: "小規模な本番運用",
+    body: "2〜4GB以上、国内リージョン、上位プランの多さを優先すると、アクセス増やDB同居に対応しやすい。",
+  },
+  {
+    title: "検証・短期利用",
+    body: "低価格プランや時間課金に強いVPSを選ぶと、試行錯誤しながら費用を抑えられる。",
+  },
+]
+
 type Props = {
   services: VpsService[]
 }
@@ -165,6 +180,7 @@ export const VpsExplorer = ({ services }: Props) => {
     <div data-vps-explorer="" style={explorerStyle}>
       <ExplorerStyles />
       <Hero serviceCount={services.length} />
+      <DecisionSummary />
       <FilterPanel
         filters={filters}
         resultCount={filteredServices.length}
@@ -260,6 +276,30 @@ const Hero = ({ serviceCount }: { serviceCount: number }) => (
             label={metric.label}
             value={metric.value(serviceCount)}
           />
+        ))}
+      </div>
+    </div>
+  </section>
+)
+
+const DecisionSummary = () => (
+  <section data-surface="responsive" style={fullWidthStyle}>
+    <div style={{ display: "grid", gap: "1rem" }}>
+      <div style={{ display: "grid", gap: "0.4rem" }}>
+        <h2 style={sectionTitleStyle}>VPS選びの結論</h2>
+        <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
+          VPSは用途、必要メモリ、国内/海外、拡張余地の順に絞ると選びやすい。
+          価格だけで決めず、CPU・メモリ・上位プランの有無を一緒に見る。
+        </p>
+      </div>
+      <div style={summaryGridStyle}>
+        {decisionSummaries.map((summary) => (
+          <article key={summary.title} style={summaryItemStyle}>
+            <h3 style={{ color: "#1a202c", fontSize: "1rem", fontWeight: 700 }}>
+              {summary.title}
+            </h3>
+            <p style={{ color: "#718096", lineHeight: 1.75 }}>{summary.body}</p>
+          </article>
         ))}
       </div>
     </div>
@@ -718,6 +758,21 @@ const sectionTitleStyle: CSSProperties = {
   color: "#1a202c",
   fontSize: "1.35rem",
   marginBottom: "0.35rem",
+}
+
+const summaryGridStyle: CSSProperties = {
+  display: "grid",
+  gap: "0.85rem",
+  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
+}
+
+const summaryItemStyle: CSSProperties = {
+  background: "#f7fafc",
+  border: "1px solid #e2e8f0",
+  borderRadius: 8,
+  display: "grid",
+  gap: "0.45rem",
+  padding: "0.9rem",
 }
 
 const planCardStyle: CSSProperties = {

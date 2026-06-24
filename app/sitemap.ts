@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next"
 import { getAllArticles } from "../lib/articles"
 import { getAllNews } from "../lib/news"
+import { lastModified, siteUrl } from "../lib/site"
 import { getAllServices } from "../lib/vps"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
 const staticPages = ["about"] as const
 const lpPages = [
   "conoha",
@@ -11,8 +11,8 @@ const lpPages = [
   "shin-vps",
   "2026-04-campaign",
   "2026-05-campaign",
+  "2026-06-campaign",
 ] as const
-const lastModified = "2026-05-12T00:00:00+09:00"
 
 export const dynamic = "force-static"
 
@@ -27,6 +27,18 @@ const sitemap = (): MetadataRoute.Sitemap => {
       lastModified,
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${siteUrl}/llms.txt`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.4,
+    },
+    {
+      url: `${siteUrl}/llms-full.txt`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.4,
     },
     ...services.map((service) => ({
       url: `${siteUrl}/vps/${service.id}/`,

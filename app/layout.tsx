@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 import Script from "next/script"
 import type { ReactNode } from "react"
+import { companyUrl, siteName, siteUrl } from "../lib/site"
 import "./reset.css"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vps.reload.co.jp"
-const companyUrl = "https://reload.co.jp/"
 const googleAnalyticsId = "G-BH2STWSGXR"
 const isProduction = process.env.NODE_ENV === "production"
 const footerLpLinks = [
@@ -15,9 +14,7 @@ const footerLpLinks = [
   { href: "/lp/2026-05-campaign/", label: "2026年5月キャンペーン" },
   { href: "/lp/2026-06-campaign/", label: "2026年6月キャンペーン" },
 ]
-const footerSiteLinks = [
-  { href: "/about/", label: "このサイトについて" },
-]
+const footerSiteLinks = [{ href: "/about/", label: "このサイトについて" }]
 const shellStyle = {
   margin: "0 auto",
   maxWidth: "1180px",
@@ -38,10 +35,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   category: "technology",
-  applicationName: "VPS比較サイト",
+  applicationName: siteName,
   referrer: "origin-when-cross-origin",
-  creator: "VPS Survey",
-  publisher: "VPS Survey",
+  creator: siteName,
+  publisher: siteName,
   robots: {
     index: true,
     follow: true,
@@ -65,7 +62,7 @@ export const metadata: Metadata = {
       },
     ],
     locale: "ja_JP",
-    siteName: "VPS比較サイト",
+    siteName,
     title: "VPS比較サイト",
     type: "website",
     url: siteUrl,
@@ -90,7 +87,7 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "VPS比較サイト",
+  name: siteName,
   url: siteUrl,
   logo: `${siteUrl}/icon.svg`,
   sameAs: [companyUrl],
@@ -99,7 +96,7 @@ const organizationJsonLd = {
 const webSiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "VPS比較サイト",
+  name: siteName,
   url: siteUrl,
   inLanguage: "ja",
   potentialAction: {
@@ -115,9 +112,15 @@ const webSiteJsonLd = {
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ja">
+      <head>
+        <link href="/llms.txt" rel="alternate" type="text/plain" />
+        <link href="/llms-full.txt" rel="alternate" type="text/plain" />
+      </head>
       <body>
         <script
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
           type="application/ld+json"
         />
         <script
@@ -225,7 +228,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                   justifyContent: "space-between",
                 }}
               >
-                <p style={{ color: "#1a202c", fontWeight: 600 }}>VPS比較サイト</p>
+                <p style={{ color: "#1a202c", fontWeight: 600 }}>
+                  VPS比較サイト
+                </p>
                 <p>&copy; 2026 Reload, Inc.</p>
               </div>
               <div

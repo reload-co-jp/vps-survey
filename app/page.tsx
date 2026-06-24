@@ -56,14 +56,32 @@ const Page = () => {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: services.map((service) => ({
-      "@type": "Question",
-      name: `${service.name}はどんな用途に向いていますか？`,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `${service.summary} 最安プランは¥${getLowestPricePlan(service).price.toLocaleString()}からです。`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "VPSは何を基準に選ぶべきですか？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "用途、必要メモリ、国内/海外リージョン、上位プランの豊富さ、料金の順に見ると選びやすいです。価格だけでなくCPU・メモリ・拡張余地を一緒に比較します。",
+        },
       },
-    })),
+      {
+        "@type": "Question",
+        name: "初心者や個人開発に向くVPSはどれですか？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "初心者や個人開発では、国内VPSの1〜2GB帯から始めると管理しやすく、費用も抑えやすいです。DockerやDBを使う場合は2GB以上を目安にします。",
+        },
+      },
+      ...services.map((service) => ({
+        "@type": "Question",
+        name: `${service.name}はどんな用途に向いていますか？`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${service.summary} 最安プランは¥${getLowestPricePlan(service).price.toLocaleString()}からです。`,
+        },
+      })),
+    ],
   }
 
   return (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { absoluteUrl, lastModified, siteName } from "../../../lib/site"
 import {
   billingLabels,
   formatStorageLabel,
@@ -96,13 +97,73 @@ const VpsDetailPage = async ({ params }: Props) => {
     "@type": "Product",
     name: service.name,
     description: service.summary,
+    url: absoluteUrl(`/vps/${service.id}/`),
+    image: absoluteUrl(`/vps/${service.id}/opengraph-image`),
     category: "VPS",
+    brand: {
+      "@type": "Brand",
+      name: service.name,
+    },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "リージョン",
+        value: regionLabels[service.region],
+      },
+      {
+        "@type": "PropertyValue",
+        name: "おすすめ用途",
+        value: service.usage.map((usage) => usageLabels[usage]).join(" / "),
+      },
+      {
+        "@type": "PropertyValue",
+        name: "プラン数",
+        value: `${service.plans.length}件`,
+      },
+    ],
     offers: {
       "@type": "Offer",
       priceCurrency: "JPY",
       price: lowestPricePlan.price,
       url: service.officialUrl,
+      availability: "https://schema.org/InStock",
+      priceValidUntil: "2026-12-31",
+      seller: {
+        "@type": "Organization",
+        name: service.name,
+      },
     },
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `${service.name}はどんな用途に向いていますか？`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${service.summary} 主なおすすめ用途は${service.recommendedFor.join("、")}です。`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `${service.name}の最安プランはいくらですか？`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${service.name}の最安プランは${lowestPricePlan.name}で、掲載価格は月額${lowestPricePlan.price.toLocaleString()}円です。価格は変更される可能性があるため、申込み前に公式サイトで確認してください。`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `${service.name}の注意点は何ですか？`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: service.cons.join("、"),
+        },
+      },
+    ],
   }
 
   const breadcrumbJsonLd = {
@@ -112,16 +173,33 @@ const VpsDetailPage = async ({ params }: Props) => {
       {
         "@type": "ListItem",
         position: 1,
-        name: "VPS比較サイト",
-        item: "/",
+        name: siteName,
+        item: absoluteUrl("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: service.name,
-        item: `/vps/${service.id}/`,
+        item: absoluteUrl(`/vps/${service.id}/`),
       },
     ],
+  }
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${service.name}の料金・スペック・用途`,
+    description: `${service.name}の価格、スペック、メリット・デメリット、おすすめ用途を掲載した詳細ページです。`,
+    inLanguage: "ja",
+    datePublished: "2026-05-12T00:00:00+09:00",
+    dateModified: lastModified,
+    author: { "@type": "Organization", name: siteName, url: absoluteUrl("/") },
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: absoluteUrl("/"),
+    },
+    mainEntityOfPage: absoluteUrl(`/vps/${service.id}/`),
   }
 
   return (
@@ -139,6 +217,14 @@ const VpsDetailPage = async ({ params }: Props) => {
         type="application/ld+json"
       />
       <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        type="application/ld+json"
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        type="application/ld+json"
+      />
+      <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         type="application/ld+json"
       />
@@ -152,7 +238,14 @@ const VpsDetailPage = async ({ params }: Props) => {
           padding: "clamp(0.9rem, 3vw, 1.5rem)",
         }}
       >
-        <Link href="/" style={{ color: "#3EA8FF", fontSize: "0.9rem", textDecoration: "none" }}>
+        <Link
+          href="/"
+          style={{
+            color: "#3EA8FF",
+            fontSize: "0.9rem",
+            textDecoration: "none",
+          }}
+        >
           ← 一覧へ戻る
         </Link>
         <div style={{ display: "grid", gap: "0.7rem" }}>
@@ -174,7 +267,12 @@ const VpsDetailPage = async ({ params }: Props) => {
             ))}
           </div>
           <h1
-            style={{ color: "#1a202c", fontSize: "clamp(1.75rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.2 }}
+            style={{
+              color: "#1a202c",
+              fontSize: "clamp(1.75rem, 4vw, 3rem)",
+              fontWeight: 700,
+              lineHeight: 1.2,
+            }}
           >
             {service.name}
           </h1>
@@ -285,7 +383,9 @@ const VpsDetailPage = async ({ params }: Props) => {
                 }}
               >
                 <div style={{ display: "grid", gap: "0.3rem" }}>
-                  <strong style={{ color: "#1a202c", fontSize: "1.05rem" }}>{plan.name}</strong>
+                  <strong style={{ color: "#1a202c", fontSize: "1.05rem" }}>
+                    {plan.name}
+                  </strong>
                   <span
                     style={{
                       color: "#3EA8FF",
@@ -339,9 +439,44 @@ const VpsDetailPage = async ({ params }: Props) => {
           <BulletList items={service.recommendedFor} />
         </article>
       </section>
+
+      <section>
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>よくある質問</h2>
+          <div style={{ display: "grid", gap: "1rem" }}>
+            <QuestionAnswer
+              answer={`${service.summary} 主なおすすめ用途は${service.recommendedFor.join("、")}です。`}
+              question={`${service.name}はどんな用途に向いていますか？`}
+            />
+            <QuestionAnswer
+              answer={`${service.name}の最安プランは${lowestPricePlan.name}で、掲載価格は月額${lowestPricePlan.price.toLocaleString()}円です。価格は変更される可能性があるため、申込み前に公式サイトで確認してください。`}
+              question={`${service.name}の最安プランはいくらですか？`}
+            />
+            <QuestionAnswer
+              answer={service.cons.join("、")}
+              question={`${service.name}の注意点は何ですか？`}
+            />
+          </div>
+        </article>
+      </section>
     </div>
   )
 }
+
+const QuestionAnswer = ({
+  answer,
+  question,
+}: {
+  answer: string
+  question: string
+}) => (
+  <div style={{ display: "grid", gap: "0.35rem" }}>
+    <h3 style={{ color: "#1a202c", fontSize: "1rem", fontWeight: 700 }}>
+      {question}
+    </h3>
+    <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{answer}</p>
+  </div>
+)
 
 const DetailMetric = ({ label, value }: { label: string; value: string }) => (
   <div
