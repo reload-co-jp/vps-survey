@@ -4,6 +4,8 @@ export type ArticleSummary = {
   description: string
   href: string
   category: string
+  publishedAt: string
+  updatedAt: string
 }
 
 const articles: ArticleSummary[] = [
@@ -14,6 +16,8 @@ const articles: ArticleSummary[] = [
       "2026年4〜6月の料金変動データをもとに、値上がりしたVPS・安定したVPS・円安の影響・今後の動向の見通しを整理した記事です。",
     href: "/articles/vps-price-trend/",
     category: "料金動向",
+    publishedAt: "2026-06-04T00:00:00+09:00",
+    updatedAt: "2026-06-04T00:00:00+09:00",
   },
   {
     id: "what-is-vps",
@@ -22,6 +26,8 @@ const articles: ArticleSummary[] = [
       "VPSの基本、共有サーバーやクラウドとの違い、メリット・デメリット、向いている用途を解説する記事です。",
     href: "/articles/what-is-vps/",
     category: "基礎知識",
+    publishedAt: "2026-04-30T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
   {
     id: "vps-choice",
@@ -30,6 +36,8 @@ const articles: ArticleSummary[] = [
       "価格、CPU、メモリ、ストレージ、リージョン、用途からVPSを選ぶ基本の考え方を整理した記事です。",
     href: "/articles/vps-choice/",
     category: "基礎知識",
+    publishedAt: "2026-04-30T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
   {
     id: "use-case-recommendations",
@@ -38,6 +46,8 @@ const articles: ArticleSummary[] = [
       "開発、本番、検証、社内利用など、使い方ごとにどんなVPSを選ぶとよいかをまとめています。",
     href: "/articles/use-case-recommendations/",
     category: "用途別",
+    publishedAt: "2026-04-30T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
   {
     id: "beginner-guide",
@@ -46,6 +56,8 @@ const articles: ArticleSummary[] = [
       "VPS初心者が最初に知っておきたいこと、よくある失敗、最初のおすすめ構成を分かりやすく解説します。",
     href: "/articles/beginner-guide/",
     category: "初心者向け",
+    publishedAt: "2026-04-30T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
   {
     id: "object-storage",
@@ -54,6 +66,8 @@ const articles: ArticleSummary[] = [
       "オブジェクトストレージの基本、ファイル/ブロックストレージとの違い、VPSと組み合わせる使い方、向いている用途を解説します。",
     href: "/articles/object-storage/",
     category: "基礎知識",
+    publishedAt: "2026-04-30T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
   {
     id: "docker-compose-small-service",
@@ -62,6 +76,8 @@ const articles: ArticleSummary[] = [
       "APIサーバーとDBを同居させる小規模構成を例に、2GBか4GBかをどう判断するかを解説します。",
     href: "/articles/docker-compose-small-service/",
     category: "実例",
+    publishedAt: "2026-04-30T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
   {
     id: "when-to-scale-up",
@@ -70,6 +86,8 @@ const articles: ArticleSummary[] = [
       "CPU、メモリ、ディスク、レスポンス時間、運用のしんどさから、増強タイミングを判断する記事です。",
     href: "/articles/when-to-scale-up/",
     category: "運用",
+    publishedAt: "2026-04-30T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
 ]
 

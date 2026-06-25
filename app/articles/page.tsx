@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllArticles } from "../../lib/articles"
+import { absoluteUrl, siteName } from "../../lib/site"
 
 export const metadata: Metadata = {
   title: "記事一覧",
@@ -40,14 +41,22 @@ const ArticlesPage = () => {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "記事一覧",
+    url: absoluteUrl("/articles/"),
+    mainEntityOfPage: absoluteUrl("/articles/"),
+    inLanguage: "ja",
     description:
       "VPSの選び方、用途別おすすめ、初心者向け解説、実例記事をまとめて読める一覧ページです。",
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: absoluteUrl("/"),
+    },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: articles.map((article, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: article.href,
+        url: absoluteUrl(article.href),
         name: article.title,
       })),
     },
@@ -60,14 +69,14 @@ const ArticlesPage = () => {
       {
         "@type": "ListItem",
         position: 1,
-        name: "VPS比較サイト",
-        item: "/",
+        name: siteName,
+        item: absoluteUrl("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: "/articles/",
+        item: absoluteUrl("/articles/"),
       },
     ],
   }

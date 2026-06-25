@@ -43,7 +43,7 @@ const sitemap = (): MetadataRoute.Sitemap => {
     },
     ...articles.map((article) => ({
       url: `${siteUrl}${article.href}`,
-      lastModified,
+      lastModified: article.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
@@ -55,7 +55,7 @@ const sitemap = (): MetadataRoute.Sitemap => {
     },
     ...newsItems.map((news) => ({
       url: `${siteUrl}${news.href}`,
-      lastModified,
+      lastModified: news.updatedAt,
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),

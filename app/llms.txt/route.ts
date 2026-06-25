@@ -38,6 +38,7 @@ export const GET = () => {
     "## 主要ページ",
     `- [VPS比較一覧](${absoluteUrl("/")}): 検索、価格帯、CPU、メモリ、国内/海外、用途でVPSを絞り込み、横並び比較できる。`,
     `- [記事一覧](${absoluteUrl("/articles/")}): VPSの選び方、初心者向け基礎、用途別おすすめ、運用判断の記事。`,
+    `- [ニュース一覧](${absoluteUrl("/news/")}): VPS関連ニュース、料金改定、リリースまとめ。`,
     `- [このサイトについて](${absoluteUrl("/about/")}): 運営情報とサイト方針。`,
     `- [詳細データ](${absoluteUrl("/llms-full.txt")}): LLM向けの全サービス・全プラン要約。`,
     "",

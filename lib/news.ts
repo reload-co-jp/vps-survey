@@ -4,6 +4,8 @@ export type NewsSummary = {
   description: string
   href: string
   category: string
+  publishedAt: string
+  updatedAt: string
 }
 
 const newsItems: NewsSummary[] = [
@@ -14,6 +16,8 @@ const newsItems: NewsSummary[] = [
       "クラウドVPS byGMO・お名前.com VPS・Amazon Lightsail・Linodeで料金改定を確認。変更前後の価格と影響をまとめました。",
     href: "/news/vps-price-update-2026-06/",
     category: "料金改定",
+    publishedAt: "2026-06-04T00:00:00+09:00",
+    updatedAt: "2026-06-04T00:00:00+09:00",
   },
   {
     id: "prtimes-vps",
@@ -22,6 +26,8 @@ const newsItems: NewsSummary[] = [
       "PR TIMESに掲載されたVPS関連リリースから、最近の注目トピックをニュースとして整理したまとめです。",
     href: "/news/prtimes-vps/",
     category: "リリースまとめ",
+    publishedAt: "2026-04-16T00:00:00+09:00",
+    updatedAt: "2026-05-12T00:00:00+09:00",
   },
 ]
 

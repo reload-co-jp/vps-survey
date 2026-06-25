@@ -18,6 +18,10 @@ const footerLpLinks = [
   { href: "/lp/2026-07-campaign/", label: "2026年7月キャンペーン" },
 ]
 const footerSiteLinks = [{ href: "/about/", label: "このサイトについて" }]
+const headerLinks = [
+  { href: "/articles/", label: "記事" },
+  { href: "/news/", label: "ニュース" },
+]
 const shellStyle = {
   margin: "0 auto",
   maxWidth: "1180px",
@@ -184,17 +188,20 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 VPS比較サイト
               </a>
               <nav style={{ display: "flex", gap: "1.25rem" }}>
-                <a
-                  href="/articles/"
-                  style={{
-                    color: "#4a5568",
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    textDecoration: "none",
-                  }}
-                >
-                  記事
-                </a>
+                {headerLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    style={{
+                      color: "#4a5568",
+                      fontSize: "0.9rem",
+                      fontWeight: 500,
+                      textDecoration: "none",
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </nav>
             </div>
           </header>

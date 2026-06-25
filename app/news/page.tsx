@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllNews } from "../../lib/news"
+import { absoluteUrl, siteName } from "../../lib/site"
 
 export const metadata: Metadata = {
   title: "ニュース一覧",
@@ -39,13 +40,21 @@ const NewsPage = () => {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "ニュース一覧",
+    url: absoluteUrl("/news/"),
+    mainEntityOfPage: absoluteUrl("/news/"),
+    inLanguage: "ja",
     description: "VPSに関するニュースやリリースまとめを読める一覧ページです。",
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: absoluteUrl("/"),
+    },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: newsItems.map((item, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: item.href,
+        url: absoluteUrl(item.href),
         name: item.title,
       })),
     },
@@ -58,14 +67,14 @@ const NewsPage = () => {
       {
         "@type": "ListItem",
         position: 1,
-        name: "VPS比較サイト",
-        item: "/",
+        name: siteName,
+        item: absoluteUrl("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "ニュース一覧",
-        item: "/news/",
+        item: absoluteUrl("/news/"),
       },
     ],
   }
