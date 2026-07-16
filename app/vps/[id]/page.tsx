@@ -46,12 +46,20 @@ export const generateMetadata = async ({
     }
   }
 
+  const lowestPricePlan = getLowestPricePlan(service)
+  const price = lowestPricePlan.price.toLocaleString()
+  const usage = service.usage.map((item) => usageLabels[item]).join("・")
+  const seoTitle = `${service.name}の料金・評判・スペック比較`
+  const seoDescription = `${service.name}のVPS料金は月額${price}円から。CPU・メモリ・ストレージ、メリット、注意点、おすすめ用途（${usage}）を比較。`
+
   return {
-    title: service.name,
-    description: `${service.name}の価格、スペック、メリット・デメリット、おすすめ用途を掲載した詳細ページです。`,
+    title: seoTitle,
+    description: seoDescription,
     keywords: [
       `${service.name} 評判`,
       `${service.name} 料金`,
+      `${service.name} スペック`,
+      `${service.name} おすすめ`,
       `${service.name} VPS`,
       "VPS 比較",
     ],
@@ -59,8 +67,8 @@ export const generateMetadata = async ({
       canonical: `/vps/${service.id}/`,
     },
     openGraph: {
-      title: `${service.name}の料金・スペック・用途`,
-      description: `${service.name}の料金帯、スペック、メリット・デメリット、おすすめ用途を確認できる詳細ページです。`,
+      title: seoTitle,
+      description: seoDescription,
       images: [
         {
           alt: `${service.name}のOGP画像`,
@@ -74,9 +82,9 @@ export const generateMetadata = async ({
     },
     twitter: {
       card: "summary_large_image",
-      description: `${service.name}の料金帯、スペック、メリット・デメリット、おすすめ用途を確認できる詳細ページです。`,
+      description: seoDescription,
       images: [`/vps/${service.id}/twitter-image`],
-      title: `${service.name}の料金・スペック・用途`,
+      title: seoTitle,
     },
   }
 }
@@ -91,6 +99,24 @@ const VpsDetailPage = async ({ params }: Props) => {
 
   const lowestPricePlan = getLowestPricePlan(service)
   const outboundUrl = getOutboundUrl(service)
+  const relatedServices = getAllServices()
+    .filter((item) => item.id !== service.id)
+    .sort((left, right) => {
+      const leftScore =
+        Number(left.region === service.region) * 2 +
+        left.usage.filter((usage) => service.usage.includes(usage)).length
+      const rightScore =
+        Number(right.region === service.region) * 2 +
+        right.usage.filter((usage) => service.usage.includes(usage)).length
+
+      return rightScore - leftScore || right.popularity - left.popularity
+    })
+    .slice(0, 3)
+  const relatedServiceJsonLd = relatedServices.map((item) => ({
+    "@type": "Product",
+    name: item.name,
+    url: absoluteUrl(`/vps/${item.id}/`),
+  }))
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -100,6 +126,8 @@ const VpsDetailPage = async ({ params }: Props) => {
     url: absoluteUrl(`/vps/${service.id}/`),
     image: absoluteUrl(`/vps/${service.id}/opengraph-image`),
     category: "VPS",
+    sameAs: service.officialUrl,
+    isSimilarTo: relatedServiceJsonLd,
     brand: {
       "@type": "Brand",
       name: service.name,
@@ -188,8 +216,8 @@ const VpsDetailPage = async ({ params }: Props) => {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${service.name}の料金・スペック・用途`,
-    description: `${service.name}の価格、スペック、メリット・デメリット、おすすめ用途を掲載した詳細ページです。`,
+    headline: `${service.name}の料金・評判・スペック比較`,
+    description: `${service.name}のVPS料金は月額${lowestPricePlan.price.toLocaleString()}円から。CPU・メモリ・ストレージ、メリット、注意点、おすすめ用途を比較。`,
     inLanguage: "ja",
     datePublished: "2026-05-12T00:00:00+09:00",
     dateModified: lastModified,
@@ -456,6 +484,42 @@ const VpsDetailPage = async ({ params }: Props) => {
               answer={service.cons.join("、")}
               question={`${service.name}の注意点は何ですか？`}
             />
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <article style={panelStyle}>
+          <h2 style={panelTitleStyle}>{service.name}と比較したいVPS</h2>
+          <div style={responsiveGrid("220px")}>
+            {relatedServices.map((item) => {
+              const plan = getLowestPricePlan(item)
+
+              return (
+                <Link
+                  href={`/vps/${item.id}/`}
+                  key={item.id}
+                  style={{
+                    background: "#ffffff",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: 8,
+                    color: "#1a202c",
+                    display: "grid",
+                    gap: "0.45rem",
+                    padding: "1rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <strong style={{ fontSize: "1rem", lineHeight: 1.4 }}>
+                    {item.name}の料金・スペックを見る
+                  </strong>
+                  <span style={{ color: "#4a5568", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                    月額{plan.price.toLocaleString()}円から / {regionLabels[item.region]} /{" "}
+                    {item.usage.map((usage) => usageLabels[usage]).join("・")}
+                  </span>
+                </Link>
+              )
+            })}
           </div>
         </article>
       </section>
