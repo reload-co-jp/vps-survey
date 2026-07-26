@@ -16,6 +16,7 @@ const footerLpLinks = [
   { href: "/lp/2026-05-campaign/", label: "2026年5月キャンペーン" },
   { href: "/lp/2026-06-campaign/", label: "2026年6月キャンペーン" },
   { href: "/lp/2026-07-campaign/", label: "2026年7月キャンペーン" },
+  { href: "/lp/2026-08-campaign/", label: "2026年8月キャンペーン" },
 ]
 const footerSiteLinks = [{ href: "/about/", label: "このサイトについて" }]
 const headerLinks = [

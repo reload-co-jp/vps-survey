@@ -13,6 +13,7 @@ const lpPages = [
   "2026-05-campaign",
   "2026-06-campaign",
   "2026-07-campaign",
+  "2026-08-campaign",
 ] as const
 
 export const dynamic = "force-static"
