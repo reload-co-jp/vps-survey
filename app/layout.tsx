@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 import type { ReactNode } from "react"
 import { companyUrl, siteName, siteUrl } from "../lib/site"
@@ -28,6 +28,10 @@ const shellStyle = {
   maxWidth: "1180px",
   paddingInline: "clamp(0.75rem, 2vw, 1rem)",
   width: "100%",
+}
+
+export const viewport: Viewport = {
+  themeColor: "#2563eb",
 }
 
 export const metadata: Metadata = {
@@ -154,157 +158,75 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
             />
           </>
         ) : null}
-        <div style={{ minHeight: "100vh", width: "100%" }}>
-          <header
-            style={{
-              background: "#ffffff",
-              borderBottom: "1px solid #e2e8f0",
-              position: "sticky",
-              top: 0,
-              zIndex: 20,
-            }}
-          >
-            <div
-              style={{
-                ...shellStyle,
-                alignItems: "center",
-                display: "flex",
-                flexWrap: "wrap" as const,
-                gap: "1rem",
-                justifyContent: "space-between",
-                minHeight: "60px",
-                paddingBlock: "0.75rem",
-              }}
-            >
-              <a
-                href="/"
-                style={{
-                  color: "#1a202c",
-                  fontSize: "clamp(0.92rem, 2vw, 1rem)",
-                  fontWeight: 700,
-                  letterSpacing: "0.02em",
-                  textDecoration: "none",
-                }}
-              >
-                VPS比較サイト
-              </a>
-              <nav style={{ display: "flex", gap: "1.25rem" }}>
-                {headerLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    style={{
-                      color: "#4a5568",
-                      fontSize: "0.9rem",
-                      fontWeight: 500,
-                      textDecoration: "none",
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </header>
-          <main
-            style={{
-              ...shellStyle,
-              minWidth: 0,
-              paddingBottom: "4rem",
-              paddingTop: "1.5rem",
-            }}
-          >
-            {children}
-          </main>
-          <footer
-            style={{
-              background: "#ffffff",
-              borderTop: "1px solid #e2e8f0",
-              marginTop: "2rem",
-            }}
-          >
-            <div
-              style={{
-                ...shellStyle,
-                color: "#718096",
-                display: "grid",
-                fontSize: "clamp(0.8rem, 1.8vw, 0.85rem)",
-                gap: "1rem",
-                padding: "1.25rem 0 2rem",
-              }}
-            >
-              <div
-                style={{
-                  alignItems: "center",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "0.75rem 1rem",
-                  justifyContent: "space-between",
-                }}
-              >
-                <p style={{ color: "#1a202c", fontWeight: 600 }}>
-                  VPS比較サイト
-                </p>
-                <p>&copy; 2026 Reload, Inc.</p>
-              </div>
-              <div
-                style={{
-                  alignItems: "center",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "0.6rem 1rem",
-                }}
-              >
-                <span style={{ color: "#a0aec0" }}>LP</span>
-                {footerLpLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    style={{
-                      color: "#3EA8FF",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-              <div
-                style={{
-                  alignItems: "center",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "0.6rem 1rem",
-                }}
-              >
-                <span style={{ color: "#a0aec0" }}>サイト情報</span>
-                {footerSiteLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    style={{
-                      color: "#3EA8FF",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-                <a
-                  href={companyUrl}
-                  rel="noopener noreferrer"
-                  style={{
-                    color: "#3EA8FF",
-                    textDecoration: "none",
-                  }}
-                  target="_blank"
-                >
-                  運営会社
+        <a className="skip-link" href="#main">
+          本文へスキップ
+        </a>
+        <header className="site-header">
+          <div className="site-header__inner" style={shellStyle}>
+            <a aria-label={`${siteName} トップ`} className="site-logo" href="/">
+              <span aria-hidden="true" className="site-logo__mark">
+                VPS
+              </span>
+              VPS比較サイト
+            </a>
+            <nav aria-label="メインナビゲーション" className="site-nav">
+              {headerLinks.map((link) => (
+                <a key={link.href} href={link.href}>
+                  {link.label}
                 </a>
-              </div>
-            </div>
-          </footer>
-        </div>
+              ))}
+            </nav>
+          </div>
+        </header>
+        <main
+          id="main"
+          style={{
+            ...shellStyle,
+            minWidth: 0,
+            paddingBottom: "4rem",
+            paddingTop: "1.5rem",
+          }}
+        >
+          {children}
+        </main>
+        <footer className="site-footer">
+          <div className="site-footer__inner" style={shellStyle}>
+            <p className="site-footer__brand">VPS比較サイト</p>
+            <nav
+              aria-label="キャンペーン・サービス別LP"
+              className="site-footer__nav"
+            >
+              <h2>LP</h2>
+              <ul>
+                {footerLpLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <nav aria-label="サイト情報" className="site-footer__nav">
+              <h2>サイト情報</h2>
+              <ul>
+                {footerSiteLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+                <li>
+                  <a
+                    href={companyUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    運営会社
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <p className="site-footer__copy">&copy; 2026 Reload, Inc.</p>
+          </div>
+        </footer>
       </body>
     </html>
   )

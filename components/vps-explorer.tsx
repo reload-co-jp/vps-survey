@@ -206,16 +206,14 @@ const ExplorerStyles = () => (
     [data-vps-explorer] [data-surface='default'] {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
       padding: 1.25rem;
     }
 
     [data-vps-explorer] [data-surface='responsive'] {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: clamp(8px, 2vw, 12px);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      border-radius: clamp(12px, 2vw, 16px);
       padding: clamp(0.9rem, 3vw, 1.25rem);
     }
 
@@ -663,13 +661,15 @@ const compactControlStyle: CSSProperties = {
 }
 
 const heroStyle: CSSProperties = {
-  background: "#eef6ff",
-  border: "1px solid #bee3f8",
-  borderRadius: 12,
+  background:
+    "radial-gradient(600px 300px at 90% 0%, rgba(6, 182, 212, 0.18), transparent 70%), linear-gradient(135deg, #ffffff 0%, #eff6ff 55%, #e0f2fe 100%)",
+  border: "1px solid #dbeafe",
+  borderRadius: 20,
+  boxShadow: "0 10px 40px rgba(37, 99, 235, 0.08)",
   maxWidth: "100%",
   minWidth: 0,
   overflow: "hidden",
-  padding: "clamp(1.25rem, 4vw, 2rem)",
+  padding: "clamp(1.5rem, 5vw, 3rem)",
   position: "relative",
   width: "100%",
 }
@@ -682,10 +682,10 @@ const heroContentStyle: CSSProperties = {
 }
 
 const eyebrowStyle: CSSProperties = {
-  background: "#ebf8ff",
-  border: "1px solid #bee3f8",
+  background: "#ffffff",
+  border: "1px solid #bfdbfe",
   borderRadius: 999,
-  color: "#2b6cb0",
+  color: "#2563eb",
   display: "inline-flex",
   fontSize: "0.75rem",
   fontWeight: 600,
@@ -696,9 +696,12 @@ const eyebrowStyle: CSSProperties = {
 }
 
 const heroTitleStyle: CSSProperties = {
-  color: "#1a202c",
-  fontSize: "clamp(1.75rem, 4vw, 3rem)",
-  fontWeight: 700,
+  backgroundClip: "text",
+  backgroundImage: "linear-gradient(120deg, #0f172a 30%, #2563eb 100%)",
+  color: "transparent",
+  fontSize: "clamp(1.85rem, 4.5vw, 3.2rem)",
+  fontWeight: 800,
+  WebkitBackgroundClip: "text",
   letterSpacing: "-0.03em",
   lineHeight: 1.2,
 }
@@ -710,9 +713,10 @@ const heroLeadStyle: CSSProperties = {
 }
 
 const metricCardStyle: CSSProperties = {
-  background: "#ffffff",
-  border: "1px solid #bee3f8",
-  borderRadius: 8,
+  backdropFilter: "blur(8px)",
+  background: "rgba(255, 255, 255, 0.8)",
+  border: "1px solid #dbeafe",
+  borderRadius: 12,
   display: "grid",
   gap: "0.35rem",
   padding: "0.85rem 1rem",
@@ -790,8 +794,9 @@ const subCellStyle: CSSProperties = {
 }
 
 const linkButtonStyle: CSSProperties = {
-  background: "#3EA8FF",
-  borderRadius: 6,
+  background: "linear-gradient(135deg, #2563eb, #06b6d4)",
+  borderRadius: 999,
+  boxShadow: "0 4px 14px rgba(37, 99, 235, 0.25)",
   color: "#ffffff",
   display: "inline-flex",
   fontSize: "0.9rem",
