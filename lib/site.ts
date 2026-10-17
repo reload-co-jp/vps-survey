@@ -4,6 +4,6 @@ export const siteUrl =
 export const companyUrl = "https://reload.co.jp/"
 export const siteName = "VPS比較サイト"
 export const publisherName = "Reload, Inc."
-export const lastModified = "2026-06-24T00:00:00+09:00"
+export const lastModified = "2026-10-17T00:00:00+09:00"
 
 export const absoluteUrl = (path: string) => new URL(path, siteUrl).toString()

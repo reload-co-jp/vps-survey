@@ -9,14 +9,15 @@ import {
 
 const pageTitle = "2026年版 シンVPS完全ガイド | コスパで選ぶなら国内VPSの最有力候補"
 const pageDescription =
-  "シンVPSはNVMe SSD・大容量メモリプランが月540円から使える高コスパ国内VPS。料金・スペック・メリット・おすすめ用途を徹底解説します。"
+  "シンVPSはNVMe SSD・大容量メモリプランが月750円から使える高コスパ国内VPS。料金・スペック・メリット・おすすめ用途を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
+const updatedAt = "2026-10-17T09:00:00+09:00"
 
 export const metadata: Metadata = buildLpMetadata({
   title: pageTitle,
   description: pageDescription,
   ogDescription:
-    "NVMe SSD・大容量メモリプランが月540円から。シンVPSの料金・スペック・特徴を詳しく解説します。",
+    "NVMe SSD・大容量メモリプランが月750円から。シンVPSの料金・スペック・特徴を詳しく解説します。",
   path: "/lp/shin-vps/",
   keywords: [
     "シンVPS",
@@ -35,21 +36,21 @@ const affiliatePixelUrl =
   "https://www18.a8.net/0.gif?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY"
 
 const memoryPlans = [
-  { name: "Memory 1GB", price: 540, cpu: 1, memory: 1, storage: 30 },
-  { name: "Memory 2GB", price: 750, cpu: 2, memory: 2, storage: 50 },
-  { name: "Memory 4GB", price: 1300, cpu: 3, memory: 4, storage: 50 },
-  { name: "Memory 8GB", price: 2500, cpu: 4, memory: 8, storage: 100 },
-  { name: "Memory 16GB", price: 4900, cpu: 6, memory: 16, storage: 100 },
-  { name: "Memory 32GB", price: 12001, cpu: 8, memory: 32, storage: 100 },
-  { name: "Memory 64GB", price: 24000, cpu: 12, memory: 64, storage: 100 },
+  { name: "Memory 1GB", price: 750, cpu: 1, memory: 1, storage: 30 },
+  { name: "Memory 2GB", price: 1040, cpu: 2, memory: 2, storage: 50 },
+  { name: "Memory 4GB", price: 1800, cpu: 3, memory: 4, storage: 50 },
+  { name: "Memory 8GB", price: 3450, cpu: 4, memory: 8, storage: 100 },
+  { name: "Memory 16GB", price: 6760, cpu: 6, memory: 16, storage: 100 },
+  { name: "Memory 32GB", price: 16560, cpu: 8, memory: 32, storage: 100 },
+  { name: "Memory 64GB", price: 33121, cpu: 12, memory: 64, storage: 100 },
 ]
 
 const standardPlans = [
-  { name: "Standard 512MB", price: 900, cpu: 1, memory: 0.5, storage: 50 },
-  { name: "Standard 1GB", price: 1150, cpu: 2, memory: 1, storage: 100 },
-  { name: "Standard 2GB", price: 1850, cpu: 3, memory: 2, storage: 150 },
-  { name: "Standard 4GB", price: 3600, cpu: 4, memory: 4, storage: 200 },
-  { name: "Standard 8GB", price: 7200, cpu: 6, memory: 8, storage: 400 },
+  { name: "Standard 512MB", price: 1240, cpu: 1, memory: 0.5, storage: 50 },
+  { name: "Standard 1GB", price: 1590, cpu: 2, memory: 1, storage: 100 },
+  { name: "Standard 2GB", price: 2550, cpu: 3, memory: 2, storage: 150 },
+  { name: "Standard 4GB", price: 4970, cpu: 4, memory: 4, storage: 200 },
+  { name: "Standard 8GB", price: 9940, cpu: 6, memory: 8, storage: 400 },
 ]
 
 const faqs = [
@@ -61,7 +62,7 @@ const faqs = [
   {
     question: "シンVPSの強みは何ですか？",
     answer:
-      "月540円から始められるメモリプラン、NVMe SSDによる高速ストレージ、分かりやすい月額料金が強みです。開発環境から小規模本番まで幅広く使えます。",
+      "月750円から始められるメモリプラン、NVMe SSDによる高速ストレージ、分かりやすい月額料金が強みです。開発環境から小規模本番まで幅広く使えます。",
   },
   {
     question: "シンVPSの注意点はありますか？",
@@ -108,7 +109,7 @@ const ShinVpsLpPage = () => {
     description: "シンVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
     path: "/lp/shin-vps/",
     datePublished: publishedAt,
-    dateModified: publishedAt,
+    dateModified: updatedAt,
     keywords: metadata.keywords as string[],
   })
 
@@ -204,7 +205,7 @@ const ShinVpsLpPage = () => {
               maxWidth: 680,
             }}
           >
-            月540円から使えるメモリプランと、NVMe SSDによる高速ストレージが強み。
+            月750円から使えるメモリプランと、NVMe SSDによる高速ストレージが強み。
             国内向けWebサービスの開発・本番運用にコスパよく使える定番の選択肢です。
           </p>
         </div>
@@ -217,7 +218,7 @@ const ShinVpsLpPage = () => {
           }}
         >
           {[
-            { label: "最安プラン", value: "¥540 / 月" },
+            { label: "最安プラン", value: "¥750 / 月" },
             { label: "最大メモリ", value: "64 GB" },
             { label: "ストレージ", value: "NVMe SSD" },
             { label: "転送量", value: "無制限" },
@@ -265,7 +266,7 @@ const ShinVpsLpPage = () => {
             {
               num: "01",
               title: "メモリ単価が国内トップクラス",
-              body: "Memoryプランは1GBが月540円から。メモリを多く使うアプリや複数プロセスを動かす環境でも、コストを抑えたまま余裕のある構成が作れます。",
+              body: "Memoryプランは1GBが月750円から。メモリを多く使うアプリや複数プロセスを動かす環境でも、コストを抑えたまま余裕のある構成が作れます。",
             },
             {
               num: "02",
@@ -312,7 +313,7 @@ const ShinVpsLpPage = () => {
               paddingInline: "0.25rem",
             }}
           >
-            月540円から。Memoryプラン一覧
+            月750円から。Memoryプラン一覧
           </h2>
           <p
             style={{
@@ -492,7 +493,7 @@ const ShinVpsLpPage = () => {
             },
             {
               title: "個人開発の公開・検証",
-              body: "Memoryプラン1GBは月540円。個人開発のアプリを公開したり、本番前の動作確認に気軽に使えます。",
+              body: "Memoryプラン1GBは月750円。個人開発のアプリを公開したり、本番前の動作確認に気軽に使えます。",
             },
           ].map(({ title, body }) => (
             <article
@@ -587,7 +588,7 @@ const ShinVpsLpPage = () => {
             シンVPSで決まり
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            メモリプランは月540円から試せます。まずは公式ページでプランと料金を確認してみてください。
+            メモリプランは月750円から試せます。まずは公式ページでプランと料金を確認してみてください。
           </p>
         </div>
         <CtaButton label="シンVPS公式ページを確認する" />

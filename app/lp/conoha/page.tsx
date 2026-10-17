@@ -11,6 +11,7 @@ const pageTitle = "2026年版 ConoHa VPS完全ガイド | 初めてのVPSに迷�
 const pageDescription =
   "ConoHa VPSは月460円から使える初心者向け国内VPS。管理画面のわかりやすさ・時間課金・充実サポートの特徴を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
+const updatedAt = "2026-10-17T09:00:00+09:00"
 
 export const metadata: Metadata = buildLpMetadata({
   title: pageTitle,
@@ -37,13 +38,13 @@ const affiliatePixelUrl =
 const plans = [
   { name: "512MB", price: 460, cpu: 1, memory: 0.5, storage: 30 },
   { name: "1GB", price: 763, cpu: 2, memory: 1, storage: 100 },
-  { name: "2GB", price: 1144, cpu: 3, memory: 2, storage: 100 },
+  { name: "2GB", price: 1259, cpu: 3, memory: 2, storage: 100 },
   { name: "4GB", price: 2189, cpu: 4, memory: 4, storage: 100 },
-  { name: "12GB", price: 4302, cpu: 6, memory: 12, storage: 100 },
-  { name: "24GB", price: 9552, cpu: 8, memory: 24, storage: 100 },
-  { name: "48GB", price: 21658, cpu: 12, memory: 48, storage: 100 },
-  { name: "96GB", price: 43315, cpu: 24, memory: 96, storage: 100 },
-  { name: "128GB", price: 64820, cpu: 40, memory: 128, storage: 100 },
+  { name: "12GB", price: 4389, cpu: 6, memory: 12, storage: 100 },
+  { name: "24GB", price: 9746, cpu: 8, memory: 24, storage: 100 },
+  { name: "48GB", price: 22099, cpu: 12, memory: 48, storage: 100 },
+  { name: "96GB", price: 44198, cpu: 24, memory: 96, storage: 100 },
+  { name: "128GB", price: 58927, cpu: 40, memory: 128, storage: 100 },
 ]
 
 const faqs = [
@@ -102,7 +103,7 @@ const ConohaLpPage = () => {
     description: "ConoHa VPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
     path: "/lp/conoha/",
     datePublished: publishedAt,
-    dateModified: publishedAt,
+    dateModified: updatedAt,
     keywords: metadata.keywords as string[],
   })
 
