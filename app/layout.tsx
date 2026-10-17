@@ -9,6 +9,7 @@ const googleAdsenseClient = "ca-pub-6542845006087970"
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 const isProduction = process.env.NODE_ENV === "production"
 const footerLpLinks = [
+  { href: "/lp/cheap-vps/", label: "格安VPS比較" },
   { href: "/lp/conoha/", label: "ConoHa VPS" },
   { href: "/lp/sakura/", label: "さくらのVPS" },
   { href: "/lp/shin-vps/", label: "シンVPS" },

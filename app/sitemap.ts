@@ -6,6 +6,7 @@ import { getAllServices } from "../lib/vps"
 
 const staticPages = ["about"] as const
 const lpPages = [
+  "cheap-vps",
   "conoha",
   "sakura",
   "shin-vps",
