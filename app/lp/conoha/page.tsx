@@ -6,8 +6,11 @@ import {
   buildFaqJsonLd,
   buildLpMetadata,
 } from "../seo"
+import { PrDisclosure } from "../../../components/affiliate-link"
+import { getOutboundUrl, getServiceById } from "../../../lib/vps"
 
-const pageTitle = "2026年版 ConoHa VPS完全ガイド | 初めてのVPSに迷ったら定番の国内VPS"
+const pageTitle =
+  "2026年版 ConoHa VPS完全ガイド | 初めてのVPSに迷ったら定番の国内VPS"
 const pageDescription =
   "ConoHa VPSは月460円から使える初心者向け国内VPS。管理画面のわかりやすさ・時間課金・充実サポートの特徴を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
@@ -30,22 +33,12 @@ export const metadata: Metadata = buildLpMetadata({
   ],
 })
 
-const affiliateUrl =
-  "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CTEYLU+50+4Z5JN6"
-const affiliatePixelUrl =
-  "https://www12.a8.net/0.gif?a8mat=4B1MHK+CTEYLU+50+4Z5JN6"
+// アフィリエイトURLは data/vps.json で一元管理する
+const service = getServiceById("conoha")!
+const affiliateUrl = getOutboundUrl(service)
+const affiliatePixelUrl = service.affiliatePixelUrl
 
-const plans = [
-  { name: "512MB", price: 460, cpu: 1, memory: 0.5, storage: 30 },
-  { name: "1GB", price: 763, cpu: 2, memory: 1, storage: 100 },
-  { name: "2GB", price: 1259, cpu: 3, memory: 2, storage: 100 },
-  { name: "4GB", price: 2189, cpu: 4, memory: 4, storage: 100 },
-  { name: "12GB", price: 4389, cpu: 6, memory: 12, storage: 100 },
-  { name: "24GB", price: 9746, cpu: 8, memory: 24, storage: 100 },
-  { name: "48GB", price: 22099, cpu: 12, memory: 48, storage: 100 },
-  { name: "96GB", price: 44198, cpu: 24, memory: 96, storage: 100 },
-  { name: "128GB", price: 58927, cpu: 40, memory: 128, storage: 100 },
-]
+const plans = service.plans
 
 const faqs = [
   {
@@ -65,10 +58,19 @@ const faqs = [
   },
 ]
 
-const CtaButton = ({ label = "ConoHa VPSを見てみる" }: { label?: string }) => (
+const CtaButton = ({
+  label = "ConoHa VPSを見てみる",
+  placement = "article_top",
+}: {
+  label?: string
+  placement?: "article_top" | "article_bottom"
+}) => (
   <a
+    data-affiliate-link-type="affiliate"
+    data-affiliate-placement={placement}
+    data-affiliate-provider={service.id}
     href={affiliateUrl}
-    rel="noopener noreferrer"
+    rel="sponsored nofollow noopener noreferrer"
     style={{
       alignItems: "center",
       background: "#3EA8FF",
@@ -100,7 +102,8 @@ const panelStyle = {
 const ConohaLpPage = () => {
   const articleJsonLd = buildArticleJsonLd({
     title: pageTitle,
-    description: "ConoHa VPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
+    description:
+      "ConoHa VPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
     path: "/lp/conoha/",
     datePublished: publishedAt,
     dateModified: updatedAt,
@@ -237,6 +240,21 @@ const ConohaLpPage = () => {
           ))}
         </div>
         <CtaButton label="ConoHa VPS公式ページを見る" />
+        <PrDisclosure />
+        <p style={{ color: "#4a5568", fontSize: "0.9rem", lineHeight: 1.7 }}>
+          全プランの料金表・他社との料金比較・メリット/デメリットは{" "}
+          <Link
+            href="/vps/conoha/"
+            style={{
+              color: "#2563eb",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
+            ConoHa VPSの料金・スペック・評判ページ
+          </Link>
+          で確認できます。
+        </p>
       </section>
 
       {/* Why ConoHa */}
@@ -436,7 +454,8 @@ const ConohaLpPage = () => {
         style={{
           display: "grid",
           gap: "1rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
         }}
       >
         <article style={{ ...panelStyle, display: "grid", gap: "0.8rem" }}>
@@ -511,7 +530,10 @@ const ConohaLpPage = () => {
             月460円の入門プランから試せます。時間課金で気軽に始め、必要に応じてスケールアップも可能です。
           </p>
         </div>
-        <CtaButton label="ConoHa VPS公式ページを確認する" />
+        <CtaButton
+          placement="article_bottom"
+          label="ConoHa VPS公式ページを確認する"
+        />
         <p style={{ color: "#a0aec0", fontSize: "0.78rem" }}>
           ※ 本ページにはアフィリエイトリンクが含まれます。
         </p>
@@ -608,7 +630,7 @@ const ConohaLpPage = () => {
       <img
         alt=""
         height={1}
-        src={affiliatePixelUrl}
+        src={affiliatePixelUrl ?? ""}
         style={{ border: 0, height: 1, width: 1 }}
         width={1}
       />

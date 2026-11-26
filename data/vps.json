@@ -18,6 +18,9 @@
     "officialUrl": "https://www.conoha.jp/vps/",
     "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CTEYLU+50+4Z5JN6",
     "affiliatePixelUrl": "https://www12.a8.net/0.gif?a8mat=4B1MHK+CTEYLU+50+4Z5JN6",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-10-17",
+    "campaigns": [],
     "plans": [
       {
         "id": "conoha-512mb",
@@ -130,6 +133,9 @@
     "officialUrl": "https://vps.sakura.ad.jp/",
     "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CS83EA+D8Y+C9YHU",
     "affiliatePixelUrl": "https://www13.a8.net/0.gif?a8mat=4B1MHK+CS83EA+D8Y+C9YHU",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "sakura-512mb",
@@ -226,6 +232,9 @@
     "officialUrl": "https://vps.xserver.ne.jp/",
     "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CU0E7M+CO4+25F7IA",
     "affiliatePixelUrl": "https://www16.a8.net/0.gif?a8mat=4B1MHK+CU0E7M+CO4+25F7IA",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-10-17",
+    "campaigns": [],
     "plans": [
       {
         "id": "xserver-2g",
@@ -308,6 +317,9 @@
     "officialUrl": "https://www.shin-vps.jp/service/price.php",
     "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY",
     "affiliatePixelUrl": "https://www18.a8.net/0.gif?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-10-17",
+    "campaigns": [],
     "plans": [
       {
         "id": "shin-standard-512mb",
@@ -464,12 +476,19 @@
       "全プランでNVMe SSDを採用",
       "OSテンプレートや簡単アプリケーションが豊富"
     ],
-    "pros": ["国内向けで価格を抑えやすい", "NVMe SSDで高速", "検証から本番まで使いやすい"],
+    "pros": [
+      "国内向けで価格を抑えやすい",
+      "NVMe SSDで高速",
+      "検証から本番まで使いやすい"
+    ],
     "cons": ["海外リージョンはない", "転送量上限の情報は要確認"],
     "recommendedFor": ["開発環境", "国内Webサービス", "小中規模の本番運用"],
     "officialUrl": "https://www.kagoya.jp/vps/function-plan/",
     "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CSTJ02+7YE+NWRNM",
     "affiliatePixelUrl": "https://www19.a8.net/0.gif?a8mat=4B1MHK+CSTJ02+7YE+NWRNM",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "kagoya-1gb",
@@ -556,10 +575,17 @@
       "SLAや無料お試しがあり導入判断しやすい",
       "1GBから12GBまで分かりやすい6プラン構成"
     ],
-    "pros": ["国内向けで安心感がある", "転送量が無制限", "複数台構成を組みやすい"],
+    "pros": [
+      "国内向けで安心感がある",
+      "転送量が無制限",
+      "複数台構成を組みやすい"
+    ],
     "cons": ["表示価格は12カ月契約ベース", "月額とは別にサーチャージがある"],
     "recommendedFor": ["安定重視のWeb運用", "社内システム", "国内向けサービス"],
     "officialUrl": "https://vps.gmocloud.com/vps2015/service/",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "gmo-1gb",
@@ -636,10 +662,17 @@
       "Linuxの常設プランは768MBから32GBまで選択可能",
       "転送量無制限で学習から運用まで使いやすい"
     ],
-    "pros": ["初期費用なしで始めやすい", "時間課金で検証用途に向く", "国内向けで価格が安い"],
+    "pros": [
+      "初期費用なしで始めやすい",
+      "時間課金で検証用途に向く",
+      "国内向けで価格が安い"
+    ],
     "cons": ["768MBプランはIPv6専用", "リージョンは東京のみ"],
     "recommendedFor": ["学習用サーバー", "開発環境", "小中規模Webサービス"],
     "officialUrl": "https://web.arena.ne.jp/indigo/price/",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "webarena-indigo-768mb",
@@ -726,10 +759,20 @@
       "1GBから16GBまでの基本プランを用意",
       "ドメインや関連サービスとまとめて管理しやすい"
     ],
-    "pros": ["国内向けで扱いやすい", "ストレージ容量が大きめ", "24時間365日サポートに対応"],
-    "cons": ["表示価格は12カ月払いの月額換算", "別途サービス維持調整費が加算される"],
+    "pros": [
+      "国内向けで扱いやすい",
+      "ストレージ容量が大きめ",
+      "24時間365日サポートに対応"
+    ],
+    "cons": [
+      "表示価格は12カ月払いの月額換算",
+      "別途サービス維持調整費が加算される"
+    ],
     "recommendedFor": ["Webサイト運用", "開発環境", "国内向けサービス"],
     "officialUrl": "https://www.onamae.com/server/vps/",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "onamae-vps-1gb",
@@ -804,6 +847,9 @@
     "cons": ["料金体系の理解に少し慣れが必要", "国内特化ではない"],
     "recommendedFor": ["PoC", "グローバル向け検証", "AWS入門"],
     "officialUrl": "https://aws.amazon.com/lightsail/",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "lightsail-1g",
@@ -858,6 +904,9 @@
     "cons": ["日本リージョンがない", "日本語情報は少なめ"],
     "recommendedFor": ["海外向けWebサービス", "開発環境", "小規模本番"],
     "officialUrl": "https://www.linode.com/",
+    "currency": "JPY",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "linode-2g",
@@ -908,6 +957,9 @@
     "cons": ["日本向け低遅延には不利", "円換算だと割高に感じる場合がある"],
     "recommendedFor": ["チーム開発", "短期検証", "海外ユーザー向けサービス"],
     "officialUrl": "https://www.digitalocean.com/",
+    "currency": "USD",
+    "priceCheckedAt": "2026-06-04",
+    "campaigns": [],
     "plans": [
       {
         "id": "do-basic-512mb",

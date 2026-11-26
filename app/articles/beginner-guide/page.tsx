@@ -1,11 +1,18 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ArticleFooter } from "../../../components/article-layout"
 
 export const metadata: Metadata = {
   title: "初心者向けVPS解説",
   description:
     "VPS初心者が最初に知っておきたい基礎知識、選び方、よくある失敗、最初のおすすめ構成を分かりやすく解説した記事です。",
-  keywords: ["VPS 初心者", "VPS 始め方", "VPS 入門", "初心者 VPS おすすめ", "VPS 失敗しない選び方"],
+  keywords: [
+    "VPS 初心者",
+    "VPS 始め方",
+    "VPS 入門",
+    "初心者 VPS おすすめ",
+    "VPS 失敗しない選び方",
+  ],
   alternates: {
     canonical: "/articles/beginner-guide/",
   },
@@ -53,9 +60,17 @@ const BeginnerGuidePage = () => {
     inLanguage: "ja",
     datePublished: "2026-04-30T00:00:00+09:00",
     dateModified: "2026-05-12T00:00:00+09:00",
-    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
-    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
-    mainEntityOfPage: "/articles/beginner-guide/",
+    author: {
+      "@type": "Organization",
+      name: "VPS比較サイト",
+      url: "https://vps.reload.co.jp",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Reload, Inc.",
+      url: "https://reload.co.jp/",
+    },
+    mainEntityOfPage: "https://vps.reload.co.jp/articles/beginner-guide/",
   }
 
   const breadcrumbJsonLd = {
@@ -66,19 +81,19 @@ const BeginnerGuidePage = () => {
         "@type": "ListItem",
         position: 1,
         name: "VPS比較サイト",
-        item: "/",
+        item: "https://vps.reload.co.jp/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: "/articles/",
+        item: "https://vps.reload.co.jp/articles/",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "初心者向けVPS解説",
-        item: "/articles/beginner-guide/",
+        item: "https://vps.reload.co.jp/articles/beginner-guide/",
       },
     ],
   }
@@ -120,7 +135,10 @@ const BeginnerGuidePage = () => {
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/articles/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             記事一覧
           </Link>
           <span>/</span>
@@ -144,7 +162,14 @@ const BeginnerGuidePage = () => {
           >
             Beginner Guide
           </span>
-          <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2, color: "#1a202c" }}>
+          <h1
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.2,
+              color: "#1a202c",
+            }}
+          >
             初心者向けVPS解説
           </h1>
           <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
@@ -173,7 +198,8 @@ const BeginnerGuidePage = () => {
             style={{
               display: "grid",
               gap: "0.8rem",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
             }}
           >
             <div style={miniCardStyle}>
@@ -182,17 +208,26 @@ const BeginnerGuidePage = () => {
             </div>
             <div style={miniCardStyle}>
               <strong style={{ fontSize: "1rem" }}>リージョン</strong>
-              <p style={miniCardTextStyle}>日本向けなら国内リージョンを選びます。</p>
+              <p style={miniCardTextStyle}>
+                日本向けなら国内リージョンを選びます。
+              </p>
             </div>
             <div style={miniCardStyle}>
               <strong style={{ fontSize: "1rem" }}>料金</strong>
-              <p style={miniCardTextStyle}>まずは月額固定で分かりやすいものがおすすめです。</p>
+              <p style={miniCardTextStyle}>
+                まずは月額固定で分かりやすいものがおすすめです。
+              </p>
             </div>
           </div>
           <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
             初心者向け国内VPS候補:{" "}
-            <Link href="/vps/conoha/" style={inlineLinkStyle}>ConoHa VPS</Link>、
-            <Link href="/vps/sakura/" style={inlineLinkStyle}>さくらのVPS</Link>
+            <Link href="/vps/conoha/" style={inlineLinkStyle}>
+              ConoHa VPS
+            </Link>
+            、
+            <Link href="/vps/sakura/" style={inlineLinkStyle}>
+              さくらのVPS
+            </Link>
           </p>
         </article>
 
@@ -200,9 +235,15 @@ const BeginnerGuidePage = () => {
           <h2 style={{ fontSize: "1.3rem" }}>初心者がよくある失敗</h2>
           <ul style={listStyle}>
             <li style={itemStyle}>最安だけで選んでメモリ不足になる。</li>
-            <li style={itemStyle}>海外リージョンを選んで、日本向けサイトの表示速度が落ちる。</li>
-            <li style={itemStyle}>時間課金を使いっぱなしにして、思ったより請求が増える。</li>
-            <li style={itemStyle}>最初から大きすぎるプランを選び、料金だけ高くなる。</li>
+            <li style={itemStyle}>
+              海外リージョンを選んで、日本向けサイトの表示速度が落ちる。
+            </li>
+            <li style={itemStyle}>
+              時間課金を使いっぱなしにして、思ったより請求が増える。
+            </li>
+            <li style={itemStyle}>
+              最初から大きすぎるプランを選び、料金だけ高くなる。
+            </li>
           </ul>
         </article>
 
@@ -229,6 +270,7 @@ const BeginnerGuidePage = () => {
           </Link>
         </article>
       </section>
+      <ArticleFooter id="beginner-guide" />
     </div>
   )
 }

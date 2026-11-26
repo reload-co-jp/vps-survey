@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ArticleFooter } from "../../../components/article-layout"
 
 export const metadata: Metadata = {
   title: "VPS料金の推移と今後の見通し（2026年）",
@@ -84,7 +85,8 @@ const changedServices = [
       { label: "4GB", before: 20, after: 24 },
     ],
     note: "USD建て料金の改定。円安（¥150/USD換算）での実質負担増は旧¥550→新¥1,050（1GBプラン）。",
-    reason: "AWSのグローバルな価格見直しに加え、円安による円ベースコストの上昇が重なっている。",
+    reason:
+      "AWSのグローバルな価格見直しに加え、円安による円ベースコストの上昇が重なっている。",
   },
   {
     name: "Linode（Akamai Cloud）",
@@ -96,18 +98,54 @@ const changedServices = [
       { label: "8GB", before: 40, after: 48 },
     ],
     note: "Akamai統合後に料金改定。円換算（¥150/USD）で2GBは¥720→¥1,800相当と大幅増。",
-    reason: "Akamai統合時のプラットフォーム移行コスト反映と、USD価格の20%引き上げ。",
+    reason:
+      "Akamai統合時のプラットフォーム移行コスト反映と、USD価格の20%引き上げ。",
   },
 ]
 
 const stableServices = [
-  { name: "ConoHa VPS", since: "2026年4月", minPrice: 460, note: "512MB〜128GB全プラン据え置き" },
-  { name: "さくらのVPS", since: "2026年4月", minPrice: 643, note: "512MB〜32GB全プラン据え置き" },
-  { name: "XServer VPS", since: "2026年4月", minPrice: 1496, note: "2GB〜96GB全プラン据え置き（月払い）" },
-  { name: "シンVPS", since: "2026年4月", minPrice: 540, note: "スタンダード・メモリ全プラン据え置き" },
-  { name: "KAGOYA CLOUD VPS", since: "2026年4月", minPrice: 550, note: "1GB〜32GB全プラン据え置き" },
-  { name: "WebARENA Indigo", since: "2026年4月", minPrice: 319, note: "768MB〜32GB全プラン据え置き" },
-  { name: "DigitalOcean", since: "2026年4月", minPrice: 4, note: "BasicはUSD $4〜据え置き（USD建て）" },
+  {
+    name: "ConoHa VPS",
+    since: "2026年4月",
+    minPrice: 460,
+    note: "512MB〜128GB全プラン据え置き",
+  },
+  {
+    name: "さくらのVPS",
+    since: "2026年4月",
+    minPrice: 643,
+    note: "512MB〜32GB全プラン据え置き",
+  },
+  {
+    name: "XServer VPS",
+    since: "2026年4月",
+    minPrice: 1496,
+    note: "2GB〜96GB全プラン据え置き（月払い）",
+  },
+  {
+    name: "シンVPS",
+    since: "2026年4月",
+    minPrice: 540,
+    note: "スタンダード・メモリ全プラン据え置き",
+  },
+  {
+    name: "KAGOYA CLOUD VPS",
+    since: "2026年4月",
+    minPrice: 550,
+    note: "1GB〜32GB全プラン据え置き",
+  },
+  {
+    name: "WebARENA Indigo",
+    since: "2026年4月",
+    minPrice: 319,
+    note: "768MB〜32GB全プラン据え置き",
+  },
+  {
+    name: "DigitalOcean",
+    since: "2026年4月",
+    minPrice: 4,
+    note: "BasicはUSD $4〜据え置き（USD建て）",
+  },
 ]
 
 // ---- styles ----
@@ -160,7 +198,9 @@ const BarChart = ({
   return (
     <div style={{ display: "grid", gap: "0.35rem" }}>
       <div style={{ alignItems: "center", display: "flex", gap: "0.6rem" }}>
-        <span style={{ color: "#718096", fontSize: "0.78rem", minWidth: 32 }}>改定前</span>
+        <span style={{ color: "#718096", fontSize: "0.78rem", minWidth: 32 }}>
+          改定前
+        </span>
         <div
           style={{
             background: "#a0aec0",
@@ -170,11 +210,14 @@ const BarChart = ({
           }}
         />
         <span style={{ color: "#718096", fontSize: "0.82rem" }}>
-          {prefix}{before.toLocaleString()}
+          {prefix}
+          {before.toLocaleString()}
         </span>
       </div>
       <div style={{ alignItems: "center", display: "flex", gap: "0.6rem" }}>
-        <span style={{ color: "#718096", fontSize: "0.78rem", minWidth: 32 }}>改定後</span>
+        <span style={{ color: "#718096", fontSize: "0.78rem", minWidth: 32 }}>
+          改定後
+        </span>
         <div
           style={{
             background: "#e53e3e",
@@ -183,8 +226,11 @@ const BarChart = ({
             width: `${afterPct}%`,
           }}
         />
-        <span style={{ color: "#c53030", fontSize: "0.82rem", fontWeight: 600 }}>
-          {prefix}{after.toLocaleString()}
+        <span
+          style={{ color: "#c53030", fontSize: "0.82rem", fontWeight: 600 }}
+        >
+          {prefix}
+          {after.toLocaleString()}
         </span>
       </div>
     </div>
@@ -201,18 +247,41 @@ const VpsPriceTrendPage = () => {
     inLanguage: "ja",
     datePublished: "2026-06-04T00:00:00+09:00",
     dateModified: "2026-06-04T00:00:00+09:00",
-    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
-    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
-    mainEntityOfPage: "/articles/vps-price-trend/",
+    author: {
+      "@type": "Organization",
+      name: "VPS比較サイト",
+      url: "https://vps.reload.co.jp",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Reload, Inc.",
+      url: "https://reload.co.jp/",
+    },
+    mainEntityOfPage: "https://vps.reload.co.jp/articles/vps-price-trend/",
   }
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "VPS比較サイト", item: "/" },
-      { "@type": "ListItem", position: 2, name: "記事一覧", item: "/articles/" },
-      { "@type": "ListItem", position: 3, name: "VPS料金の推移と今後の見通し（2026年）", item: "/articles/vps-price-trend/" },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "VPS比較サイト",
+        item: "https://vps.reload.co.jp/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "記事一覧",
+        item: "https://vps.reload.co.jp/articles/",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "VPS料金の推移と今後の見通し（2026年）",
+        item: "https://vps.reload.co.jp/articles/vps-price-trend/",
+      },
     ],
   }
 
@@ -238,16 +307,32 @@ const VpsPriceTrendPage = () => {
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+        <Link
+          href="/articles/"
+          style={{ color: "#3EA8FF", textDecoration: "none" }}
+        >
           ← 記事一覧へ戻る
         </Link>
         <nav
           aria-label="パンくず"
-          style={{ color: "#718096", display: "flex", flexWrap: "wrap", fontSize: "0.88rem", gap: "0.5rem" }}
+          style={{
+            color: "#718096",
+            display: "flex",
+            flexWrap: "wrap",
+            fontSize: "0.88rem",
+            gap: "0.5rem",
+          }}
         >
-          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>ホーム</Link>
+          <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+            ホーム
+          </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>記事一覧</Link>
+          <Link
+            href="/articles/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
+            記事一覧
+          </Link>
           <span>/</span>
           <span>VPS料金の推移と今後の見通し（2026年）</span>
         </nav>
@@ -269,20 +354,26 @@ const VpsPriceTrendPage = () => {
           >
             Price Trend
           </span>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)", lineHeight: 1.08 }}>
+          <h1
+            style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)", lineHeight: 1.08 }}
+          >
             VPS料金の推移と今後の見通し（2026年）
           </h1>
           <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 820 }}>
             このサイトで管理している国内・海外VPSの料金データをもとに、2026年4月のサイト開設から6月にかけての価格変動を整理しました。
             値上がりしたサービス・据え置きのサービス・背景となる要因・今後の動向の見通しをまとめています。
           </p>
-          <p style={{ color: "#718096", fontSize: "0.88rem" }}>調査・更新: 2026年6月4日</p>
+          <p style={{ color: "#718096", fontSize: "0.88rem" }}>
+            調査・更新: 2026年6月4日
+          </p>
         </div>
       </section>
 
       {/* overview */}
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
           <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>変動の概況</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
             2026年4月から6月にかけて確認できた変動パターンは大きく3つです。
@@ -292,7 +383,8 @@ const VpsPriceTrendPage = () => {
           style={{
             display: "grid",
             gap: "1rem",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 240px), 1fr))",
           }}
         >
           {[
@@ -332,8 +424,12 @@ const VpsPriceTrendPage = () => {
                 padding: "1rem",
               }}
             >
-              <div style={{ alignItems: "center", display: "flex", gap: "0.6rem" }}>
-                <strong style={{ color: item.textColor, fontSize: "1.05rem" }}>{item.label}</strong>
+              <div
+                style={{ alignItems: "center", display: "flex", gap: "0.6rem" }}
+              >
+                <strong style={{ color: item.textColor, fontSize: "1.05rem" }}>
+                  {item.label}
+                </strong>
                 <span
                   style={{
                     background: "#ffffff",
@@ -348,7 +444,15 @@ const VpsPriceTrendPage = () => {
                   {item.count}
                 </span>
               </div>
-              <p style={{ color: "#4a5568", fontSize: "0.9rem", lineHeight: 1.75 }}>{item.desc}</p>
+              <p
+                style={{
+                  color: "#4a5568",
+                  fontSize: "0.9rem",
+                  lineHeight: 1.75,
+                }}
+              >
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -356,7 +460,9 @@ const VpsPriceTrendPage = () => {
 
       {/* timeline */}
       <section style={sectionStyle}>
-        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.7rem)" }}>変動タイムライン</h2>
+        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.7rem)" }}>
+          変動タイムライン
+        </h2>
         <div style={{ display: "grid", gap: "0" }}>
           {[
             {
@@ -373,7 +479,13 @@ const VpsPriceTrendPage = () => {
             },
           ].map((item, i, arr) => (
             <div key={item.date} style={{ display: "flex", gap: "1rem" }}>
-              <div style={{ alignItems: "center", display: "flex", flexDirection: "column" }}>
+              <div
+                style={{
+                  alignItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 <div
                   style={{
                     background: item.changed ? "#e53e3e" : "#4a5568",
@@ -385,13 +497,35 @@ const VpsPriceTrendPage = () => {
                   }}
                 />
                 {i < arr.length - 1 && (
-                  <div style={{ background: "#e2e8f0", flexGrow: 1, marginBlock: 4, width: 2 }} />
+                  <div
+                    style={{
+                      background: "#e2e8f0",
+                      flexGrow: 1,
+                      marginBlock: 4,
+                      width: 2,
+                    }}
+                  />
                 )}
               </div>
-              <div style={{ paddingBottom: i < arr.length - 1 ? "1.25rem" : 0 }}>
-                <span style={{ color: "#718096", fontSize: "0.82rem" }}>{item.date}</span>
-                <p style={{ fontWeight: 600, lineHeight: 1.4, marginTop: 2 }}>{item.title}</p>
-                <p style={{ color: "#4a5568", fontSize: "0.9rem", lineHeight: 1.75, marginTop: 4 }}>{item.desc}</p>
+              <div
+                style={{ paddingBottom: i < arr.length - 1 ? "1.25rem" : 0 }}
+              >
+                <span style={{ color: "#718096", fontSize: "0.82rem" }}>
+                  {item.date}
+                </span>
+                <p style={{ fontWeight: 600, lineHeight: 1.4, marginTop: 2 }}>
+                  {item.title}
+                </p>
+                <p
+                  style={{
+                    color: "#4a5568",
+                    fontSize: "0.9rem",
+                    lineHeight: 1.75,
+                    marginTop: 4,
+                  }}
+                >
+                  {item.desc}
+                </p>
               </div>
             </div>
           ))}
@@ -400,20 +534,36 @@ const VpsPriceTrendPage = () => {
 
       {/* changed services */}
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>値上がりしたサービスの詳細</h2>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+            値上がりしたサービスの詳細
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
             プランごとの変動幅と背景をまとめました。
           </p>
         </div>
         {changedServices.map((service) => (
           <article key={service.name} style={sectionStyle}>
-            <div style={{ alignItems: "flex-start", display: "flex", flexWrap: "wrap", gap: "0.6rem", justifyContent: "space-between" }}>
+            <div
+              style={{
+                alignItems: "flex-start",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "0.6rem",
+                justifyContent: "space-between",
+              }}
+            >
               <h3 style={{ fontSize: "1.2rem" }}>{service.name}</h3>
               <a
                 href={service.href}
                 rel="noopener noreferrer nofollow"
-                style={{ color: "#3EA8FF", fontSize: "0.85rem", textDecoration: "none" }}
+                style={{
+                  color: "#3EA8FF",
+                  fontSize: "0.85rem",
+                  textDecoration: "none",
+                }}
                 target="_blank"
               >
                 公式ページ →
@@ -424,8 +574,17 @@ const VpsPriceTrendPage = () => {
             <div style={{ display: "grid", gap: "1rem" }}>
               {service.plans.map((plan) => (
                 <div key={plan.label}>
-                  <div style={{ alignItems: "center", display: "flex", gap: "0.5rem", marginBottom: "0.4rem" }}>
-                    <span style={{ fontSize: "0.9rem", fontWeight: 600 }}>{plan.label}</span>
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      gap: "0.5rem",
+                      marginBottom: "0.4rem",
+                    }}
+                  >
+                    <span style={{ fontSize: "0.9rem", fontWeight: 600 }}>
+                      {plan.label}
+                    </span>
                     <span
                       style={{
                         background: "#fff5f5",
@@ -440,17 +599,42 @@ const VpsPriceTrendPage = () => {
                       {pct(plan.before, plan.after)}
                     </span>
                   </div>
-                  <BarChart before={plan.before} after={plan.after} currency={service.currency} />
+                  <BarChart
+                    before={plan.before}
+                    after={plan.after}
+                    currency={service.currency}
+                  />
                 </div>
               ))}
             </div>
 
-            <div style={{ borderTop: "1px solid #e2e8f0", display: "grid", gap: "0.4rem", paddingTop: "0.75rem" }}>
-              <p style={{ color: "#4a5568", fontSize: "0.9rem", lineHeight: 1.75 }}>
-                <strong>変動幅: </strong>{service.note}
+            <div
+              style={{
+                borderTop: "1px solid #e2e8f0",
+                display: "grid",
+                gap: "0.4rem",
+                paddingTop: "0.75rem",
+              }}
+            >
+              <p
+                style={{
+                  color: "#4a5568",
+                  fontSize: "0.9rem",
+                  lineHeight: 1.75,
+                }}
+              >
+                <strong>変動幅: </strong>
+                {service.note}
               </p>
-              <p style={{ color: "#718096", fontSize: "0.88rem", lineHeight: 1.75 }}>
-                <strong>背景: </strong>{service.reason}
+              <p
+                style={{
+                  color: "#718096",
+                  fontSize: "0.88rem",
+                  lineHeight: 1.75,
+                }}
+              >
+                <strong>背景: </strong>
+                {service.reason}
               </p>
             </div>
 
@@ -472,12 +656,27 @@ const VpsPriceTrendPage = () => {
                     return (
                       <tr key={plan.label}>
                         <td style={tdStyle}>{plan.label}</td>
-                        <td style={tdStyle}>{prefix}{plan.before.toLocaleString()}</td>
-                        <td style={{ ...tdStyle, color: "#c53030", fontWeight: 600 }}>
-                          {prefix}{plan.after.toLocaleString()}
+                        <td style={tdStyle}>
+                          {prefix}
+                          {plan.before.toLocaleString()}
                         </td>
-                        <td style={tdStyle}>+{prefix}{(plan.after - plan.before).toLocaleString()}</td>
-                        <td style={{ ...tdStyle, color: "#c53030" }}>{pct(plan.before, plan.after)}</td>
+                        <td
+                          style={{
+                            ...tdStyle,
+                            color: "#c53030",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {prefix}
+                          {plan.after.toLocaleString()}
+                        </td>
+                        <td style={tdStyle}>
+                          +{prefix}
+                          {(plan.after - plan.before).toLocaleString()}
+                        </td>
+                        <td style={{ ...tdStyle, color: "#c53030" }}>
+                          {pct(plan.before, plan.after)}
+                        </td>
                       </tr>
                     )
                   })}
@@ -490,7 +689,9 @@ const VpsPriceTrendPage = () => {
 
       {/* stable services */}
       <section style={sectionStyle}>
-        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.7rem)" }}>据え置きのサービス（2026年4月→6月）</h2>
+        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.7rem)" }}>
+          据え置きのサービス（2026年4月→6月）
+        </h2>
         <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
           以下のサービスは2026年4月のデータ収集以降、料金変更を確認していません。
         </p>
@@ -523,7 +724,9 @@ const VpsPriceTrendPage = () => {
               >
                 据え置き
               </span>
-              <span style={{ color: "#4a5568", fontSize: "0.88rem" }}>{s.note}</span>
+              <span style={{ color: "#4a5568", fontSize: "0.88rem" }}>
+                {s.note}
+              </span>
             </div>
           ))}
         </div>
@@ -531,14 +734,19 @@ const VpsPriceTrendPage = () => {
 
       {/* background / analysis */}
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>料金変動の背景</h2>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+            料金変動の背景
+          </h2>
         </div>
         <div
           style={{
             display: "grid",
             gap: "1rem",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
           }}
         >
           {[
@@ -556,7 +764,9 @@ const VpsPriceTrendPage = () => {
             },
           ].map((item) => (
             <article key={item.title} style={sectionStyle}>
-              <h3 style={{ fontSize: "1.05rem", lineHeight: 1.4 }}>{item.title}</h3>
+              <h3 style={{ fontSize: "1.05rem", lineHeight: 1.4 }}>
+                {item.title}
+              </h3>
               <p style={{ color: "#4a5568", lineHeight: 1.85 }}>{item.body}</p>
             </article>
           ))}
@@ -565,7 +775,9 @@ const VpsPriceTrendPage = () => {
 
       {/* outlook */}
       <section style={sectionStyle}>
-        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.7rem)" }}>今後の料金動向の見通し</h2>
+        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.7rem)" }}>
+          今後の料金動向の見通し
+        </h2>
         <div style={{ display: "grid", gap: "0.75rem" }}>
           {[
             {
@@ -596,7 +808,9 @@ const VpsPriceTrendPage = () => {
                 paddingLeft: "0.9rem",
               }}
             >
-              <h3 style={{ color: item.color, fontSize: "1rem", lineHeight: 1.4 }}>
+              <h3
+                style={{ color: item.color, fontSize: "1rem", lineHeight: 1.4 }}
+              >
                 {item.icon} {item.title}
               </h3>
               <p style={{ color: "#4a5568", lineHeight: 1.85 }}>{item.body}</p>
@@ -615,10 +829,16 @@ const VpsPriceTrendPage = () => {
       >
         <h2 style={{ fontSize: "1.15rem" }}>関連ページ</h2>
         <div style={{ display: "grid", gap: "0.5rem" }}>
-          <Link href="/news/vps-price-update-2026-06/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/news/vps-price-update-2026-06/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             → VPS料金改定まとめ（2026年6月）— 変更前後の価格を一覧で確認
           </Link>
-          <Link href="/lp/2026-06-campaign/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/lp/2026-06-campaign/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             → 2026年6月のVPSキャンペーンまとめ — 現在有効な割引情報
           </Link>
           <Link href="/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
@@ -626,6 +846,7 @@ const VpsPriceTrendPage = () => {
           </Link>
         </div>
       </section>
+      <ArticleFooter id="vps-price-trend" />
     </div>
   )
 }

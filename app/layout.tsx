@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 import type { ReactNode } from "react"
+import { AnalyticsListener } from "../components/analytics-listener"
 import { companyUrl, siteName, siteUrl } from "../lib/site"
 import "./reset.css"
 
@@ -10,17 +11,34 @@ const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 const isProduction = process.env.NODE_ENV === "production"
 const footerLpLinks = [
   { href: "/lp/cheap-vps/", label: "格安VPS比較" },
+  { href: "/lp/domestic-vps/", label: "国内VPS比較" },
+  { href: "/lp/overseas-vps/", label: "海外VPS比較" },
+  { href: "/lp/memory-2gb/", label: "メモリ2GB VPS比較" },
   { href: "/lp/conoha/", label: "ConoHa VPS" },
   { href: "/lp/sakura/", label: "さくらのVPS" },
   { href: "/lp/shin-vps/", label: "シンVPS" },
-  { href: "/lp/2026-04-campaign/", label: "2026年4月キャンペーン" },
-  { href: "/lp/2026-05-campaign/", label: "2026年5月キャンペーン" },
-  { href: "/lp/2026-06-campaign/", label: "2026年6月キャンペーン" },
-  { href: "/lp/2026-07-campaign/", label: "2026年7月キャンペーン" },
-  { href: "/lp/2026-08-campaign/", label: "2026年8月キャンペーン" },
+]
+const footerGuideLinks = [
+  { href: "/use-cases/", label: "用途別VPS比較" },
+  {
+    href: "/storage/object-storage-comparison/",
+    label: "オブジェクトストレージ比較",
+  },
+  { href: "/articles/", label: "技術記事・解説" },
+  { href: "/news/", label: "ニュース" },
+]
+// 終了済みキャンペーンのアーカイブ（通常のおすすめとは分けて表示）
+const footerCampaignArchiveLinks = [
+  { href: "/lp/2026-08-campaign/", label: "2026年8月（終了）" },
+  { href: "/lp/2026-07-campaign/", label: "2026年7月（終了）" },
+  { href: "/lp/2026-06-campaign/", label: "2026年6月（終了）" },
+  { href: "/lp/2026-05-campaign/", label: "2026年5月（終了）" },
+  { href: "/lp/2026-04-campaign/", label: "2026年4月（終了）" },
 ]
 const footerSiteLinks = [{ href: "/about/", label: "このサイトについて" }]
 const headerLinks = [
+  { href: "/", label: "VPS比較" },
+  { href: "/use-cases/", label: "用途別" },
   { href: "/articles/", label: "記事" },
   { href: "/news/", label: "ニュース" },
 ]
@@ -159,6 +177,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
             />
           </>
         ) : null}
+        <AnalyticsListener />
         <a className="skip-link" href="#main">
           本文へスキップ
         </a>
@@ -197,9 +216,29 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
               aria-label="キャンペーン・サービス別LP"
               className="site-footer__nav"
             >
-              <h2>LP</h2>
+              <h2>VPS比較</h2>
               <ul>
                 {footerLpLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <nav aria-label="用途別・解説" className="site-footer__nav">
+              <h2>ガイド</h2>
+              <ul>
+                {footerGuideLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <nav aria-label="過去のキャンペーン" className="site-footer__nav">
+              <h2>過去のキャンペーン</h2>
+              <ul>
+                {footerCampaignArchiveLinks.map((link) => (
                   <li key={link.href}>
                     <a href={link.href}>{link.label}</a>
                   </li>
@@ -225,6 +264,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
                 </li>
               </ul>
             </nav>
+            <p className="site-footer__copy">
+              当サイトはアフィリエイトプログラムを利用しており、一部のリンクは広告です。料金・スペックは各公式サイトの情報をもとに確認日を明記して掲載しています。
+            </p>
             <p className="site-footer__copy">&copy; 2026 Reload, Inc.</p>
           </div>
         </footer>

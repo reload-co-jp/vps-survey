@@ -1,5 +1,6 @@
 import {
   billingLabels,
+  formatPrice,
   formatStorageLabel,
   formatTrafficLabel,
   getAllServices,
@@ -28,7 +29,7 @@ export const GET = () => {
       `Region: ${regionLabels[service.region]}`,
       `Usage: ${service.usage.map((usage) => usageLabels[usage]).join(" / ")}`,
       `Tags: ${service.tags.join(" / ")}`,
-      `Price range: ${getPriceRangeLabel(service)}`,
+      `Price range: ${getPriceRangeLabel(service)} (checked ${service.priceCheckedAt})`,
       `Features: ${service.features.join(" / ")}`,
       `Pros: ${service.pros.join(" / ")}`,
       `Cons: ${service.cons.join(" / ")}`,
@@ -36,7 +37,7 @@ export const GET = () => {
       "Plans:",
       ...service.plans.map(
         (plan) =>
-          `- ${plan.name}: ${plan.price.toLocaleString()}円, ${plan.cpu} vCPU, ${plan.memory} GB memory, ${formatStorageLabel(plan.storage)} storage, ${formatTrafficLabel(plan.traffic)} traffic, ${billingLabels[plan.billing]}`
+          `- ${plan.name}: ${formatPrice(service, plan.price)}, ${plan.cpu} vCPU, ${plan.memory} GB memory, ${formatStorageLabel(plan.storage)} storage, ${formatTrafficLabel(plan.traffic)} traffic, ${billingLabels[plan.billing]}`
       ),
       "",
     ]),

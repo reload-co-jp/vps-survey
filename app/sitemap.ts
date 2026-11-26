@@ -2,11 +2,15 @@ import type { MetadataRoute } from "next"
 import { getAllArticles } from "../lib/articles"
 import { getAllNews } from "../lib/news"
 import { lastModified, siteUrl } from "../lib/site"
+import { getAllUseCases } from "../lib/use-cases"
 import { getAllServices } from "../lib/vps"
 
 const staticPages = ["about"] as const
 const lpPages = [
   "cheap-vps",
+  "domestic-vps",
+  "overseas-vps",
+  "memory-2gb",
   "conoha",
   "sakura",
   "shin-vps",
@@ -34,7 +38,10 @@ const sitemap = (): MetadataRoute.Sitemap => {
     },
     ...services.map((service) => ({
       url: `${siteUrl}/vps/${service.id}/`,
-      lastModified,
+      lastModified:
+        `${service.priceCheckedAt}T00:00:00+09:00` > lastModified
+          ? `${service.priceCheckedAt}T00:00:00+09:00`
+          : lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
       images: [`${siteUrl}/vps/${service.id}/opengraph-image`],
@@ -67,6 +74,24 @@ const sitemap = (): MetadataRoute.Sitemap => {
       priority: 0.6,
       images: [`${siteUrl}/opengraph-image`],
     })),
+    {
+      url: `${siteUrl}/use-cases/`,
+      lastModified: "2026-11-26T00:00:00+09:00",
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    ...getAllUseCases().map((useCase) => ({
+      url: `${siteUrl}/use-cases/${useCase.slug}/`,
+      lastModified: `${useCase.updatedAt}T00:00:00+09:00`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    {
+      url: `${siteUrl}/storage/object-storage-comparison/`,
+      lastModified: "2026-11-26T00:00:00+09:00",
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
     ...staticPages.map((page) => ({
       url: `${siteUrl}/${page}/`,
       lastModified,

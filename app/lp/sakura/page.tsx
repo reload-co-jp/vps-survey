@@ -6,8 +6,11 @@ import {
   buildFaqJsonLd,
   buildLpMetadata,
 } from "../seo"
+import { PrDisclosure } from "../../../components/affiliate-link"
+import { getOutboundUrl, getServiceById } from "../../../lib/vps"
 
-const pageTitle = "2026年版 さくらのVPS完全ガイド | 安定性で選ぶなら老舗の国内VPS"
+const pageTitle =
+  "2026年版 さくらのVPS完全ガイド | 安定性で選ぶなら老舗の国内VPS"
 const pageDescription =
   "さくらのVPSは月643円から使える国内老舗VPS。情報量の多さ・安定した国内データセンター・学習や検証に向く価格帯を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
@@ -29,20 +32,12 @@ export const metadata: Metadata = buildLpMetadata({
   ],
 })
 
-const affiliateUrl =
-  "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CS83EA+D8Y+C9YHU"
-const affiliatePixelUrl =
-  "https://www13.a8.net/0.gif?a8mat=4B1MHK+CS83EA+D8Y+C9YHU"
+// アフィリエイトURLは data/vps.json で一元管理する
+const service = getServiceById("sakura")!
+const affiliateUrl = getOutboundUrl(service)
+const affiliatePixelUrl = service.affiliatePixelUrl
 
-const plans = [
-  { name: "512MB", price: 643, cpu: 1, memory: 0.5, storage: 25 },
-  { name: "1G", price: 880, cpu: 2, memory: 1, storage: 50 },
-  { name: "2G", price: 1738, cpu: 3, memory: 2, storage: 100 },
-  { name: "4G", price: 3520, cpu: 4, memory: 4, storage: 200 },
-  { name: "8G", price: 7040, cpu: 6, memory: 8, storage: 400 },
-  { name: "16G", price: 13200, cpu: 8, memory: 16, storage: 800 },
-  { name: "32G", price: 26400, cpu: 10, memory: 32, storage: 1600 },
-]
+const plans = service.plans
 
 const faqs = [
   {
@@ -62,10 +57,19 @@ const faqs = [
   },
 ]
 
-const CtaButton = ({ label = "さくらのVPSを見てみる" }: { label?: string }) => (
+const CtaButton = ({
+  label = "さくらのVPSを見てみる",
+  placement = "article_top",
+}: {
+  label?: string
+  placement?: "article_top" | "article_bottom"
+}) => (
   <a
+    data-affiliate-link-type="affiliate"
+    data-affiliate-placement={placement}
+    data-affiliate-provider={service.id}
     href={affiliateUrl}
-    rel="noopener noreferrer"
+    rel="sponsored nofollow noopener noreferrer"
     style={{
       alignItems: "center",
       background: "#3EA8FF",
@@ -97,7 +101,8 @@ const panelStyle = {
 const SakuraLpPage = () => {
   const articleJsonLd = buildArticleJsonLd({
     title: pageTitle,
-    description: "さくらのVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
+    description:
+      "さくらのVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
     path: "/lp/sakura/",
     datePublished: publishedAt,
     dateModified: publishedAt,
@@ -234,6 +239,21 @@ const SakuraLpPage = () => {
           ))}
         </div>
         <CtaButton label="さくらのVPS公式ページを見る" />
+        <PrDisclosure />
+        <p style={{ color: "#4a5568", fontSize: "0.9rem", lineHeight: 1.7 }}>
+          全プランの料金表・他社との料金比較・メリット/デメリットは{" "}
+          <Link
+            href="/vps/sakura/"
+            style={{
+              color: "#2563eb",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
+            さくらのVPSの料金・スペック・評判ページ
+          </Link>
+          で確認できます。
+        </p>
       </section>
 
       {/* Why Sakura */}
@@ -433,7 +453,8 @@ const SakuraLpPage = () => {
         style={{
           display: "grid",
           gap: "1rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
         }}
       >
         <article style={{ ...panelStyle, display: "grid", gap: "0.8rem" }}>
@@ -508,7 +529,10 @@ const SakuraLpPage = () => {
             月643円の入門プランから試せます。情報量が多く、調べながら進めやすい環境です。
           </p>
         </div>
-        <CtaButton label="さくらのVPS公式ページを確認する" />
+        <CtaButton
+          placement="article_bottom"
+          label="さくらのVPS公式ページを確認する"
+        />
         <p style={{ color: "#a0aec0", fontSize: "0.78rem" }}>
           ※ 本ページにはアフィリエイトリンクが含まれます。
         </p>
@@ -599,7 +623,7 @@ const SakuraLpPage = () => {
       <img
         alt=""
         height={1}
-        src={affiliatePixelUrl}
+        src={affiliatePixelUrl ?? ""}
         style={{ border: 0, height: 1, width: 1 }}
         width={1}
       />

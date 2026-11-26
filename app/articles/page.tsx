@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 
 const ArticlesPage = () => {
   const articles = getAllArticles()
+  const categories = [...new Set(articles.map((article) => article.category))]
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -101,7 +102,14 @@ const ArticlesPage = () => {
           padding: "clamp(1rem, 3vw, 1.6rem)",
         }}
       >
-        <Link href="/" style={{ color: "#3EA8FF", fontSize: "0.9rem", textDecoration: "none" }}>
+        <Link
+          href="/"
+          style={{
+            color: "#3EA8FF",
+            fontSize: "0.9rem",
+            textDecoration: "none",
+          }}
+        >
           ← 一覧へ戻る
         </Link>
         <nav
@@ -138,7 +146,14 @@ const ArticlesPage = () => {
           >
             Articles
           </span>
-          <h1 style={{ color: "#1a202c", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2 }}>
+          <h1
+            style={{
+              color: "#1a202c",
+              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.2,
+            }}
+          >
             VPSの記事一覧
           </h1>
           <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
@@ -147,61 +162,113 @@ const ArticlesPage = () => {
         </div>
       </section>
 
-      <section
-        style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-        }}
+      <nav
+        aria-label="記事カテゴリ"
+        style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
       >
-        {articles.map((article) => (
-          <article
-            key={article.id}
+        {categories.map((category, index) => (
+          <a
+            href={`#category-${index + 1}`}
+            key={category}
             style={{
               background: "#ffffff",
-              border: "1px solid #e2e8f0",
-              borderRadius: 12,
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
-              display: "grid",
-              gap: "0.85rem",
-              padding: "clamp(1rem, 3vw, 1.25rem)",
+              border: "1px solid #bee3f8",
+              borderRadius: 999,
+              color: "#2563eb",
+              fontSize: "0.88rem",
+              padding: "0.4rem 0.8rem",
+              textDecoration: "none",
             }}
           >
-            <span
-              style={{
-                background: "#ebf8ff",
-                border: "1px solid #bee3f8",
-                borderRadius: 999,
-                color: "#2b6cb0",
-                fontSize: "0.78rem",
-                fontWeight: 500,
-                padding: "0.35rem 0.65rem",
-                width: "fit-content",
-              }}
-            >
-              {article.category}
-            </span>
-            <h2 style={{ color: "#1a202c", fontSize: "1.1rem", fontWeight: 700, lineHeight: 1.4 }}>
-              {article.title}
-            </h2>
-            <p style={{ color: "#718096", lineHeight: 1.8 }}>
-              {article.description}
-            </p>
-            <Link
-              href={article.href}
-              style={{
-                color: "#3EA8FF",
-                fontSize: "0.9rem",
-                fontWeight: 600,
-                textDecoration: "none",
-                width: "fit-content",
-              }}
-            >
-              記事を読む →
-            </Link>
-          </article>
+            {category}
+          </a>
         ))}
-      </section>
+      </nav>
+
+      {categories.map((category, categoryIndex) => (
+        <section
+          aria-labelledby={`category-${categoryIndex + 1}`}
+          key={category}
+          style={{ display: "grid", gap: "0.9rem" }}
+        >
+          <h2
+            id={`category-${categoryIndex + 1}`}
+            style={{
+              color: "#1a202c",
+              fontSize: "1.3rem",
+              fontWeight: 700,
+              scrollMarginTop: 80,
+            }}
+          >
+            {category}
+          </h2>
+          <div
+            style={{
+              display: "grid",
+              gap: "1rem",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+            }}
+          >
+            {articles
+              .filter((article) => article.category === category)
+              .map((article) => (
+                <article
+                  key={article.id}
+                  style={{
+                    background: "#ffffff",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: 12,
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                    display: "grid",
+                    gap: "0.85rem",
+                    padding: "clamp(1rem, 3vw, 1.25rem)",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "#ebf8ff",
+                      border: "1px solid #bee3f8",
+                      borderRadius: 999,
+                      color: "#2b6cb0",
+                      fontSize: "0.78rem",
+                      fontWeight: 500,
+                      padding: "0.35rem 0.65rem",
+                      width: "fit-content",
+                    }}
+                  >
+                    {article.category}
+                  </span>
+                  <h3
+                    style={{
+                      color: "#1a202c",
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {article.title}
+                  </h3>
+                  <p style={{ color: "#718096", lineHeight: 1.8 }}>
+                    {article.description}
+                  </p>
+                  <Link
+                    href={article.href}
+                    style={{
+                      color: "#3EA8FF",
+                      fontSize: "0.9rem",
+                      fontWeight: 600,
+                      textDecoration: "none",
+                      width: "fit-content",
+                    }}
+                  >
+                    記事を読む →
+                  </Link>
+                </article>
+              ))}
+          </div>
+        </section>
+      ))}
     </div>
   )
 }

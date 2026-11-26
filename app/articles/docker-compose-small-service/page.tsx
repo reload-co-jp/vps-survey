@@ -1,11 +1,18 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ArticleFooter } from "../../../components/article-layout"
 
 export const metadata: Metadata = {
   title: "Docker Composeで小規模Webサービスを動かすときのVPS選び",
   description:
     "Docker ComposeでAPIサーバーとDBを立てる小規模Webサービスを例に、必要なVPSスペックと選び方を具体的に解説します。",
-  keywords: ["Docker Compose VPS", "VPS Docker", "小規模 Webサービス VPS", "VPS 2GB 4GB", "Docker Compose スペック"],
+  keywords: [
+    "Docker Compose VPS",
+    "VPS Docker",
+    "小規模 Webサービス VPS",
+    "VPS 2GB 4GB",
+    "Docker Compose スペック",
+  ],
   alternates: {
     canonical: "/articles/docker-compose-small-service/",
   },
@@ -66,9 +73,18 @@ const DockerComposeSmallServicePage = () => {
     inLanguage: "ja",
     datePublished: "2026-04-30T00:00:00+09:00",
     dateModified: "2026-05-12T00:00:00+09:00",
-    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
-    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
-    mainEntityOfPage: "/articles/docker-compose-small-service/",
+    author: {
+      "@type": "Organization",
+      name: "VPS比較サイト",
+      url: "https://vps.reload.co.jp",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Reload, Inc.",
+      url: "https://reload.co.jp/",
+    },
+    mainEntityOfPage:
+      "https://vps.reload.co.jp/articles/docker-compose-small-service/",
   }
 
   const breadcrumbJsonLd = {
@@ -79,19 +95,19 @@ const DockerComposeSmallServicePage = () => {
         "@type": "ListItem",
         position: 1,
         name: "VPS比較サイト",
-        item: "/",
+        item: "https://vps.reload.co.jp/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: "/articles/",
+        item: "https://vps.reload.co.jp/articles/",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Docker Composeで小規模Webサービスを動かすときのVPS選び",
-        item: "/articles/docker-compose-small-service/",
+        item: "https://vps.reload.co.jp/articles/docker-compose-small-service/",
       },
     ],
   }
@@ -133,7 +149,10 @@ const DockerComposeSmallServicePage = () => {
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/articles/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             記事一覧
           </Link>
           <span>/</span>
@@ -157,13 +176,16 @@ const DockerComposeSmallServicePage = () => {
           >
             Practical Example
           </span>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)", lineHeight: 1.08 }}>
+          <h1
+            style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)", lineHeight: 1.08 }}
+          >
             Docker ComposeでDBとAPIを立てる
             <br />
             小規模WebサービスのVPS選び
           </h1>
           <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 820 }}>
-            FastAPIやNode.jsのAPIサーバーとPostgreSQLをDocker Composeでまとめて立てる、
+            FastAPIやNode.jsのAPIサーバーとPostgreSQLをDocker
+            Composeでまとめて立てる、
             小規模Webサービスを例にします。実際にどのくらいのメモリが必要か、2GBで足りるのか、
             4GBにしたほうがよいのかを具体的に考えます。
           </p>
@@ -196,7 +218,8 @@ volumes:
   db-data:`}
           </div>
           <p style={{ color: "#718096", lineHeight: 1.8 }}>
-            実際には Redis やワーカーを足すこともありますが、まずはこの最小構成で考えると必要スペックが分かりやすいです。
+            実際には Redis
+            やワーカーを足すこともありますが、まずはこの最小構成で考えると必要スペックが分かりやすいです。
           </p>
         </article>
 
@@ -207,9 +230,15 @@ volumes:
             APIアプリ、PostgreSQL、OSのキャッシュを全部同居させるので、余裕はかなり少なめです。
           </p>
           <ul style={listStyle}>
-            <li style={itemStyle}>アクセスが少ないMVPや社内ツールなら2GBでも始められます。</li>
-            <li style={itemStyle}>DBのメモリ使用量が増えると、すぐに窮屈になります。</li>
-            <li style={itemStyle}>CIや追加コンテナを同居させるなら、2GBは厳しくなりやすいです。</li>
+            <li style={itemStyle}>
+              アクセスが少ないMVPや社内ツールなら2GBでも始められます。
+            </li>
+            <li style={itemStyle}>
+              DBのメモリ使用量が増えると、すぐに窮屈になります。
+            </li>
+            <li style={itemStyle}>
+              CIや追加コンテナを同居させるなら、2GBは厳しくなりやすいです。
+            </li>
           </ul>
           <p style={{ color: "#718096", lineHeight: 1.8 }}>
             個人開発の初期リリースなら2GBから始めて、監視しながら4GBへ上げる考え方は十分現実的です。
@@ -217,7 +246,9 @@ volumes:
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>最初から4GBを選ぶと安心なケース</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            最初から4GBを選ぶと安心なケース
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             小規模でも、管理画面、バッチ処理、画像処理、メール送信、監視エージェントなどが入ると
             コンテナ数は増えます。そうなると4GBの安心感がかなり大きいです。
@@ -255,28 +286,40 @@ volumes:
           <h2 style={{ fontSize: "1.3rem" }}>CPUより先にメモリを見る</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             この構成では、最初に不足しやすいのはCPUよりメモリです。APIの処理が重くない限り、
-            小規模サービスでは2〜3 vCPUでも足りることが多いです。一方でメモリ不足はコンテナ再起動や
+            小規模サービスでは2〜3
+            vCPUでも足りることが多いです。一方でメモリ不足はコンテナ再起動や
             体感速度の低下につながりやすいので、まずはメモリ帯で比較するほうが失敗しにくいです。
           </p>
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>ディスクはSSD/NVMeと容量の両方を見る</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            ディスクはSSD/NVMeと容量の両方を見る
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             DBを同居させるなら、ストレージ性能も大事です。ログ、DBデータ、Dockerイメージ、
             バックアップを考えると、50GBより100GBあるほうがかなり安心です。
           </p>
           <ul style={listStyle}>
-            <li style={itemStyle}>MVPでも 50GB は早めに埋まることがあります。</li>
-            <li style={itemStyle}>DBを持つなら 100GB 以上あると運用しやすいです。</li>
-            <li style={itemStyle}>NVMe表記があるプランは、体感の安心感が高いです。</li>
+            <li style={itemStyle}>
+              MVPでも 50GB は早めに埋まることがあります。
+            </li>
+            <li style={itemStyle}>
+              DBを持つなら 100GB 以上あると運用しやすいです。
+            </li>
+            <li style={itemStyle}>
+              NVMe表記があるプランは、体感の安心感が高いです。
+            </li>
           </ul>
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>このケースならどんなVPSを選ぶか</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            このケースならどんなVPSを選ぶか
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            日本向けの小規模Webサービスなら、国内リージョン、2GB〜4GB、できればNVMe SSD、
+            日本向けの小規模Webサービスなら、国内リージョン、2GB〜4GB、できればNVMe
+            SSD、
             将来的に8GB以上へ素直に拡張できるサービスがおすすめです。初期費用を抑えたいなら2GB、
             本番で最初から安定性を取りたいなら4GBから見るのが分かりやすいです。
           </p>
@@ -298,6 +341,7 @@ volumes:
           </Link>
         </article>
       </section>
+      <ArticleFooter id="docker-compose-small-service" />
     </div>
   )
 }

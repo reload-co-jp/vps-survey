@@ -6,6 +6,7 @@ import {
   buildFaqJsonLd,
   buildLpMetadata,
 } from "../seo"
+import { CampaignArchiveNotice } from "../../../components/campaign-archive-notice"
 
 const pageTitle =
   "2026年8月・VPSキャンペーンまとめ | いま国内でお得に始められるサービスはどれ？"
@@ -148,7 +149,10 @@ const CampaignAugust2026Page = () => {
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "VPS比較サイト", path: "/" },
-    { name: "2026年8月の国内VPSキャンペーンまとめ", path: "/lp/2026-08-campaign/" },
+    {
+      name: "2026年8月の国内VPSキャンペーンまとめ",
+      path: "/lp/2026-08-campaign/",
+    },
   ])
 
   const faqJsonLd = buildFaqJsonLd(faqs)
@@ -176,6 +180,7 @@ const CampaignAugust2026Page = () => {
         type="application/ld+json"
       />
 
+      <CampaignArchiveNotice period="2026年8月" />
       <section
         style={{
           background: "#eef6ff",
@@ -243,7 +248,8 @@ const CampaignAugust2026Page = () => {
             }}
           >
             2026年7月27日時点で、8月も利用できる国内VPSのキャンペーンと常設特典を整理しました。
-            XServer VPS では8月4日まで最大半額キャッシュバック、シンVPSでは8月20日まで実質30%オフが確認できます。
+            XServer VPS
+            では8月4日まで最大半額キャッシュバック、シンVPSでは8月20日まで実質30%オフが確認できます。
           </p>
         </div>
         <div
@@ -282,8 +288,12 @@ const CampaignAugust2026Page = () => {
       </section>
 
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2
+            style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}
+          >
             8月中に終了する期間限定キャンペーン
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
@@ -336,8 +346,16 @@ const CampaignAugust2026Page = () => {
                   {campaign.label}
                 </span>
               </div>
-              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{campaign.body}</p>
-              <p style={{ color: "#718096", fontSize: "0.82rem", lineHeight: 1.7 }}>
+              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
+                {campaign.body}
+              </p>
+              <p
+                style={{
+                  color: "#718096",
+                  fontSize: "0.82rem",
+                  lineHeight: 1.7,
+                }}
+              >
                 {campaign.note}
               </p>
               <span style={{ color: "#3EA8FF" }}>公式ページを見る →</span>
@@ -347,8 +365,12 @@ const CampaignAugust2026Page = () => {
       </section>
 
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2
+            style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}
+          >
             8月いっぱい続く割引キャンペーン
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
@@ -387,8 +409,12 @@ const CampaignAugust2026Page = () => {
       </section>
 
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2
+            style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}
+          >
             常設の特典・試しやすい条件
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
@@ -427,7 +453,9 @@ const CampaignAugust2026Page = () => {
       </section>
 
       <section style={{ ...panelStyle, display: "grid", gap: "0.85rem" }}>
-        <h2 style={{ color: "#1a202c", fontSize: "clamp(1.35rem, 3vw, 1.8rem)" }}>
+        <h2
+          style={{ color: "#1a202c", fontSize: "clamp(1.35rem, 3vw, 1.8rem)" }}
+        >
           8月に選ぶならどれが向いているか
         </h2>
         <div
@@ -456,8 +484,13 @@ const CampaignAugust2026Page = () => {
               body: "無料トライアルや少額クーポン、デビュー割を使って、使い勝手を先に確かめてから決めたい人向けです。",
             },
           ].map((item) => (
-            <article key={item.title} style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}>
-              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>{item.title}</h3>
+            <article
+              key={item.title}
+              style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}
+            >
+              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
+                {item.title}
+              </h3>
               <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{item.body}</p>
             </article>
           ))}
