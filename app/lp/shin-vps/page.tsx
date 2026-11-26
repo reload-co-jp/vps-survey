@@ -6,8 +6,11 @@ import {
   buildFaqJsonLd,
   buildLpMetadata,
 } from "../seo"
+import { PrDisclosure } from "../../../components/affiliate-link"
+import { getOutboundUrl, getServiceById } from "../../../lib/vps"
 
-const pageTitle = "2026年版 シンVPS完全ガイド | コスパで選ぶなら国内VPSの最有力候補"
+const pageTitle =
+  "2026年版 シンVPS完全ガイド | コスパで選ぶなら国内VPSの最有力候補"
 const pageDescription =
   "シンVPSはNVMe SSD・大容量メモリプランが月750円から使える高コスパ国内VPS。料金・スペック・メリット・おすすめ用途を徹底解説します。"
 const publishedAt = "2026-04-18T09:00:00+09:00"
@@ -30,28 +33,18 @@ export const metadata: Metadata = buildLpMetadata({
   ],
 })
 
-const affiliateUrl =
-  "https://px.a8.net/svt/ejp?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY"
-const affiliatePixelUrl =
-  "https://www18.a8.net/0.gif?a8mat=4B1MHK+CRMNSI+5GDG+NTJWY"
+// アフィリエイトURLは data/vps.json で一元管理する
+const service = getServiceById("shin-vps")!
+const affiliateUrl = getOutboundUrl(service)
+const affiliatePixelUrl = service.affiliatePixelUrl
 
-const memoryPlans = [
-  { name: "Memory 1GB", price: 750, cpu: 1, memory: 1, storage: 30 },
-  { name: "Memory 2GB", price: 1040, cpu: 2, memory: 2, storage: 50 },
-  { name: "Memory 4GB", price: 1800, cpu: 3, memory: 4, storage: 50 },
-  { name: "Memory 8GB", price: 3450, cpu: 4, memory: 8, storage: 100 },
-  { name: "Memory 16GB", price: 6760, cpu: 6, memory: 16, storage: 100 },
-  { name: "Memory 32GB", price: 16560, cpu: 8, memory: 32, storage: 100 },
-  { name: "Memory 64GB", price: 33121, cpu: 12, memory: 64, storage: 100 },
-]
+const memoryPlans = service.plans.filter((plan) =>
+  plan.name.startsWith("Memory")
+)
 
-const standardPlans = [
-  { name: "Standard 512MB", price: 1240, cpu: 1, memory: 0.5, storage: 50 },
-  { name: "Standard 1GB", price: 1590, cpu: 2, memory: 1, storage: 100 },
-  { name: "Standard 2GB", price: 2550, cpu: 3, memory: 2, storage: 150 },
-  { name: "Standard 4GB", price: 4970, cpu: 4, memory: 4, storage: 200 },
-  { name: "Standard 8GB", price: 9940, cpu: 6, memory: 8, storage: 400 },
-]
+const standardPlans = service.plans
+  .filter((plan) => plan.name.startsWith("Standard"))
+  .slice(0, 5)
 
 const faqs = [
   {
@@ -71,10 +64,19 @@ const faqs = [
   },
 ]
 
-const CtaButton = ({ label = "シンVPSを見てみる" }: { label?: string }) => (
+const CtaButton = ({
+  label = "シンVPSを見てみる",
+  placement = "article_top",
+}: {
+  label?: string
+  placement?: "article_top" | "article_bottom"
+}) => (
   <a
+    data-affiliate-link-type="affiliate"
+    data-affiliate-placement={placement}
+    data-affiliate-provider={service.id}
     href={affiliateUrl}
-    rel="noopener noreferrer"
+    rel="sponsored nofollow noopener noreferrer"
     style={{
       alignItems: "center",
       background: "#3EA8FF",
@@ -106,7 +108,8 @@ const panelStyle = {
 const ShinVpsLpPage = () => {
   const articleJsonLd = buildArticleJsonLd({
     title: pageTitle,
-    description: "シンVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
+    description:
+      "シンVPSの料金・スペック・メリット・おすすめ用途を徹底解説します。",
     path: "/lp/shin-vps/",
     datePublished: publishedAt,
     dateModified: updatedAt,
@@ -205,7 +208,8 @@ const ShinVpsLpPage = () => {
               maxWidth: 680,
             }}
           >
-            月750円から使えるメモリプランと、NVMe SSDによる高速ストレージが強み。
+            月750円から使えるメモリプランと、NVMe
+            SSDによる高速ストレージが強み。
             国内向けWebサービスの開発・本番運用にコスパよく使える定番の選択肢です。
           </p>
         </div>
@@ -213,7 +217,8 @@ const ShinVpsLpPage = () => {
           style={{
             display: "grid",
             gap: "0.85rem",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
             maxWidth: 600,
           }}
         >
@@ -242,6 +247,21 @@ const ShinVpsLpPage = () => {
           ))}
         </div>
         <CtaButton label="シンVPS公式ページを見る" />
+        <PrDisclosure />
+        <p style={{ color: "#4a5568", fontSize: "0.9rem", lineHeight: 1.7 }}>
+          全プランの料金表・他社との料金比較・メリット/デメリットは{" "}
+          <Link
+            href="/vps/shin-vps/"
+            style={{
+              color: "#2563eb",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
+            シンVPSの料金・スペック・評判ページ
+          </Link>
+          で確認できます。
+        </p>
       </section>
 
       {/* Why Shin VPS */}
@@ -358,7 +378,10 @@ const ShinVpsLpPage = () => {
                     fontWeight: 600,
                   }}
                 >
-                  ¥{plan.price.toLocaleString()}<span style={{ fontSize: "0.78rem", fontWeight: 400 }}>/月</span>
+                  ¥{plan.price.toLocaleString()}
+                  <span style={{ fontSize: "0.78rem", fontWeight: 400 }}>
+                    /月
+                  </span>
                 </span>
               </div>
               <div style={{ display: "grid", gap: "0.55rem" }}>
@@ -436,7 +459,10 @@ const ShinVpsLpPage = () => {
                     fontWeight: 600,
                   }}
                 >
-                  ¥{plan.price.toLocaleString()}<span style={{ fontSize: "0.78rem", fontWeight: 400 }}>/月</span>
+                  ¥{plan.price.toLocaleString()}
+                  <span style={{ fontSize: "0.78rem", fontWeight: 400 }}>
+                    /月
+                  </span>
                 </span>
               </div>
               <div style={{ display: "grid", gap: "0.55rem" }}>
@@ -516,7 +542,8 @@ const ShinVpsLpPage = () => {
         style={{
           display: "grid",
           gap: "1rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
         }}
       >
         <article style={{ ...panelStyle, display: "grid", gap: "0.8rem" }}>
@@ -591,7 +618,10 @@ const ShinVpsLpPage = () => {
             メモリプランは月750円から試せます。まずは公式ページでプランと料金を確認してみてください。
           </p>
         </div>
-        <CtaButton label="シンVPS公式ページを確認する" />
+        <CtaButton
+          placement="article_bottom"
+          label="シンVPS公式ページを確認する"
+        />
         <p style={{ color: "#a0aec0", fontSize: "0.78rem" }}>
           ※ 本ページにはアフィリエイトリンクが含まれます。
         </p>
@@ -688,7 +718,7 @@ const ShinVpsLpPage = () => {
       <img
         alt=""
         height={1}
-        src={affiliatePixelUrl}
+        src={affiliatePixelUrl ?? ""}
         style={{ border: 0, height: 1, width: 1 }}
         width={1}
       />

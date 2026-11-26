@@ -1,11 +1,18 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ArticleFooter } from "../../../components/article-layout"
 
 export const metadata: Metadata = {
   title: "オブジェクトストレージとは何か",
   description:
     "オブジェクトストレージの基本、ファイルストレージやブロックストレージとの違い、VPSと組み合わせるメリット、向いている用途を分かりやすく解説する記事です。",
-  keywords: ["オブジェクトストレージ とは", "オブジェクトストレージ VPS", "ブロックストレージ 違い", "S3 VPS", "ファイルストレージ 違い"],
+  keywords: [
+    "オブジェクトストレージ とは",
+    "オブジェクトストレージ VPS",
+    "ブロックストレージ 違い",
+    "S3 VPS",
+    "ファイルストレージ 違い",
+  ],
   alternates: {
     canonical: "/articles/object-storage/",
   },
@@ -53,9 +60,17 @@ const ObjectStoragePage = () => {
     inLanguage: "ja",
     datePublished: "2026-04-30T00:00:00+09:00",
     dateModified: "2026-05-12T00:00:00+09:00",
-    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
-    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
-    mainEntityOfPage: "/articles/object-storage/",
+    author: {
+      "@type": "Organization",
+      name: "VPS比較サイト",
+      url: "https://vps.reload.co.jp",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Reload, Inc.",
+      url: "https://reload.co.jp/",
+    },
+    mainEntityOfPage: "https://vps.reload.co.jp/articles/object-storage/",
   }
 
   const breadcrumbJsonLd = {
@@ -66,19 +81,19 @@ const ObjectStoragePage = () => {
         "@type": "ListItem",
         position: 1,
         name: "VPS比較サイト",
-        item: "/",
+        item: "https://vps.reload.co.jp/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: "/articles/",
+        item: "https://vps.reload.co.jp/articles/",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "オブジェクトストレージとは何か",
-        item: "/articles/object-storage/",
+        item: "https://vps.reload.co.jp/articles/object-storage/",
       },
     ],
   }
@@ -121,7 +136,10 @@ const ObjectStoragePage = () => {
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/articles/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             記事一覧
           </Link>
           <span>/</span>
@@ -169,8 +187,8 @@ const ObjectStoragePage = () => {
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             オブジェクトストレージは、データをファイルそのものではなく
             「オブジェクト」として保存するストレージです。各オブジェクトには
-            本体データに加えてメタデータや一意な識別子が付いていて、
-            URL や API を通じて取得・保存します。
+            本体データに加えてメタデータや一意な識別子が付いていて、 URL や API
+            を通じて取得・保存します。
           </p>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             ローカルディスクのようにフォルダへ直接マウントして使うというより、
@@ -179,7 +197,9 @@ const ObjectStoragePage = () => {
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>ファイルストレージ・ブロックストレージとの違い</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            ファイルストレージ・ブロックストレージとの違い
+          </h2>
           <div
             style={{
               display: "grid",
@@ -189,9 +209,12 @@ const ObjectStoragePage = () => {
             }}
           >
             <div style={miniCardStyle}>
-              <strong style={{ fontSize: "1rem" }}>オブジェクトストレージ</strong>
+              <strong style={{ fontSize: "1rem" }}>
+                オブジェクトストレージ
+              </strong>
               <p style={miniCardTextStyle}>
-                画像、バックアップ、ログ保管向き。API 経由で使い、大量保存を安価にしやすいです。
+                画像、バックアップ、ログ保管向き。API
+                経由で使い、大量保存を安価にしやすいです。
               </p>
             </div>
             <div style={miniCardStyle}>
@@ -203,7 +226,8 @@ const ObjectStoragePage = () => {
             <div style={miniCardStyle}>
               <strong style={{ fontSize: "1rem" }}>ブロックストレージ</strong>
               <p style={miniCardTextStyle}>
-                VPS に追加ディスクとしてつなぐ用途向き。DB や OS に近いレイヤーで使います。
+                VPS に追加ディスクとしてつなぐ用途向き。DB や OS
+                に近いレイヤーで使います。
               </p>
             </div>
           </div>
@@ -213,16 +237,19 @@ const ObjectStoragePage = () => {
           <h2 style={{ fontSize: "1.3rem" }}>VPSと組み合わせるメリット</h2>
           <ul style={listStyle}>
             <li style={itemStyle}>
-              画像や動画を VPS のローカルディスクから切り離し、サーバー本体を軽くできます。
+              画像や動画を VPS
+              のローカルディスクから切り離し、サーバー本体を軽くできます。
             </li>
             <li style={itemStyle}>
               バックアップを別ストレージに逃がせるので、サーバー障害時のリスク分散になります。
             </li>
             <li style={itemStyle}>
-              容量が増えても VPS プランごと上げずに済む場面が多く、コスト管理がしやすくなります。
+              容量が増えても VPS
+              プランごと上げずに済む場面が多く、コスト管理がしやすくなります。
             </li>
             <li style={itemStyle}>
-              CDN と組み合わせれば、静的ファイル配信の速度と負荷分散も行いやすいです。
+              CDN
+              と組み合わせれば、静的ファイル配信の速度と負荷分散も行いやすいです。
             </li>
           </ul>
         </article>
@@ -230,48 +257,73 @@ const ObjectStoragePage = () => {
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>どんな用途に向いているか</h2>
           <ul style={listStyle}>
-            <li style={itemStyle}>ユーザー投稿画像、商品画像、ダウンロードファイルの保存</li>
-            <li style={itemStyle}>DB ダンプやアプリケーションのバックアップ保管</li>
-            <li style={itemStyle}>アクセスログ、分析ログ、アーカイブデータの退避</li>
+            <li style={itemStyle}>
+              ユーザー投稿画像、商品画像、ダウンロードファイルの保存
+            </li>
+            <li style={itemStyle}>
+              DB ダンプやアプリケーションのバックアップ保管
+            </li>
+            <li style={itemStyle}>
+              アクセスログ、分析ログ、アーカイブデータの退避
+            </li>
             <li style={itemStyle}>静的サイトのアセット配信や CDN のオリジン</li>
-            <li style={itemStyle}>複数環境で共通して参照する大きなファイルの置き場</li>
+            <li style={itemStyle}>
+              複数環境で共通して参照する大きなファイルの置き場
+            </li>
           </ul>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>逆に向かない用途</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            オブジェクトストレージは API 経由でアクセスする前提なので、
-            DB のデータファイルや OS のアプリ実行領域のように低レイテンシで細かく読み書きしたい用途には向きません。
-            そうした用途では VPS のローカル NVMe やブロックストレージの方が適しています。
+            オブジェクトストレージは API 経由でアクセスする前提なので、 DB
+            のデータファイルや OS
+            のアプリ実行領域のように低レイテンシで細かく読み書きしたい用途には向きません。
+            そうした用途では VPS のローカル NVMe
+            やブロックストレージの方が適しています。
           </p>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>料金を見るときのポイント</h2>
           <ul style={listStyle}>
-            <li style={itemStyle}>保存容量だけでなく、外向き通信量の課金有無を見る</li>
-            <li style={itemStyle}>PUT/GET など API リクエスト課金の有無を確認する</li>
-            <li style={itemStyle}>バックアップ保管なら低頻度アクセス向けクラスが使えるかを見る</li>
-            <li style={itemStyle}>VPS と同じ事業者でそろえると転送や認証が楽な場合がある</li>
+            <li style={itemStyle}>
+              保存容量だけでなく、外向き通信量の課金有無を見る
+            </li>
+            <li style={itemStyle}>
+              PUT/GET など API リクエスト課金の有無を確認する
+            </li>
+            <li style={itemStyle}>
+              バックアップ保管なら低頻度アクセス向けクラスが使えるかを見る
+            </li>
+            <li style={itemStyle}>
+              VPS と同じ事業者でそろえると転送や認証が楽な場合がある
+            </li>
           </ul>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>初心者がはまりやすいポイント</h2>
           <ul style={listStyle}>
-            <li style={itemStyle}>公開設定を広げすぎて、非公開データまで配信してしまう</li>
+            <li style={itemStyle}>
+              公開設定を広げすぎて、非公開データまで配信してしまう
+            </li>
             <li style={itemStyle}>大量アクセス時の通信量課金を見落とす</li>
-            <li style={itemStyle}>画像変換や縮小処理を全部アプリ側で持ち、VPS負荷が高くなる</li>
-            <li style={itemStyle}>バックアップ先として使っているのに、世代管理や削除ポリシーを決めていない</li>
+            <li style={itemStyle}>
+              画像変換や縮小処理を全部アプリ側で持ち、VPS負荷が高くなる
+            </li>
+            <li style={itemStyle}>
+              バックアップ先として使っているのに、世代管理や削除ポリシーを決めていない
+            </li>
           </ul>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>VPS運用での現実的な使い分け</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            小規模サービスなら、アプリ本体と DB は VPS、画像やバックアップはオブジェクトストレージ、
-            静的配信は CDN という分け方が分かりやすいです。最初から全部を分離しなくても、
+            小規模サービスなら、アプリ本体と DB は
+            VPS、画像やバックアップはオブジェクトストレージ、 静的配信は CDN
+            という分け方が分かりやすいです。最初から全部を分離しなくても、
             ファイル量が増え始めた段階でオブジェクトストレージへ逃がすだけでも十分効果があります。
           </p>
         </article>
@@ -285,13 +337,33 @@ const ObjectStoragePage = () => {
           <h2 style={{ fontSize: "1.3rem" }}>VPSを選ぶときに一緒に考える</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             画像やバックアップをオブジェクトストレージへ逃がす前提なら、
-            VPS本体は CPU とメモリ重視で選びやすくなります。ディスク容量だけで高いプランを選ぶ必要があるかを一度見直せます。
+            VPS本体は CPU
+            とメモリ重視で選びやすくなります。ディスク容量だけで高いプランを選ぶ必要があるかを一度見直せます。
           </p>
           <Link href="/" style={buttonStyle}>
             VPS一覧で比較する
           </Link>
         </article>
       </section>
+      <aside
+        style={{
+          background: "#eff6ff",
+          border: "1px solid #bfdbfe",
+          borderRadius: 8,
+          lineHeight: 1.8,
+          padding: "1rem",
+        }}
+      >
+        料金・転送量・S3互換性でサービスを比べたい場合は{" "}
+        <Link
+          href="/storage/object-storage-comparison/"
+          style={{ color: "#2563eb", fontWeight: 600 }}
+        >
+          オブジェクトストレージ比較
+        </Link>
+        を参照してください。
+      </aside>
+      <ArticleFooter id="object-storage" />
     </div>
   )
 }

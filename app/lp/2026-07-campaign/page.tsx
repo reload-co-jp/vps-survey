@@ -6,6 +6,7 @@ import {
   buildFaqJsonLd,
   buildLpMetadata,
 } from "../seo"
+import { CampaignArchiveNotice } from "../../../components/campaign-archive-notice"
 
 const pageTitle =
   "2026年7月・VPSキャンペーンまとめ | いま国内でお得に始められるサービスはどれ？"
@@ -142,7 +143,10 @@ const CampaignJuly2026Page = () => {
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "VPS比較サイト", path: "/" },
-    { name: "2026年7月の国内VPSキャンペーンまとめ", path: "/lp/2026-07-campaign/" },
+    {
+      name: "2026年7月の国内VPSキャンペーンまとめ",
+      path: "/lp/2026-07-campaign/",
+    },
   ])
 
   const faqJsonLd = buildFaqJsonLd(faqs)
@@ -170,6 +174,7 @@ const CampaignJuly2026Page = () => {
         type="application/ld+json"
       />
 
+      <CampaignArchiveNotice period="2026年7月" />
       <section
         style={{
           background: "#eef6ff",
@@ -276,8 +281,12 @@ const CampaignJuly2026Page = () => {
       </section>
 
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2
+            style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}
+          >
             7月も使える期間限定キャンペーン
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
@@ -330,8 +339,16 @@ const CampaignJuly2026Page = () => {
                   {campaign.label}
                 </span>
               </div>
-              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{campaign.body}</p>
-              <p style={{ color: "#718096", fontSize: "0.82rem", lineHeight: 1.7 }}>
+              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
+                {campaign.body}
+              </p>
+              <p
+                style={{
+                  color: "#718096",
+                  fontSize: "0.82rem",
+                  lineHeight: 1.7,
+                }}
+              >
                 {campaign.note}
               </p>
               <span style={{ color: "#3EA8FF" }}>公式ページを見る →</span>
@@ -341,8 +358,12 @@ const CampaignJuly2026Page = () => {
       </section>
 
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2
+            style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}
+          >
             7月前に確認したいキャンペーン
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
@@ -381,8 +402,12 @@ const CampaignJuly2026Page = () => {
       </section>
 
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
-          <h2 style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
+          <h2
+            style={{ color: "#1a202c", fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}
+          >
             常設の特典・試しやすい条件
           </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
@@ -421,7 +446,9 @@ const CampaignJuly2026Page = () => {
       </section>
 
       <section style={{ ...panelStyle, display: "grid", gap: "0.85rem" }}>
-        <h2 style={{ color: "#1a202c", fontSize: "clamp(1.35rem, 3vw, 1.8rem)" }}>
+        <h2
+          style={{ color: "#1a202c", fontSize: "clamp(1.35rem, 3vw, 1.8rem)" }}
+        >
           7月に選ぶならどれが向いているか
         </h2>
         <div
@@ -450,8 +477,13 @@ const CampaignJuly2026Page = () => {
               body: "無料トライアルや少額クーポンを使って、使い勝手を先に確かめてから決めたい人向けです。",
             },
           ].map((item) => (
-            <article key={item.title} style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}>
-              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>{item.title}</h3>
+            <article
+              key={item.title}
+              style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}
+            >
+              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
+                {item.title}
+              </h3>
               <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{item.body}</p>
             </article>
           ))}

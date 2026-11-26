@@ -6,6 +6,7 @@ import {
   buildFaqJsonLd,
   buildLpMetadata,
 } from "../seo"
+import { CampaignArchiveNotice } from "../../../components/campaign-archive-notice"
 
 const pageTitle =
   "2026年4月・VPSキャンペーンまとめ | いまいちばんお得に始められるのはどれ？"
@@ -138,7 +139,10 @@ const CampaignApril2026Page = () => {
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "VPS比較サイト", path: "/" },
-    { name: "2026年4月の国内VPSキャンペーンまとめ", path: "/lp/2026-04-campaign/" },
+    {
+      name: "2026年4月の国内VPSキャンペーンまとめ",
+      path: "/lp/2026-04-campaign/",
+    },
   ])
 
   const faqJsonLd = buildFaqJsonLd(faqs)
@@ -166,6 +170,7 @@ const CampaignApril2026Page = () => {
         type="application/ld+json"
       />
 
+      <CampaignArchiveNotice period="2026年4月" />
       <section
         style={{
           background: "#eef6ff",
@@ -267,7 +272,9 @@ const CampaignApril2026Page = () => {
       </section>
 
       <section style={{ display: "grid", gap: "1rem" }}>
-        <div style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}>
+        <div
+          style={{ display: "grid", gap: "0.4rem", paddingInline: "0.25rem" }}
+        >
           <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)" }}>
             いま使えるキャンペーン・特典まとめ
           </h2>
@@ -321,8 +328,16 @@ const CampaignApril2026Page = () => {
                   {campaign.label}
                 </span>
               </div>
-              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{campaign.body}</p>
-              <p style={{ color: "#718096", fontSize: "0.82rem", lineHeight: 1.7 }}>
+              <p style={{ color: "#4a5568", lineHeight: 1.8 }}>
+                {campaign.body}
+              </p>
+              <p
+                style={{
+                  color: "#718096",
+                  fontSize: "0.82rem",
+                  lineHeight: 1.7,
+                }}
+              >
                 {campaign.note}
               </p>
               <span style={{ color: "#3EA8FF" }}>公式ページを見る →</span>
@@ -361,8 +376,13 @@ const CampaignApril2026Page = () => {
               body: "無料トライアルや少額クーポンがあるため、UIや使い勝手を先に見たい人に向いています。",
             },
           ].map((item) => (
-            <article key={item.title} style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}>
-              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>{item.title}</h3>
+            <article
+              key={item.title}
+              style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}
+            >
+              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
+                {item.title}
+              </h3>
               <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{item.body}</p>
             </article>
           ))}
@@ -387,8 +407,13 @@ const CampaignApril2026Page = () => {
           }}
         >
           {noCampaignItems.map((item) => (
-            <article key={item.name} style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}>
-              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>{item.name}</h3>
+            <article
+              key={item.name}
+              style={{ ...panelStyle, display: "grid", gap: "0.55rem" }}
+            >
+              <h3 style={{ fontSize: "1rem", lineHeight: 1.45 }}>
+                {item.name}
+              </h3>
               <p style={{ color: "#4a5568", lineHeight: 1.8 }}>{item.body}</p>
             </article>
           ))}

@@ -10,6 +10,46 @@ export type ArticleSummary = {
 
 const articles: ArticleSummary[] = [
   {
+    id: "ssh-security",
+    title: "VPSのSSHセキュリティ設定｜公開前にやるべき初期設定",
+    description:
+      "VPSを契約したら最初に行うSSHの安全設定を解説。鍵認証への切り替え、パスワードログインとrootログインの無効化、ポート制限、fail2banまでを手順つきでまとめます。",
+    href: "/articles/ssh-security/",
+    category: "サーバー運用",
+    publishedAt: "2026-11-26T00:00:00+09:00",
+    updatedAt: "2026-11-26T00:00:00+09:00",
+  },
+  {
+    id: "vps-port-open",
+    title: "VPSのポート開放方法｜ufw・firewalldの設定と確認手順",
+    description:
+      "VPSでWebサーバーやゲームサーバーを公開するためのポート開放手順を解説。ufw（Ubuntu/Debian）とfirewalld（RHEL系）のコマンド、事業者側ファイアウォール、開放できているかの確認方法まで。",
+    href: "/articles/vps-port-open/",
+    category: "ネットワーク",
+    publishedAt: "2026-11-26T00:00:00+09:00",
+    updatedAt: "2026-11-26T00:00:00+09:00",
+  },
+  {
+    id: "vpn-vs-vps",
+    title: "VPNとVPSの違い｜仕組み・用途・組み合わせ方",
+    description:
+      "名前が似ているVPNとVPSの違いを解説。VPNは通信を暗号化する仕組み、VPSは仮想サーバー。VPSでVPNサーバーを構築する使い方も紹介します。",
+    href: "/articles/vpn-vs-vps/",
+    category: "ネットワーク",
+    publishedAt: "2026-11-26T00:00:00+09:00",
+    updatedAt: "2026-11-26T00:00:00+09:00",
+  },
+  {
+    id: "vps-backup",
+    title: "VPSのバックアップ方法｜スナップショットと外部保存の使い分け",
+    description:
+      "VPSのデータを守るバックアップ方法を解説。事業者のスナップショット・自動バックアップ、データベースのダンプ、オブジェクトストレージへの外部保存、復元テストまで。",
+    href: "/articles/vps-backup/",
+    category: "サーバー運用",
+    publishedAt: "2026-11-26T00:00:00+09:00",
+    updatedAt: "2026-11-26T00:00:00+09:00",
+  },
+  {
     id: "vps-price-trend",
     title: "VPS料金の推移と今後の見通し（2026年）",
     description:
@@ -92,3 +132,22 @@ const articles: ArticleSummary[] = [
 ]
 
 export const getAllArticles = () => articles
+
+export const getArticleById = (id: string) =>
+  articles.find((article) => article.id === id)
+
+/** 同じカテゴリを優先し、なければ新しい順で関連記事を返す */
+export const getRelatedArticles = (id: string, limit = 3) => {
+  const current = getArticleById(id)
+  return articles
+    .filter((article) => article.id !== id)
+    .sort((left, right) => {
+      const leftScore = Number(left.category === current?.category)
+      const rightScore = Number(right.category === current?.category)
+      return (
+        rightScore - leftScore ||
+        right.publishedAt.localeCompare(left.publishedAt)
+      )
+    })
+    .slice(0, limit)
+}

@@ -1,11 +1,18 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ArticleFooter } from "../../../components/article-layout"
 
 export const metadata: Metadata = {
   title: "どの状態になったらVPSをスケールアップすべきか",
   description:
     "CPU、メモリ、ディスク、レスポンス時間、DB負荷などから、VPSをスケールアップする判断基準を分かりやすく解説します。",
-  keywords: ["VPS スケールアップ", "VPS スペック 増強", "VPS メモリ 不足", "VPS CPU 使用率", "VPS 増強 タイミング"],
+  keywords: [
+    "VPS スケールアップ",
+    "VPS スペック 増強",
+    "VPS メモリ 不足",
+    "VPS CPU 使用率",
+    "VPS 増強 タイミング",
+  ],
   alternates: {
     canonical: "/articles/when-to-scale-up/",
   },
@@ -62,9 +69,17 @@ const WhenToScaleUpPage = () => {
     inLanguage: "ja",
     datePublished: "2026-04-30T00:00:00+09:00",
     dateModified: "2026-05-12T00:00:00+09:00",
-    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
-    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
-    mainEntityOfPage: "/articles/when-to-scale-up/",
+    author: {
+      "@type": "Organization",
+      name: "VPS比較サイト",
+      url: "https://vps.reload.co.jp",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Reload, Inc.",
+      url: "https://reload.co.jp/",
+    },
+    mainEntityOfPage: "https://vps.reload.co.jp/articles/when-to-scale-up/",
   }
 
   const breadcrumbJsonLd = {
@@ -75,19 +90,19 @@ const WhenToScaleUpPage = () => {
         "@type": "ListItem",
         position: 1,
         name: "VPS比較サイト",
-        item: "/",
+        item: "https://vps.reload.co.jp/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: "/articles/",
+        item: "https://vps.reload.co.jp/articles/",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "どの状態になったらVPSをスケールアップすべきか",
-        item: "/articles/when-to-scale-up/",
+        item: "https://vps.reload.co.jp/articles/when-to-scale-up/",
       },
     ],
   }
@@ -129,7 +144,10 @@ const WhenToScaleUpPage = () => {
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/articles/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             記事一覧
           </Link>
           <span>/</span>
@@ -153,7 +171,9 @@ const WhenToScaleUpPage = () => {
           >
             Scaling Guide
           </span>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)", lineHeight: 1.08 }}>
+          <h1
+            style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)", lineHeight: 1.08 }}
+          >
             どの状態になったら
             <br />
             VPSをスケールアップすべきか
@@ -199,7 +219,9 @@ const WhenToScaleUpPage = () => {
             }}
           >
             <div style={alertCardStyle}>
-              <strong style={{ fontSize: "1rem" }}>すぐ増強しなくてよい例</strong>
+              <strong style={{ fontSize: "1rem" }}>
+                すぐ増強しなくてよい例
+              </strong>
               <p style={cardTextStyle}>
                 デプロイ直後やバッチ実行時だけ一時的にCPUが上がる。
               </p>
@@ -243,15 +265,21 @@ const WhenToScaleUpPage = () => {
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>運用がしんどくなったら、それもサイン</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            運用がしんどくなったら、それもサイン
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             毎回リリース前に不要コンテナを消したり、メモリ節約のためにサービスを止めたりしているなら、
             すでに小さすぎる可能性があります。技術的には動いていても、運用コストが高い状態です。
           </p>
           <ul style={listStyle}>
             <li style={itemStyle}>監視のたびにメモリ残量を気にする。</li>
-            <li style={itemStyle}>デプロイのたびにリソース不足が不安になる。</li>
-            <li style={itemStyle}>ログやDBの整理を頻繁にしないと安定しない。</li>
+            <li style={itemStyle}>
+              デプロイのたびにリソース不足が不安になる。
+            </li>
+            <li style={itemStyle}>
+              ログやDBの整理を頻繁にしないと安定しない。
+            </li>
           </ul>
         </article>
 
@@ -282,6 +310,7 @@ const WhenToScaleUpPage = () => {
           </Link>
         </article>
       </section>
+      <ArticleFooter id="when-to-scale-up" />
     </div>
   )
 }

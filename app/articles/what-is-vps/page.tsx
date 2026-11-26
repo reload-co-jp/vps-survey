@@ -1,11 +1,18 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ArticleFooter } from "../../../components/article-layout"
 
 export const metadata: Metadata = {
   title: "VPSとは何か",
   description:
     "VPSの基本、共有サーバーやクラウドとの違い、メリット・デメリット、向いている用途を分かりやすく解説する記事です。",
-  keywords: ["VPSとは", "VPS 仮想サーバー", "VPS 共有サーバー 違い", "VPS クラウド 違い", "VPS メリット デメリット"],
+  keywords: [
+    "VPSとは",
+    "VPS 仮想サーバー",
+    "VPS 共有サーバー 違い",
+    "VPS クラウド 違い",
+    "VPS メリット デメリット",
+  ],
   alternates: {
     canonical: "/articles/what-is-vps/",
   },
@@ -53,9 +60,17 @@ const WhatIsVpsPage = () => {
     inLanguage: "ja",
     datePublished: "2026-04-30T00:00:00+09:00",
     dateModified: "2026-05-12T00:00:00+09:00",
-    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
-    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
-    mainEntityOfPage: "/articles/what-is-vps/",
+    author: {
+      "@type": "Organization",
+      name: "VPS比較サイト",
+      url: "https://vps.reload.co.jp",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Reload, Inc.",
+      url: "https://reload.co.jp/",
+    },
+    mainEntityOfPage: "https://vps.reload.co.jp/articles/what-is-vps/",
   }
 
   const breadcrumbJsonLd = {
@@ -66,19 +81,19 @@ const WhatIsVpsPage = () => {
         "@type": "ListItem",
         position: 1,
         name: "VPS比較サイト",
-        item: "/",
+        item: "https://vps.reload.co.jp/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: "/articles/",
+        item: "https://vps.reload.co.jp/articles/",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "VPSとは何か",
-        item: "/articles/what-is-vps/",
+        item: "https://vps.reload.co.jp/articles/what-is-vps/",
       },
     ],
   }
@@ -121,7 +136,10 @@ const WhatIsVpsPage = () => {
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/articles/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             記事一覧
           </Link>
           <span>/</span>
@@ -145,11 +163,19 @@ const WhatIsVpsPage = () => {
           >
             Basic Guide
           </span>
-          <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2, color: "#1a202c" }}>
+          <h1
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.2,
+              color: "#1a202c",
+            }}
+          >
             VPSとは何か
           </h1>
           <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
-            VPS は Virtual Private Server の略で、1台の物理サーバーを仮想的に分けて使う仕組みです。
+            VPS は Virtual Private Server
+            の略で、1台の物理サーバーを仮想的に分けて使う仕組みです。
             共有サーバーより自由度が高く、専用サーバーより低コストで始めやすいのが特徴です。
           </p>
         </div>
@@ -159,8 +185,10 @@ const WhatIsVpsPage = () => {
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>VPSの基本</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            VPS は、サーバーのCPU、メモリ、ストレージの一部を専有に近い形で使えるサービスです。
-            Linux を自由に設定でき、アプリやDB、Webサーバーを自分で構成できるため、
+            VPS
+            は、サーバーのCPU、メモリ、ストレージの一部を専有に近い形で使えるサービスです。
+            Linux
+            を自由に設定でき、アプリやDB、Webサーバーを自分で構成できるため、
             個人開発から本番運用まで幅広く使われています。
           </p>
         </article>
@@ -168,13 +196,19 @@ const WhatIsVpsPage = () => {
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>共有サーバーとの違い</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            共有サーバーは手軽ですが、使えるソフトや設定に制約があります。
-            VPS はその制約が少なく、自由に環境を作れるのが大きな違いです。
+            共有サーバーは手軽ですが、使えるソフトや設定に制約があります。 VPS
+            はその制約が少なく、自由に環境を作れるのが大きな違いです。
           </p>
           <ul style={listStyle}>
-            <li style={itemStyle}>共有サーバーは簡単、VPS は自由度が高いです。</li>
-            <li style={itemStyle}>VPS は Docker や独自アプリ、DB を動かしやすいです。</li>
-            <li style={itemStyle}>そのぶん、VPS では運用やセキュリティ管理も自分で行います。</li>
+            <li style={itemStyle}>
+              共有サーバーは簡単、VPS は自由度が高いです。
+            </li>
+            <li style={itemStyle}>
+              VPS は Docker や独自アプリ、DB を動かしやすいです。
+            </li>
+            <li style={itemStyle}>
+              そのぶん、VPS では運用やセキュリティ管理も自分で行います。
+            </li>
           </ul>
         </article>
 
@@ -182,7 +216,8 @@ const WhatIsVpsPage = () => {
           <h2 style={{ fontSize: "1.3rem" }}>クラウドとの違い</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             AWS や Google Cloud のようなクラウドは機能が非常に豊富ですが、
-            最初は構成や料金が複雑に感じることがあります。VPS はもっとシンプルで、
+            最初は構成や料金が複雑に感じることがあります。VPS
+            はもっとシンプルで、
             1台のサーバーを借りる感覚で始めやすいのが魅力です。
           </p>
         </article>
@@ -190,34 +225,51 @@ const WhatIsVpsPage = () => {
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>VPSのメリット</h2>
           <ul style={listStyle}>
-            <li style={itemStyle}>比較的安く、自由なサーバー環境を作れます。</li>
-            <li style={itemStyle}>Docker、Node.js、Python、PostgreSQL などを自由に動かせます。</li>
-            <li style={itemStyle}>小規模サービスや学習用途にちょうどよいです。</li>
-            <li style={itemStyle}>共有サーバーから一歩進んだ運用を学びやすいです。</li>
+            <li style={itemStyle}>
+              比較的安く、自由なサーバー環境を作れます。
+            </li>
+            <li style={itemStyle}>
+              Docker、Node.js、Python、PostgreSQL などを自由に動かせます。
+            </li>
+            <li style={itemStyle}>
+              小規模サービスや学習用途にちょうどよいです。
+            </li>
+            <li style={itemStyle}>
+              共有サーバーから一歩進んだ運用を学びやすいです。
+            </li>
           </ul>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>VPSのデメリット</h2>
           <ul style={listStyle}>
-            <li style={itemStyle}>OS更新、セキュリティ設定、バックアップを自分で考える必要があります。</li>
+            <li style={itemStyle}>
+              OS更新、セキュリティ設定、バックアップを自分で考える必要があります。
+            </li>
             <li style={itemStyle}>障害対応や監視の責任が増えます。</li>
-            <li style={itemStyle}>大規模サービスになると、単体のVPSでは足りなくなることがあります。</li>
+            <li style={itemStyle}>
+              大規模サービスになると、単体のVPSでは足りなくなることがあります。
+            </li>
           </ul>
         </article>
 
         <article style={sectionStyle}>
           <h2 style={{ fontSize: "1.3rem" }}>どんな用途に向いているか</h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            VPS は、個人開発、社内ツール、MVP、学習用サーバー、小規模な本番サービスに向いています。
-            WordPress のような定番CMSだけでなく、API サーバーや Docker Compose を使う構成とも相性がよいです。
+            VPS
+            は、個人開発、社内ツール、MVP、学習用サーバー、小規模な本番サービスに向いています。
+            WordPress のような定番CMSだけでなく、API サーバーや Docker Compose
+            を使う構成とも相性がよいです。
           </p>
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>最初はどのくらいのプランを選ぶか</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            最初はどのくらいのプランを選ぶか
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
-            最初の1台なら、国内VPSの1〜2GB帯から始める人が多いです。Docker やDB を使うなら2GB以上、
+            最初の1台なら、国内VPSの1〜2GB帯から始める人が多いです。Docker やDB
+            を使うなら2GB以上、
             本番公開するなら4GB前後も候補になります。大事なのは、今の用途だけでなく上位プランへの伸び方も見ることです。
           </p>
         </article>
@@ -238,6 +290,7 @@ const WhatIsVpsPage = () => {
           </Link>
         </article>
       </section>
+      <ArticleFooter id="what-is-vps" />
     </div>
   )
 }

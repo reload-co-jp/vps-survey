@@ -1,11 +1,18 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { ArticleFooter } from "../../../components/article-layout"
 
 export const metadata: Metadata = {
   title: "用途別おすすめVPS",
   description:
     "開発、本番、検証、個人開発、社内利用など用途ごとにVPSをどう選ぶかを分かりやすく整理した記事です。",
-  keywords: ["VPS 用途", "VPS おすすめ 用途", "開発用 VPS", "本番 VPS", "VPS 個人開発"],
+  keywords: [
+    "VPS 用途",
+    "VPS おすすめ 用途",
+    "開発用 VPS",
+    "本番 VPS",
+    "VPS 個人開発",
+  ],
   alternates: {
     canonical: "/articles/use-case-recommendations/",
   },
@@ -53,9 +60,18 @@ const UseCaseRecommendationsPage = () => {
     inLanguage: "ja",
     datePublished: "2026-04-30T00:00:00+09:00",
     dateModified: "2026-05-12T00:00:00+09:00",
-    author: { "@type": "Organization", name: "VPS比較サイト", url: "https://vps.reload.co.jp" },
-    publisher: { "@type": "Organization", name: "Reload, Inc.", url: "https://reload.co.jp/" },
-    mainEntityOfPage: "/articles/use-case-recommendations/",
+    author: {
+      "@type": "Organization",
+      name: "VPS比較サイト",
+      url: "https://vps.reload.co.jp",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Reload, Inc.",
+      url: "https://reload.co.jp/",
+    },
+    mainEntityOfPage:
+      "https://vps.reload.co.jp/articles/use-case-recommendations/",
   }
 
   const breadcrumbJsonLd = {
@@ -66,19 +82,19 @@ const UseCaseRecommendationsPage = () => {
         "@type": "ListItem",
         position: 1,
         name: "VPS比較サイト",
-        item: "/",
+        item: "https://vps.reload.co.jp/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "記事一覧",
-        item: "/articles/",
+        item: "https://vps.reload.co.jp/articles/",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "用途別おすすめVPS",
-        item: "/articles/use-case-recommendations/",
+        item: "https://vps.reload.co.jp/articles/use-case-recommendations/",
       },
     ],
   }
@@ -120,7 +136,10 @@ const UseCaseRecommendationsPage = () => {
             ホーム
           </Link>
           <span>/</span>
-          <Link href="/articles/" style={{ color: "#3EA8FF", textDecoration: "none" }}>
+          <Link
+            href="/articles/"
+            style={{ color: "#3EA8FF", textDecoration: "none" }}
+          >
             記事一覧
           </Link>
           <span>/</span>
@@ -144,7 +163,14 @@ const UseCaseRecommendationsPage = () => {
           >
             Use Cases
           </span>
-          <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 700, lineHeight: 1.2, color: "#1a202c" }}>
+          <h1
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.2,
+              color: "#1a202c",
+            }}
+          >
             用途別おすすめVPS
           </h1>
           <p style={{ color: "#4a5568", lineHeight: 1.9, maxWidth: 760 }}>
@@ -162,55 +188,92 @@ const UseCaseRecommendationsPage = () => {
             Docker、簡単なAPI、管理画面の確認なら2GB前後から始めると扱いやすいです。
           </p>
           <ul style={listStyle}>
-            <li style={itemStyle}>短期検証が多いなら時間課金プランが便利です。</li>
-            <li style={itemStyle}>継続開発なら月額が安い国内VPSが扱いやすいです。</li>
-            <li style={itemStyle}>複数コンテナを動かすなら2GB以上を目安にします。</li>
+            <li style={itemStyle}>
+              短期検証が多いなら時間課金プランが便利です。
+            </li>
+            <li style={itemStyle}>
+              継続開発なら月額が安い国内VPSが扱いやすいです。
+            </li>
+            <li style={itemStyle}>
+              複数コンテナを動かすなら2GB以上を目安にします。
+            </li>
           </ul>
           <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
             時間課金対応の国内VPS:{" "}
-            <Link href="/vps/conoha/" style={inlineLinkStyle}>ConoHa VPS</Link>、
-            <Link href="/vps/shin-vps/" style={inlineLinkStyle}>シンVPS</Link>
+            <Link href="/vps/conoha/" style={inlineLinkStyle}>
+              ConoHa VPS
+            </Link>
+            、
+            <Link href="/vps/shin-vps/" style={inlineLinkStyle}>
+              シンVPS
+            </Link>
           </p>
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>本番運用なら安定性と拡張性を優先</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            本番運用なら安定性と拡張性を優先
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             本番公開するなら、価格だけでなく国内リージョン、上位プランの豊富さ、管理画面の使いやすさも重要です。
             後から移行しなくて済むように、余裕を持った構成を選ぶほうが安心です。
           </p>
           <ul style={listStyle}>
-            <li style={itemStyle}>日本向けのWebサービスなら国内リージョンを優先します。</li>
-            <li style={itemStyle}>CPUとメモリに余裕があるサービスを比較します。</li>
-            <li style={itemStyle}>上位プランへの拡張が自然なサービスを選ぶと移行しやすいです。</li>
+            <li style={itemStyle}>
+              日本向けのWebサービスなら国内リージョンを優先します。
+            </li>
+            <li style={itemStyle}>
+              CPUとメモリに余裕があるサービスを比較します。
+            </li>
+            <li style={itemStyle}>
+              上位プランへの拡張が自然なサービスを選ぶと移行しやすいです。
+            </li>
           </ul>
           <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
             本番向け国内VPS候補:{" "}
-            <Link href="/vps/shin-vps/" style={inlineLinkStyle}>シンVPS</Link>、
-            <Link href="/vps/xserver/" style={inlineLinkStyle}>XServer VPS</Link>
+            <Link href="/vps/shin-vps/" style={inlineLinkStyle}>
+              シンVPS
+            </Link>
+            、
+            <Link href="/vps/xserver/" style={inlineLinkStyle}>
+              XServer VPS
+            </Link>
           </p>
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>検証や学習用途なら分かりやすさ重視</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            検証や学習用途なら分かりやすさ重視
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             VPSに慣れていない場合は、料金表が分かりやすく国内情報が多いサービスのほうが安心です。
             管理画面が見やすいか、初期セットアップがしやすいかも使いやすさに直結します。
           </p>
           <ul style={listStyle}>
             <li style={itemStyle}>最初は1〜2GB帯の低価格プランで十分です。</li>
-            <li style={itemStyle}>日本語情報が多い国内サービスだと詰まりにくいです。</li>
-            <li style={itemStyle}>時間課金よりも月額固定のほうが安心して触れる場合もあります。</li>
+            <li style={itemStyle}>
+              日本語情報が多い国内サービスだと詰まりにくいです。
+            </li>
+            <li style={itemStyle}>
+              時間課金よりも月額固定のほうが安心して触れる場合もあります。
+            </li>
           </ul>
           <p style={{ color: "#718096", fontSize: "0.9rem", lineHeight: 1.8 }}>
             学習・検証向け候補:{" "}
-            <Link href="/vps/conoha/" style={inlineLinkStyle}>ConoHa VPS</Link>、
-            <Link href="/vps/sakura/" style={inlineLinkStyle}>さくらのVPS</Link>
+            <Link href="/vps/conoha/" style={inlineLinkStyle}>
+              ConoHa VPS
+            </Link>
+            、
+            <Link href="/vps/sakura/" style={inlineLinkStyle}>
+              さくらのVPS
+            </Link>
           </p>
         </article>
 
         <article style={sectionStyle}>
-          <h2 style={{ fontSize: "1.3rem" }}>社内利用や業務用途ならサポートも見る</h2>
+          <h2 style={{ fontSize: "1.3rem" }}>
+            社内利用や業務用途ならサポートも見る
+          </h2>
           <p style={{ color: "#4a5568", lineHeight: 1.85 }}>
             社内ツールや業務向け用途では、料金よりも請求の分かりやすさや国内サポートの安心感が重要になることがあります。
             逆引きDNSやローカル接続のような周辺機能も比較ポイントです。
@@ -232,6 +295,7 @@ const UseCaseRecommendationsPage = () => {
           </Link>
         </article>
       </section>
+      <ArticleFooter id="use-case-recommendations" />
     </div>
   )
 }

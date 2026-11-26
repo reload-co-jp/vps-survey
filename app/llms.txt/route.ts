@@ -2,6 +2,7 @@ import { getAllArticles } from "../../lib/articles"
 import { getAllNews } from "../../lib/news"
 import { absoluteUrl, lastModified, siteName } from "../../lib/site"
 import {
+  formatPrice,
   getAllServices,
   getLowestPricePlan,
   getPriceRangeLabel,
@@ -16,7 +17,7 @@ const formatServiceLine = (service: VpsService) => {
   const lowest = getLowestPricePlan(service)
   const usage = service.usage.map((item) => usageLabels[item]).join(" / ")
 
-  return `- [${service.name}](${absoluteUrl(`/vps/${service.id}/`)}): ${service.summary} 最安 ${lowest.name} ${lowest.price.toLocaleString()}円、料金帯 ${getPriceRangeLabel(service)}、${regionLabels[service.region]}、用途 ${usage}。`
+  return `- [${service.name}](${absoluteUrl(`/vps/${service.id}/`)}): ${service.summary} 最安 ${lowest.name} ${formatPrice(service, lowest.price)}、料金帯 ${getPriceRangeLabel(service)}、${regionLabels[service.region]}、用途 ${usage}。`
 }
 
 export const GET = () => {

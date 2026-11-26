@@ -15,6 +15,18 @@ export type VpsPlan = {
   billing: BillingType
 }
 
+export type CurrencyType = "JPY" | "USD"
+
+export type VpsCampaign = {
+  title: string
+  description: string
+  url: string
+  /** ISO 8601 date (YYYY-MM-DD) */
+  startDate: string
+  /** ISO 8601 date (YYYY-MM-DD) */
+  endDate: string
+}
+
 export type VpsService = {
   id: string
   name: string
@@ -30,11 +42,51 @@ export type VpsService = {
   officialUrl: string
   affiliateUrl?: string
   affiliatePixelUrl?: string
+  /** 料金表示の通貨。DigitalOcean など海外サービスは USD 表記 */
+  currency: CurrencyType
+  /** 料金・スペックを公式サイトで最後に確認した日 (YYYY-MM-DD) */
+  priceCheckedAt: string
+  /** 公式で確認できたキャンペーン。期間外のものは表示しない */
+  campaigns: VpsCampaign[]
   plans: VpsPlan[]
 }
 
 export const getOutboundUrl = (service: VpsService) =>
   service.affiliateUrl ?? service.officialUrl
+
+export const hasAffiliate = (service: VpsService) =>
+  Boolean(service.affiliateUrl)
+
+/** 通貨を考慮した料金表示。USD は円換算せずドル表記のまま出す */
+export const formatPrice = (service: VpsService, price: number) =>
+  service.currency === "USD"
+    ? `$${price.toLocaleString("en-US")}`
+    : `¥${price.toLocaleString("ja-JP")}`
+
+export const formatPriceCheckedAt = (service: VpsService) => {
+  const [year, month, day] = service.priceCheckedAt.split("-").map(Number)
+  return `${year}年${month}月${day}日`
+}
+
+export const formatMemoryLabel = (memory: number) =>
+  memory < 1 ? `${Math.round(memory * 1024)}MB` : `${memory}GB`
+
+/** 指定日時点で開催中のキャンペーンのみ返す（終了・開始前は除外） */
+export const getActiveCampaigns = (service: VpsService, now = new Date()) => {
+  const today = now.toISOString().slice(0, 10)
+  return service.campaigns.filter(
+    (campaign) => campaign.startDate <= today && today <= campaign.endDate
+  )
+}
+
+/** メモリ minMemory GB 以上で最安のプラン */
+export const getCheapestPlanWithMemory = (
+  service: VpsService,
+  minMemory: number
+): VpsPlan | undefined =>
+  [...service.plans]
+    .filter((plan) => plan.memory >= minMemory)
+    .sort((left, right) => left.price - right.price)[0]
 
 export type SortKey = "price" | "spec" | "popular"
 export type ComparisonSortKey =
@@ -99,10 +151,10 @@ export const getPriceRangeLabel = (service: VpsService) => {
   const maximum = Math.max(...prices)
 
   if (minimum === maximum) {
-    return `¥${minimum.toLocaleString()}`
+    return formatPrice(service, minimum)
   }
 
-  return `¥${minimum.toLocaleString()}〜¥${maximum.toLocaleString()}`
+  return `${formatPrice(service, minimum)}〜${formatPrice(service, maximum)}`
 }
 
 const matchesPrice = (price: number, range: FilterState["priceRange"]) => {
@@ -117,6 +169,14 @@ const matchesMinimum = (
   selected: FilterState["memory"] | FilterState["cpu"]
 ) => (selected === "all" ? true : value >= Number(selected))
 
+/** 円建てを先に価格順、円以外（USD）は後ろに回す */
+const comparePriceAcrossCurrency = (left: VpsService, right: VpsService) => {
+  if (left.currency !== right.currency) {
+    return left.currency === "JPY" ? -1 : 1
+  }
+  return getLowestPricePlan(left).price - getLowestPricePlan(right).price
+}
+
 const getPlanSpecScore = (plan: VpsPlan) =>
   plan.cpu * 1.5 + plan.memory * 2 + (plan.storage ?? 0) / 50
 
@@ -128,7 +188,13 @@ export const filterAndSortServices = (
 
   return items
     .filter((service) =>
-      service.plans.some((plan) => matchesPrice(plan.price, filters.priceRange))
+      // 価格帯フィルタは円建てのサービスのみ判定（USD を円とみなさない）
+      filters.priceRange === "all"
+        ? true
+        : service.currency === "JPY" &&
+          service.plans.some((plan) =>
+            matchesPrice(plan.price, filters.priceRange)
+          )
     )
     .filter((service) =>
       service.plans.some((plan) => matchesMinimum(plan.memory, filters.memory))
@@ -149,7 +215,7 @@ export const filterAndSortServices = (
     )
     .sort((left, right) => {
       if (filters.sort === "price") {
-        return getLowestPricePlan(left).price - getLowestPricePlan(right).price
+        return comparePriceAcrossCurrency(left, right)
       }
       if (filters.sort === "popular") return right.popularity - left.popularity
 
@@ -221,7 +287,7 @@ export const sortServicesForComparison = (
 
   return [...servicesToCompare].sort((left, right) => {
     if (sortKey === "price") {
-      return getLowestPricePlan(left).price - getLowestPricePlan(right).price
+      return comparePriceAcrossCurrency(left, right)
     }
 
     if (sortKey === "cpu") {

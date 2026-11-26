@@ -2,10 +2,12 @@
 
 import Link from "next/link"
 import type { CSSProperties, ReactNode } from "react"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { trackEvent } from "../lib/analytics"
 import {
   billingLabels,
   filterAndSortServices,
+  formatPrice,
   formatStorageLabel,
   formatTrafficLabel,
   getComparisonRows,
@@ -18,6 +20,8 @@ import {
   type VpsService,
   usageLabels,
 } from "../lib/vps"
+import { AffiliateLink, PrDisclosure } from "./affiliate-link"
+import { ServiceIcon } from "./service-icon"
 
 const initialFilters: FilterState = {
   priceRange: "all",
@@ -29,11 +33,48 @@ const initialFilters: FilterState = {
   sort: "popular",
 }
 
-const metrics = [
-  { label: "掲載サービス", value: (count: number) => `${count}件` },
-  { label: "最安価格帯", value: () => "¥550〜" },
-  { label: "比較表示", value: () => "横並び比較" },
-  { label: "主な用途", value: () => "開発・本番・検証" },
+// トップページの入口（料金・スペック・用途・事業者・地域・技術情報）
+const entryGroups = [
+  {
+    title: "料金から探す",
+    links: [
+      { href: "/lp/cheap-vps/", label: "格安VPS比較（最安プラン順）" },
+      { href: "#vps-compare", label: "価格帯で絞り込んで比較" },
+    ],
+  },
+  {
+    title: "スペックから探す",
+    links: [
+      { href: "/lp/memory-2gb/", label: "メモリ2GBのVPS比較" },
+      { href: "#vps-compare", label: "CPU・メモリで絞り込む" },
+    ],
+  },
+  {
+    title: "用途から探す",
+    links: [
+      { href: "/use-cases/docker/", label: "Docker向けVPS" },
+      { href: "/use-cases/wordpress/", label: "WordPress向けVPS" },
+      { href: "/use-cases/minecraft/", label: "Minecraft向けVPS" },
+      { href: "/use-cases/vpn/", label: "VPN向けVPS" },
+    ],
+  },
+  {
+    title: "国内・海外から探す",
+    links: [
+      { href: "/lp/domestic-vps/", label: "国内VPS比較" },
+      { href: "/lp/overseas-vps/", label: "海外VPS比較" },
+    ],
+  },
+  {
+    title: "技術情報を読む",
+    links: [
+      { href: "/articles/", label: "VPS・Linux・Dockerの解説記事" },
+      {
+        href: "/storage/object-storage-comparison/",
+        label: "オブジェクトストレージ比較",
+      },
+    ],
+  },
 ]
 
 const filterGroups = [
@@ -168,7 +209,16 @@ export const VpsExplorer = ({ services }: Props) => {
   const updateFilter = <Key extends keyof FilterState>(
     key: Key,
     value: FilterState[Key]
-  ) => setFilters((current) => ({ ...current, [key]: value }))
+  ) => {
+    setFilters((current) => ({ ...current, [key]: value }))
+    // 検索ボックスは 1 文字ごとに送らない（blur 時に送信）
+    if (key !== "query") {
+      trackEvent("comparison_filter", {
+        filter_type: key,
+        filter_value: String(value),
+      })
+    }
+  }
 
   const toggleExpandedPlans = (serviceId: string) =>
     setExpandedPlans((current) => ({
@@ -179,7 +229,8 @@ export const VpsExplorer = ({ services }: Props) => {
   return (
     <div data-vps-explorer="" style={explorerStyle}>
       <ExplorerStyles />
-      <Hero serviceCount={services.length} />
+      <Hero services={services} />
+      <EntryNavigation services={services} />
       <DecisionSummary />
       <FilterPanel
         filters={filters}
@@ -239,6 +290,12 @@ const ExplorerStyles = () => (
       width: 100%;
     }
 
+    [data-vps-explorer] [data-grid='entries'] {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+    }
+
     [data-vps-explorer] [data-grid='articles'] {
       display: grid;
       gap: 1rem;
@@ -254,30 +311,114 @@ const ExplorerStyles = () => (
   `}</style>
 )
 
-const Hero = ({ serviceCount }: { serviceCount: number }) => (
-  <section style={heroStyle}>
-    <div style={heroContentStyle}>
-      <span style={eyebrowStyle}>VPS Compare Navigator</span>
-      <div style={{ display: "grid", gap: "0.75rem", maxWidth: 760 }}>
-        <h1 style={heroTitleStyle}>
-          月550円から。あなたに合うVPSを今すぐ見つける
-        </h1>
-        <p style={heroLeadStyle}>
-          国内・海外15社以上を価格・スペック・用途で絞り込み。
-          横並び比較でサクッと決めよう。
-        </p>
+const Hero = ({ services }: { services: VpsService[] }) => {
+  const domestic = services.filter((service) => service.region === "JP")
+  const cheapestDomestic = Math.min(
+    ...domestic.map((service) => getLowestPricePlan(service).price)
+  )
+  const metrics = [
+    { label: "掲載サービス", value: `${services.length}件` },
+    {
+      label: "国内VPSの最安",
+      value: `¥${cheapestDomestic.toLocaleString("ja-JP")}〜/月`,
+    },
+    { label: "比較方法", value: "料金・スペック・用途" },
+    {
+      label: "掲載プラン数",
+      value: `${services.reduce((total, service) => total + service.plans.length, 0)}件`,
+    },
+  ]
+
+  return (
+    <section style={heroStyle}>
+      <div style={heroContentStyle}>
+        <span style={eyebrowStyle}>VPS Compare Navigator</span>
+        <div style={{ display: "grid", gap: "0.75rem", maxWidth: 760 }}>
+          <h1 style={heroTitleStyle}>
+            VPS比較｜国内・海外{services.length}
+            サービスを料金・スペック・用途で比較
+          </h1>
+          <p style={heroLeadStyle}>
+            国内VPSは月{cheapestDomestic.toLocaleString("ja-JP")}
+            円から。価格・CPU・メモリ・用途で絞り込み、全プランを横並びで比較できます。料金は各公式サイトで確認した日付つきで掲載しています。
+          </p>
+        </div>
+        <div data-grid="metrics">
+          {metrics.map((metric) => (
+            <MetricCard
+              key={metric.label}
+              label={metric.label}
+              value={metric.value}
+            />
+          ))}
+        </div>
       </div>
-      <div data-grid="metrics">
-        {metrics.map((metric) => (
-          <MetricCard
-            key={metric.label}
-            label={metric.label}
-            value={metric.value(serviceCount)}
-          />
+    </section>
+  )
+}
+
+const EntryNavigation = ({ services }: { services: VpsService[] }) => (
+  <nav
+    aria-label="目的からVPSを探す"
+    data-surface="responsive"
+    style={fullWidthStyle}
+  >
+    <div style={{ display: "grid", gap: "1rem" }}>
+      <h2 style={sectionTitleStyle}>目的からVPSを探す</h2>
+      <div data-grid="entries">
+        {entryGroups.map((group) => (
+          <div
+            key={group.title}
+            style={{ ...summaryItemStyle, alignContent: "start" }}
+          >
+            <h3
+              style={{ color: "#1a202c", fontSize: "0.98rem", fontWeight: 700 }}
+            >
+              {group.title}
+            </h3>
+            <ul style={entryListStyle}>
+              {group.links.map((link) => (
+                <li key={link.href + link.label}>
+                  <a href={link.href} style={entryLinkStyle}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
+        <div
+          style={{
+            ...summaryItemStyle,
+            alignContent: "start",
+            gridColumn: "1 / -1",
+          }}
+        >
+          <h3
+            style={{ color: "#1a202c", fontSize: "0.98rem", fontWeight: 700 }}
+          >
+            VPS事業者から探す
+          </h3>
+          <ul
+            style={{
+              ...entryListStyle,
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.4rem 1.2rem",
+            }}
+          >
+            {services.map((service) => (
+              <li key={service.id}>
+                <Link href={`/vps/${service.id}/`} style={entryLinkStyle}>
+                  {service.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
-  </section>
+  </nav>
 )
 
 const DecisionSummary = () => (
@@ -323,6 +464,14 @@ const FilterPanel = ({
       <div data-grid="filters">
         <ControlField label="サービス名検索">
           <input
+            onBlur={(event) => {
+              if (event.target.value.trim()) {
+                trackEvent("comparison_filter", {
+                  filter_type: "query",
+                  filter_value: event.target.value.trim().slice(0, 100),
+                })
+              }
+            }}
             onChange={(event) => updateFilter("query", event.target.value)}
             placeholder="ConoHa / DigitalOcean など"
             style={controlStyle}
@@ -370,9 +519,14 @@ const ServiceCard = ({ service }: { service: VpsService }) => {
     <article data-surface="default" style={fullWidthStyle}>
       <div style={{ display: "grid", gap: "0.75rem" }}>
         <div style={{ display: "grid", gap: "0.35rem" }}>
-          <strong style={{ color: "#1a202c", fontSize: "1.05rem" }}>
-            {service.name}
-          </strong>
+          <span
+            style={{ alignItems: "center", display: "flex", gap: "0.55rem" }}
+          >
+            <ServiceIcon service={service} size={34} />
+            <strong style={{ color: "#1a202c", fontSize: "1.05rem" }}>
+              {service.name}
+            </strong>
+          </span>
           <p style={cardTextStyle}>{service.summary}</p>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
@@ -392,9 +546,19 @@ const ServiceCard = ({ service }: { service: VpsService }) => {
             {formatStorageLabel(lowestPricePlan.storage)}
           </span>
         </div>
-        <Link href={`/vps/${service.id}/`} style={linkButtonStyle}>
-          詳細を見る
-        </Link>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+          <Link href={`/vps/${service.id}/`} style={linkButtonStyle}>
+            料金・評判を見る
+          </Link>
+          <AffiliateLink
+            placement="service_card"
+            planName={lowestPricePlan.name}
+            service={service}
+            variant="compact"
+          >
+            公式サイト
+          </AffiliateLink>
+        </div>
       </div>
     </article>
   )
@@ -419,7 +583,12 @@ const ComparisonTable = ({
   sort,
   toggleExpandedPlans,
 }: ComparisonTableProps) => (
-  <section data-surface="responsive" style={fullWidthStyle}>
+  <section
+    data-surface="responsive"
+    id="vps-compare"
+    style={{ ...fullWidthStyle, scrollMarginTop: 80 }}
+  >
+    <ComparisonViewTracker count={comparisonServices.length} />
     <div style={comparisonHeaderStyle}>
       <div>
         <h2 style={sectionTitleStyle}>全サービス横並び比較</h2>
@@ -446,9 +615,18 @@ const ComparisonTable = ({
               {comparisonServices.map((service) => (
                 <th key={service.id} style={compareHeadStyle}>
                   <div style={{ display: "grid", gap: "0.35rem" }}>
-                    <span>{service.name}</span>
+                    <span
+                      style={{
+                        alignItems: "center",
+                        display: "flex",
+                        gap: "0.45rem",
+                      }}
+                    >
+                      <ServiceIcon service={service} size={28} />
+                      {service.name}
+                    </span>
                     <Link href={`/vps/${service.id}/`} style={compareLinkStyle}>
-                      詳細を見る
+                      料金・評判の詳細を見る
                     </Link>
                   </div>
                 </th>
@@ -469,17 +647,73 @@ const ComparisonTable = ({
                 ))}
               </tr>
             ))}
+            <tr>
+              <td style={compareCellLabelStyle}>特徴</td>
+              {comparisonServices.map((service) => (
+                <td key={`${service.id}-tags`} style={compareCellStyle}>
+                  <span style={subCellStyle}>{service.tags.join(" / ")}</span>
+                </td>
+              ))}
+            </tr>
             <PlanComparisonRow
               expandedPlans={expandedPlans}
               services={comparisonServices}
               toggleExpandedPlans={toggleExpandedPlans}
             />
+            <tr>
+              <td style={compareCellLabelStyle}>公式サイト</td>
+              {comparisonServices.map((service) => (
+                <td key={`${service.id}-cta`} style={compareCellStyle}>
+                  <AffiliateLink
+                    placement="comparison_table"
+                    planName={getLowestPricePlan(service).name}
+                    service={service}
+                    variant="compact"
+                  >
+                    公式サイトで料金を確認
+                  </AffiliateLink>
+                </td>
+              ))}
+            </tr>
           </tbody>
         </table>
       </div>
     )}
+    <PrDisclosure style={{ marginTop: "0.75rem" }} />
   </section>
 )
+
+/** 比較表が画面に入ったら comparison_view を 1 回送る */
+const ComparisonViewTracker = ({ count }: { count: number }) => {
+  const ref = useRef<HTMLSpanElement>(null)
+  const countRef = useRef(count)
+
+  useEffect(() => {
+    countRef.current = count
+  }, [count])
+
+  useEffect(() => {
+    const element = ref.current?.parentElement
+    if (!element || typeof IntersectionObserver === "undefined") return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          trackEvent("comparison_view", {
+            page_path: window.location.pathname,
+            service_count: countRef.current,
+          })
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  return <span hidden ref={ref} />
+}
 
 type ComparisonSortControlProps = {
   count: number
@@ -538,7 +772,7 @@ const PlanComparisonRow = ({
             {visiblePlans.map((plan) => (
               <div key={plan.id} style={planCardStyle}>
                 <strong style={{ fontSize: "0.85rem" }}>
-                  {plan.name} / ¥{plan.price.toLocaleString()}
+                  {plan.name} / {formatPrice(service, plan.price)}
                 </strong>
                 <span style={subCellStyle}>
                   {plan.cpu} vCPU / {plan.memory} GB /{" "}
@@ -864,6 +1098,19 @@ const pillStyle: CSSProperties = {
   color: "#2b6cb0",
   fontSize: "0.8rem",
   padding: "0.3rem 0.6rem",
+}
+
+const entryListStyle: CSSProperties = {
+  display: "grid",
+  gap: "0.35rem",
+  listStyle: "none",
+  padding: 0,
+}
+
+const entryLinkStyle: CSSProperties = {
+  color: "#2563eb",
+  fontSize: "0.9rem",
+  textDecoration: "none",
 }
 
 const textLinkStyle: CSSProperties = {

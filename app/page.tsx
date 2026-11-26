@@ -1,18 +1,21 @@
 import type { Metadata } from "next"
 import { VpsExplorer } from "../components/vps-explorer"
 import { absoluteUrl, siteName } from "../lib/site"
-import { getAllServices, getLowestPricePlan } from "../lib/vps"
+import { getAllServices } from "../lib/vps"
 
 export const metadata: Metadata = {
-  title: "VPS比較サイト | 国内・海外VPSおすすめ一覧",
+  title: {
+    absolute:
+      "VPS比較｜国内・海外VPSを料金・スペック・用途で比較 | VPS比較サイト",
+  },
   description:
-    "VPS比較サイトの一覧ページです。国内・海外のVPSを価格、CPU、メモリ、リージョン、用途で比較できます。",
+    "国内・海外の主要VPSを月額料金・CPU・メモリ・用途で比較。ConoHa VPS、さくらのVPS、XServer VPS、シンVPS、KAGOYA、WebARENA Indigoなどの全プランを確認日つきで横並び比較できます。",
   keywords: ["VPS 比較", "VPS おすすめ", "日本 VPS", "海外 VPS", "格安 VPS"],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "VPS比較サイト | 国内・海外VPSおすすめ一覧",
+    title: "VPS比較｜国内・海外VPSを料金・スペック・用途で比較",
     description:
       "国内・海外のVPSを価格、CPU、メモリ、リージョン、用途で比較できる一覧ページ。",
     images: [
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
     description:
       "国内・海外のVPSを価格、CPU、メモリ、リージョン、用途で比較できる一覧ページ。",
     images: ["/twitter-image"],
-    title: "VPS比較サイト | 国内・海外VPSおすすめ一覧",
+    title: "VPS比較｜国内・海外VPSを料金・スペック・用途で比較",
   },
 }
 
@@ -75,37 +78,6 @@ const Page = () => {
     ],
   }
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "VPSは何を基準に選ぶべきですか？",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "用途、必要メモリ、国内/海外リージョン、上位プランの豊富さ、料金の順に見ると選びやすいです。価格だけでなくCPU・メモリ・拡張余地を一緒に比較します。",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "初心者や個人開発に向くVPSはどれですか？",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "初心者や個人開発では、国内VPSの1〜2GB帯から始めると管理しやすく、費用も抑えやすいです。DockerやDBを使う場合は2GB以上を目安にします。",
-        },
-      },
-      ...services.map((service) => ({
-        "@type": "Question",
-        name: `${service.name}はどんな用途に向いていますか？`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `${service.summary} 最安プランは¥${getLowestPricePlan(service).price.toLocaleString()}からです。`,
-        },
-      })),
-    ],
-  }
-
   return (
     <>
       <script
@@ -114,10 +86,6 @@ const Page = () => {
       />
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-        type="application/ld+json"
-      />
-      <script
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         type="application/ld+json"
       />
       <VpsExplorer services={services} />
